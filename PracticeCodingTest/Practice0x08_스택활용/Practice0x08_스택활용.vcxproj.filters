@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="3986_좋은단어.cpp">
+    <ClCompile Include="2504_괄호의값.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
