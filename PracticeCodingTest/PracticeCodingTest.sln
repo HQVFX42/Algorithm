@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice0x06,07_큐덱", "P
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice0x08_스택활용", "Practice0x08_스택활용\Practice0x08_스택활용.vcxproj", "{C847AF09-FBCA-4D14-87F5-9D2B75E589AC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice0x09_BFS", "Practice0x09_BFS\Practice0x09_BFS.vcxproj", "{3628F192-F514-47BF-A99A-858A190EF1F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{C847AF09-FBCA-4D14-87F5-9D2B75E589AC}.Release|x64.Build.0 = Release|x64
 		{C847AF09-FBCA-4D14-87F5-9D2B75E589AC}.Release|x86.ActiveCfg = Release|Win32
 		{C847AF09-FBCA-4D14-87F5-9D2B75E589AC}.Release|x86.Build.0 = Release|Win32
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Debug|x64.ActiveCfg = Debug|x64
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Debug|x64.Build.0 = Debug|x64
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Debug|x86.ActiveCfg = Debug|Win32
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Debug|x86.Build.0 = Debug|Win32
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Release|x64.ActiveCfg = Release|x64
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Release|x64.Build.0 = Release|x64
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Release|x86.ActiveCfg = Release|Win32
+		{3628F192-F514-47BF-A99A-858A190EF1F6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
