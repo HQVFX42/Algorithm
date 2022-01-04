@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NPIXEL_1.cpp">
+    <ClCompile Include="CodingGames_Unary.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
