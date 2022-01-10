@@ -1,80 +1,89 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-string board[1002];
-int dist1[1002][1002], dist2[1002][1002];
-int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1,-1 };
-int n, m;
-queue<pair<int, int>> q1, q2;
+char board[102][102];
+bool hasVis[102][102];
+int dx[4] = { 1,-1,0,0 };
+int dy[4] = { 0,0,1,-1 };
+queue<pair<char, char >> q;
+int n, ansN, ansY;
 
+void bfs(int i, int j)
+{
+	q.push({ i,j });
+	hasVis[i][j] = true;
+	while (!q.empty())
+	{
+		auto cur = q.front(); q.pop();
+		for (int dir = 0; dir < 4; dir++)
+		{
+			int nx = cur.first + dx[dir];
+			int ny = cur.second + dy[dir];
+			if (nx < 0 || nx >= n || ny < 0 || ny >= n)
+			{
+				continue;
+			}
+			if (hasVis[nx][ny] == true || board[i][j] != board[nx][ny])
+			{
+				continue;
+			}
+			hasVis[nx][ny] = true;
+			q.push({ nx,ny });
+		}
+	}
+}
 int main()
 {
-	cin >> n >> m;
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> board[i];
-		fill(dist1[i], dist1[i] + m, -1);
-		fill(dist2[i], dist2[i] + m, -1);
+		for (int j = 0; j < n; j++)
+		{
+			cin >> board[i][j];
+		}
 	}
+		
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < m; j++)
+		for (int j = 0; j < n; j++)
 		{
-			if (board[i][j] == 'F')
+			if (hasVis[i][j] == false)
 			{
-				q1.push({ i,j });
-				dist1[i][j] = 0;
-			}
-			if (board[i][j] == 'J')
-			{
-				q2.push({ i,j });
-				dist2[i][j] = 0;
+				ansN++;				
+				bfs(i, j);
 			}
 		}
 	}
 
-	while (!q1.empty())
+	for (int i = 0; i < n; i++)
 	{
-		auto cur = q1.front(); q1.pop();
-		for (int dir = 0; dir < 4; dir++)
-		{
-			int nx = cur.first + dx[dir], ny = cur.second + dy[dir];
-			if (nx < 0 || nx >= n || ny < 0 || ny >= m)
-			{
-				continue;
-			}
-			if (dist1[nx][ny] >= 0 || board[nx][ny] == '#')
-			{
-				continue;
-			}
-			dist1[nx][ny] = dist1[cur.first][cur.second] + 1;
-			q1.push({ nx, ny });
-		}
+		fill(hasVis[i], hasVis[i] + n, false);
 	}
 
-	while (!q2.empty())
+	for (int i = 0; i < n; i++)
 	{
-		auto cur = q2.front(); q2.pop();
-		for (int dir = 0; dir < 4; dir++)
+		for (int j = 0; j < n; j++)
 		{
-			int nx = cur.first + dx[dir], ny = cur.second + dy[dir];
-			if (nx < 0 || nx >= n || ny < 0 || ny >= m)
+			if (board[i][j] == 'R')
 			{
-				cout << dist2[cur.first][cur.second] + 1;
-				return 0;
+				board[i][j] = 'G';
 			}
-			if (dist2[nx][ny] >= 0 || board[nx][ny] == '#')
-			{
-				continue;
-			}
-			if (dist1[nx][ny] != -1 && dist2[nx][ny] + 1 >= dist1[nx][ny])
-			{
-				continue;
-			}
-			dist2[nx][ny] = dist2[cur.first][cur.second] + 1;
-			q2.push({ nx, ny });
 		}
 	}
 
-	cout << "IMPOSSIBLE";
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (hasVis[i][j] == false)
+			{
+				ansY++;
+				bfs(i, j);
+			}
+		}
+	}
+	cout << ansN << ' ' << ansY;
 }
