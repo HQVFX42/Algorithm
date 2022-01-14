@@ -1,77 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-char board[1002][1002];
-int dist1[1002][1002], dist2[1002][1002];
-int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1,-1 };
-int TC, w, h;
-bool escape;
-queue<pair<int, int>> q1, q2;
+int board[102][102];
+int vis[102][102];
+int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1, -1 };
+int m, n, k, x, y, xx, yy;
+queue<pair<int, int>> q;
 
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	cin >> TC;
-	while (TC--)
+	cin >> m >> n >> k;
+	while (k--)
 	{
-		escape = false;
-		q1 = {}, q2 = {};	//queue init
-		cin >> h >> w;
-		for (int i = 0; i < w; i++)
+		cin >> x >> y >> xx >> yy;
+		for (int i = y; i < yy; i++)
 		{
-			for (int j = 0; j < h; j++)
+			for (int j = x; j < xx; j++)
 			{
-				dist1[i][j] = -1;
-				dist2[i][j] = -1;				
-				cin >> board[i][j];
-				if (board[i][j] == '*')
-				{
-					dist1[i][j] = 0;
-					q1.push({ i,j });
-				}
-				if (board[i][j] == '@')
-				{
-					dist2[i][j] = 0;
-					q2.push({ i,j });
-				}
+				board[i][j] = 1;
 			}
 		}
+	}
 
-		while (!q1.empty())
+	int num = 0;
+	vector<int> ans;
+
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
 		{
-			auto cur = q1.front();	q1.pop();
-			for (int dir = 0; dir < 4; dir++)
+			if (board[i][j] == 1 || vis[i][j] == 1)
 			{
-				int nx = cur.first + dx[dir], ny = cur.second + dy[dir];
-				if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
-				if (dist1[nx][ny] >= 0 || board[nx][ny] == '#') continue;
-				dist1[nx][ny] = dist1[cur.first][cur.second] + 1;
-				q1.push({ nx, ny });
+				continue;
 			}
-
-		}
-
-		while ((!q2.empty()) && (escape == false))
-		{
-			auto cur = q2.front(); q2.pop();
-			for (int dir = 0; dir < 4; dir++)
+			vis[i][j] = 1;
+			q.push({ i,j });
+			int width = 1;
+			num++;
+			while (!q.empty())
 			{
-				int nx = cur.first + dx[dir], ny = cur.second + dy[dir];
-				if (nx < 0 || nx >= w || ny < 0 || ny >= h)
+				auto cur = q.front();	q.pop();
+				for (int dir = 0; dir < 4; dir++)
 				{
-					cout << dist2[cur.first][cur.second] + 1 << '\n';
-					escape = true;
-					break;
+					int nx = cur.first + dx[dir], ny = cur.second + dy[dir];
+					if (nx < 0 || nx >= m || ny < 0 || ny >= n)
+					{
+						continue;
+					}
+					if (vis[nx][ny] == 1 || board[nx][ny] == 1)
+					{
+						continue;
+					}
+					vis[nx][ny] = 1;
+					q.push({ nx,ny });
+					width++;
 				}
-				if (dist2[nx][ny] >= 0 || board[nx][ny] == '#') continue;
-				if (dist1[nx][ny] != -1 && dist1[nx][ny] <= dist2[cur.first][cur.second] + 1) continue;
-				dist2[nx][ny] = dist2[cur.first][cur.second] + 1;
-				q2.push({ nx, ny });
 			}
+			ans.push_back(width);
 		}
-
-		if (escape == false) cout << "IMPOSSIBLE" << '\n';
+	}
+	cout << num << '\n';
+	sort(ans.begin(), ans.end());
+	for (int i = 0; i < ans.size(); i++)
+	{
+		cout << ans[i] << ' ';
 	}
 }
