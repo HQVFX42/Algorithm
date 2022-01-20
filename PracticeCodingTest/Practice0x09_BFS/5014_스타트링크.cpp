@@ -18,12 +18,22 @@ int main()
 	while (!q.empty())
 	{
 		auto cur = q.front(); q.pop();
-		for (auto nxt : { cur + U,cur - D })
+		for (int dir = 0; dir < 2; dir++)
 		{
-			if (nxt <= 0 || nxt > F || dist[nxt] != -1) continue;
-			dist[nxt] = dist[cur] + 1;
-			q.push(nxt);
+			int nx;
+			if (dir == 0) nx = cur + U;
+			else nx = cur - D;
+			if (nx <= 0 || nx > F || dist[nx] != -1) continue;
+			dist[nx] = dist[cur] + 1;
+			q.push(nx);
 		}
+		// 위의 for문과 똑같은 동작을 하는 ranged for문
+		//for (auto nxt : { cur + U,cur - D })
+		//{
+		//	if (nxt <= 0 || nxt > F || dist[nxt] != -1) continue;
+		//	dist[nxt] = dist[cur] + 1;
+		//	q.push(nxt);
+		//}
 	}
 	if (dist[G] == -1) cout << "use the stairs";
 	else cout << dist[G];
