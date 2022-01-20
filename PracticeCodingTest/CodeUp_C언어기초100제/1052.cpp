@@ -8,5 +8,6 @@ int main()
 
 	int a, b;
 	cin >> a >> b;
-	cout << a / b;
+	if (a != b) cout << 1;
+	else cout << 0;
 }
