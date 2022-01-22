@@ -6,7 +6,7 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int a, b;
-	cin >> a >> b;
-	cout << (a & b);
+	int a, b, c;
+	cin >> a >> b >> c;
+	cout << ((a > b ? b : a) > c ? c : (a > b ? b : a));
 }

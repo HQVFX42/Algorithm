@@ -6,7 +6,13 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int a, b;
-	cin >> a >> b;
-	cout << (a & b);
+	int n;
+	cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		if (i % 3 != 0)
+		{
+			cout << i << ' ';
+		}
+	}
 }
