@@ -5,9 +5,13 @@ char board[30][30][30];
 int vis[30][30][30];
 int dx[6] = { 1,-1,0,0,0,0 }, dy[6] = { 0,0,1,-1,0,0 }, dz[6] = { 0,0,0,0,1,-1 };
 int X, Y, Z;
+bool bEnd;
+queue<tuple<int, int, int>> q;
 
 void INIT()
 {
+	bEnd = false;
+	q = queue<tuple<int, int, int>>();	//queue init
 	for (int i = 0; i < Z; i++)
 	{
 		for (int j = 0; j < X; j++)
@@ -26,8 +30,7 @@ int main()
 	{
 		cin >> Z >> X >> Y;
 		if (Z == 0 && X == 0 && Y == 0)	break;
-		bool bEnd = false;
-		queue<tuple<int, int, int>> q;
+		
 		INIT();
 
 		for (int i = 0; i < Z; i++)
@@ -52,7 +55,7 @@ int main()
 
 		while (!q.empty())
 		{
-			if (bEnd) break;	// 안 넣으면 틀림 왜?
+			if (bEnd) break;	// 출구가 여러 개 입력될 경우 최소에서 탈출
 			auto cur = q.front();	q.pop();
 			int curX, curY, curZ;
 			tie(curZ, curX, curY) = cur;
@@ -83,10 +86,7 @@ int main()
 				q.push({ nz,nx,ny });
 			}
 		}
-		while (!q.empty())
-		{
-			q.pop();
-		}
+		
 		if (bEnd == false)
 		{
 			cout << "Trapped!\n";
