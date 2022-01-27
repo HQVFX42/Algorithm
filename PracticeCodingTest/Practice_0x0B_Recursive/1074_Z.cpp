@@ -14,15 +14,15 @@ int ZRecursive(int n, int r, int c)
 	}
 	if (r < half && c >= half)
 	{
-		return half * half + ZRecursive(n - 1, r, c - half);
+		return (half * half) + ZRecursive(n - 1, r, c - half);
 	}
 	if (r >= half && c < half)
 	{
-		return 2 * half * half + ZRecursive(n - 1, r - half, c);
+		return (2 * half * half) + ZRecursive(n - 1, r - half, c);
 	}
 	else
 	{
-		return 3 * half * half + ZRecursive(n - 1, r - half, c - half);
+		return (3 * half * half) + ZRecursive(n - 1, r - half, c - half);
 	}
 }
 
