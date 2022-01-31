@@ -9,77 +9,40 @@ pair<int, int> HilbertCurveRecursive(int side, int walk)
 	{
 		switch (walk)
 		{
-		case 1:
+		case 0:
 			return { 1,1 };
-		case 2:
+		case 1:
 			return { 1,2 };
-		case 3:
+		case 2:
 			return { 2,2 };
-		case 4:
+		case 3:
 			return { 2,1 };
 		default:
+			cout << "unknown type" << walk << '\n';
 			break;
 		}
-		/*if (walk == 1)
-		{
-			return { 1, 1 };
-		}
-		if (walk == 2)
-		{
-			return { 1, 2 };
-		}
-		if (walk == 3)
-		{
-			return { 2, 2 };
-		}
-		if (walk == 4)
-		{
-			return { 2, 1 };
-		}*/
 	}
 
 	int half = side * 0.5;
-	int quadrant1 = half * half * 3;
-	int quadrant2 = half * half * 2;
-	int quadrant3 = half * half;
-	int quadrant4 = half * half * 4;
 	int quadrant = (half * half);
-	//if (walk <= quadrant1) // quadrant 1
-	//{
-	//	pair<int, int> coord = HilbertCurveRecursive(half, walk - quadrant2);
-	//	return { coord.second + half, coord.first + half };
-	//}
-	//else if (walk <= quadrant2) // quadrant 2
-	//{
-	//	pair<int, int> coord = HilbertCurveRecursive(half, walk - quadrant3);
-	//	return { coord.second, coord.first + half };
-	//}
-	//else if (walk <= quadrant3) // quadrant 3
-	//{
-	//	pair<int, int> coord = HilbertCurveRecursive(half, walk);
-	//	return { coord.second, coord.first };
-	//}
-	//else	// quadrant 4
-	//{
-	//	pair<int, int> coord = HilbertCurveRecursive(half, walk - quadrant1);
-	//	return { 2 * half - coord.second + 1, half - coord.first + 1 };
-	//}
+
 	pair<int, int> coord;
 	switch (walk / quadrant)
 	{
-	case 0:
+	case 0:	// quadrant 3
 		coord = HilbertCurveRecursive(half, walk % quadrant);
 		return { coord.second, coord.first };
-	case 1:
+	case 1:	// quadrant 2
 		coord = HilbertCurveRecursive(half, walk % quadrant);
 		return { coord.first, coord.second + half };
-	case 2:
+	case 2:	// quadrant 1
 		coord = HilbertCurveRecursive(half, walk % quadrant);
 		return { coord.first + half, coord.second + half };
-	case 3:
+	case 3:	// quadrant 4
 		coord = HilbertCurveRecursive(half, walk % quadrant);
-		return { 2 * half - coord.second + 1, half - coord.first + 1 };
+		return { 2 * half - coord.second + 1, half - coord.first + 1};
 	default:
+		cout << "unknown type" << walk / quadrant << '\n';
 		break;
 	}
 }
@@ -91,6 +54,6 @@ int main()
 
 	int side, walk;
 	cin >> side >> walk;
-	pair<int, int> ans = HilbertCurveRecursive(side, walk);
+	pair<int, int> ans = HilbertCurveRecursive(side, walk - 1);
 	cout << ans.first << ' ' << ans.second;
 }
