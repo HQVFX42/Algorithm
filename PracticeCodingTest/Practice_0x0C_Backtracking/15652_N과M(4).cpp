@@ -27,6 +27,9 @@ void funcRecursive(int k, int n, int m)
 
 int main()
 {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
 	int n, m;
 	cin >> n >> m;
 	funcRecursive(0, n, m);
