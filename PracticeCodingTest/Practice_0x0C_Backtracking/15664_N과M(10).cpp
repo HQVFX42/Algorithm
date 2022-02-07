@@ -16,13 +16,13 @@ void funcRecursive(int k, int n, int m, int st)
 		cout << '\n';
 		return;
 	}
-	int tmp = 0;
+	int prev = 0;
 	for (int i = st; i < n; i++)
 	{
-		if (tmp != num[i])
+		if (prev != num[i])
 		{
 			arr[k] = num[i];
-			tmp = arr[k];
+			prev = arr[k];
 			funcRecursive(k + 1, n, m, i + 1);
 		}
 	}

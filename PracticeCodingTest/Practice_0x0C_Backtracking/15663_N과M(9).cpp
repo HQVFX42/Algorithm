@@ -20,7 +20,7 @@ void funcRecursive(int k, int n, int m)
 	int tmp = 0;
 	for (int i = 0; i < n; i++)
 	{
-		if (bUsed[i] == false && tmp != num[i])	// 이전 수열의 마지막 항과 새로운 수열의 마지막 항이 같으면 중복수열
+		if (tmp != num[i])	// 이전 수열의 마지막 항과 새로운 수열의 마지막 항이 같으면 중복수열
 		{
 			bUsed[i] = true;
 			arr[k] = num[i];
