@@ -1,12 +1,12 @@
-// 1s, 512MB
-// 1 <= M <= N <= 7
+// 2s, 512MB
+// 1 <= M <= N <= 8
 #include <bits/stdc++.h>
 using namespace std;
 
 int n, m;
 int arr[8], num[8];
 
-void funcRecursive(int k)
+void funcRecursive(int k, int st)
 {
 	if (k == m)
 	{
@@ -18,13 +18,13 @@ void funcRecursive(int k)
 		return;
 	}
 	int prev = 0;
-	for (int i = 0; i < n; i++)
+	for (int i = st; i < n; i++)
 	{
-		if (prev != num[i])	// 이전 수열의 마지막 항과 새로운 수열의 마지막 항이 같으면 중복수열
+		if (prev != num[i])
 		{
 			arr[k] = num[i];
 			prev = arr[k];
-			funcRecursive(k + 1);
+			funcRecursive(k + 1, i);
 		}
 	}
 }
@@ -40,5 +40,5 @@ int main()
 		cin >> num[i];
 	}
 	sort(num, num + n);
-	funcRecursive(0);
+	funcRecursive(0, 0);
 }
