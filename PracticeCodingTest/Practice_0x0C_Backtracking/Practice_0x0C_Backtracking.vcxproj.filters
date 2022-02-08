@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="15666_N과M(12).cpp">
+    <ClCompile Include="6603_로또.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
