@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int k, arr[15], ans[6];
+int k, num[15], arr[6];
 
 void funcRecursive(int n, int st)
 {
@@ -11,14 +11,14 @@ void funcRecursive(int n, int st)
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			cout << ans[i] << ' ';
+			cout << arr[i] << ' ';
 		}
 		cout << '\n';
 		return;
 	}
 	for (int i = st; i < k; i++)
 	{
-		ans[n] = arr[i];
+		arr[n] = num[i];
 		funcRecursive(n + 1, i + 1);
 	}
 }
@@ -32,7 +32,7 @@ int main()
 	{
 		for (int i = 0; i < k; i++)
 		{
-			cin >> arr[i];
+			cin >> num[i];
 		}
 		funcRecursive(0, 0);
 		cout << '\n';
