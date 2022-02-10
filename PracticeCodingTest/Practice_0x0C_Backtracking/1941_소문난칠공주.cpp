@@ -1,5 +1,5 @@
 // 2s, 256MB
-// 5*5
+// 5*5 combination 7 --> 25C7 = 480700가지 경우의 수
 #include <bits/stdc++.h>
 using namespace std;
 

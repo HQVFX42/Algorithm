@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1941_소문난칠공주.cpp">
+    <ClCompile Include="16987_계란으로계란치기.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
