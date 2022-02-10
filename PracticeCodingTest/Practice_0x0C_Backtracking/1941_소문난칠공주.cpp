@@ -3,14 +3,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+bool bUsed[25];	// 조합시 선택된 수 체크
+
 int coord[5][5];
-bool bVis[5][5];
-bool bSelect7[5][5];
+bool bVis[5][5];	// 기존 BFS 방문 체크
+bool bSelect7[5][5];	// 칠공주로 선택된 학생들
 int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1,-1 };
 int ans;
 queue<pair< int, int >> q;
-
-bool bUsed[25];
 
 void Input()
 {
@@ -35,15 +35,15 @@ bool IsAdj()
 		fill(bSelect7[i], bSelect7[i] + 5, 0);
 	}
 
-	int tmp = 0;
 	for (int i = 0; i < 25; i++)
 	{
 		if (bUsed[i] == true)
 		{
+			// (0,0) 부터 (4,4)까지 25개의 좌표 대입
 			int x = i / 5;
 			int y = i % 5;
 			bSelect7[x][y] = true;
-			if (q.empty())
+			if (q.empty())	// BFS 시작점 설정
 			{
 				q.push({ x,y });
 				bVis[x][y] = true;
@@ -62,6 +62,7 @@ bool IsAdj()
 			int nx = x + dx[dir], ny = y + dy[dir];
 			if (nx < 0 || nx >= 5 || ny < 0 || ny >= 5 || bVis[nx][ny] == true || bSelect7[nx][ny] == false)
 			{
+				// 범위에서 벗어났거나(OOB), 이미 방문한 배열이거나, 7공주가 아닐경우
 				continue;
 			}
 			cnt++;
@@ -102,13 +103,12 @@ void FuncRecursive(int depth, int start)
 	}
 	for (int i = start; i < 25; i++)
 	{
-		if (bUsed[i] == true)
+		if (bUsed[i] == false)
 		{
-			continue;
+			bUsed[i] = true;
+			FuncRecursive(depth + 1, i);
+			bUsed[i] = false;
 		}
-		bUsed[i] = true;
-		FuncRecursive(depth + 1, i);
-		bUsed[i] = false;
 	}
 }
 
