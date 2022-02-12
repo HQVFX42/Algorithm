@@ -1,7 +1,8 @@
-#include <bits/stdc++.h>
-using namespace std;
 // R : 1s, 512MB
 // 1 <= M <= N <= 8
+#include <bits/stdc++.h>
+using namespace std;
+
 int arr[10];
 bool bUsed[10];
 
