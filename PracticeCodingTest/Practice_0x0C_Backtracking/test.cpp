@@ -6,15 +6,20 @@ int main()
 	ios::sync_with_stdio(false);
 	cin.tie(nullptr);
 
-	int n, arr[100000];
+	int n, arr[10001] = {};
 	cin >> n;
 	for (int i = 0; i < n; i++)
 	{
-		cin >> arr[i];
+		int num;
+		cin >> num;
+		arr[num]++;
 	}
-	sort(arr, arr + n);
-	for (int i = 0; i < n; i++)
+	for (int i = 1; i <= 10000; i++)
 	{
-		cout << arr[i] << '\n';
+		while (arr[i])
+		{
+			cout << i << '\n';
+			arr[i]--;
+		}
 	}
 }
