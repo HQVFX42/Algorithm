@@ -1,3 +1,5 @@
+// 2s, 512MB
+// 50 * 50
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -8,7 +10,7 @@ vector<pair<int, int>> vStart;
 
 void dfs2()
 {
-	// 배양액을 뿌릴 수 있는 땅 중 배양의 개수 만큼 선택
+	// 배양액을 뿌릴 수 있는 땅 중 배양액 개수 만큼 선택
 	// np[vStart.size()] : vStart = 10, g = 2, r = 4 : {0,0,0,0,1,1,2,2,2,2}
 	int np[10];
 	fill(np + vStart.size() - G - R, np + vStart.size() - R, 1);
@@ -40,7 +42,7 @@ void dfs2()
 				int nx = x + dx[dir], ny = y + dy[dir];
 				if (nx < 0 || nx >= N || ny < 0 || ny >= M) continue;	// OOB 패스
 				if (graph[nx][ny] == 0) continue;	// 호수면 패스
-				if (state[nx][ny].second == 0)	// 배양액을 뿌릴 수 없는 빈 땅
+				if (state[nx][ny].second == 0)	// 빈 땅
 				{
 					state[nx][ny] = {curTime + 1, curColour};
 					q.push({ nx, ny });
@@ -80,7 +82,7 @@ int main()
 		for (int j = 0; j < M; j++)
 		{
 			cin >> graph[i][j];
-			if (graph[i][j] == 2)	// 배양액을 뿌릴 수 있는 곳 일때
+			if (graph[i][j] == 2)	// 배양액을 뿌릴 수 있는 땅 일때
 			{
 				vStart.push_back({ i,j });	// Start지점에 좌표값 저장
 			}
