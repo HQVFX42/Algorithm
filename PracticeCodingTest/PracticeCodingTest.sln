@@ -29,6 +29,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice_0x0C_Backtracking"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice_0x12_수학", "Practice_0x12_수학\Practice_0x12_수학.vcxproj", "{E301FCBF-1BC7-446E-91D9-9954BA48056C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Practice_0x0D_시뮬레이션", "Practice_0x0D_시뮬레이션\Practice_0x0D_시뮬레이션.vcxproj", "{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -141,6 +143,14 @@ Global
 		{E301FCBF-1BC7-446E-91D9-9954BA48056C}.Release|x64.Build.0 = Release|x64
 		{E301FCBF-1BC7-446E-91D9-9954BA48056C}.Release|x86.ActiveCfg = Release|Win32
 		{E301FCBF-1BC7-446E-91D9-9954BA48056C}.Release|x86.Build.0 = Release|Win32
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Debug|x64.ActiveCfg = Debug|x64
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Debug|x64.Build.0 = Debug|x64
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Debug|x86.ActiveCfg = Debug|Win32
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Debug|x86.Build.0 = Debug|Win32
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Release|x64.ActiveCfg = Release|x64
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Release|x64.Build.0 = Release|x64
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Release|x86.ActiveCfg = Release|Win32
+		{138C223F-B2E6-4FBB-9F4F-738EEAE83C73}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
