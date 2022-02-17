@@ -4,12 +4,12 @@
 using namespace std;
 
 int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1,-1 };
-// int dx[4] = { 1,0,-1,0 }, dy[4] = { 0,1,0,-1 };
 int n, m, ans;
 int coord[8][8];
 int camState[8][8];
 vector<pair<int, int>> vCamCoord;
 
+// func direction 확인용 출력
 void output()
 {
 	cout << '\n';
@@ -87,12 +87,12 @@ int main(void) {
 			case 1:
 				func(x, y, dir);
 				break;
-			case 2:
+			case 2:	// (0,1), (1,0), (2,3), (3,2)
 				func(x, y, dir);
 				if (dir & 1) func(x, y, dir + 3);
 				else func(x, y, dir + 1);
 				break;
-			case 3:
+			case 3:	// (0,2), (1,3), (2,1), (3,0)
 				func(x, y, dir);
 				if (dir <= 1) func(x, y, dir + 2);
 				else if (dir == 2) func(x, y, dir + 3);
