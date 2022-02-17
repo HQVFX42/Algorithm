@@ -3,34 +3,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int dx[4] = { 1,-1,0,0, }, dy[4] = { 0,0,1,-1 };
+int dx[4] = { 1,-1,0,0 }, dy[4] = { 0,0,1,-1 };
+// int dx[4] = { 1,0,-1,0 }, dy[4] = { 0,1,0,-1 };
 int n, m, ans;
 int coord[8][8];
 int camState[8][8];
 vector<pair<int, int>> vCamCoord;
 
-bool OOB(int a, int b)
+void output()
 {
-	return a < 0 or a >= n or b < 0 or b >= m;
-}
-
-void func(int x, int y, int dir)
-{
-	dir %= 4;
-	while (true)
+	cout << '\n';
+	for (int i = 0; i < n; i++)
 	{
-		x += dx[dir];
-		y += dy[dir];
-		if (OOB(x, y) or camState[x][y] == 6) return;
-		if (camState[x][y] != 0) continue;
-		camState[x][y] = 7;
+		for (int j = 0; j < m; j++)
+		{
+			cout << camState[i][j] << ' ';
+		}
+		cout << '\n';
 	}
 }
 
-int main(void) {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-
+void input()
+{
 	cin >> n >> m;
 	for (int i = 0; i < n; i++)
 	{
@@ -39,14 +33,40 @@ int main(void) {
 			cin >> coord[i][j];
 			if (coord[i][j] != 0 and coord[i][j] != 6)
 			{
-				vCamCoord.push_back({ i,j });
+				vCamCoord.push_back({ i,j });	//cctv 좌표 저장
 			}
-			if (coord[i][j] == 0) ans++;
+			if (coord[i][j] == 0) ans++;	// cctv가 0개 일수도 있으므로 빈칸 개수 저장
 		}
 	}
+}
+
+bool OOB(int a, int b)
+{
+	return a < 0 or a >= n or b < 0 or b >= m;
+}
+// (x,y)에서 dir방향에 있는 빈칸을 모두 7로 변경
+void func(int x, int y, int dir)
+{
+	dir %= 4;
+	while (true)
+	{
+		x += dx[dir];
+		y += dy[dir];
+		if (OOB(x, y) or camState[x][y] == 6) return;	// 범위를 벗어났거나 벽을 만날 때까지
+		if (camState[x][y] != 0) continue;	// 빈칸이 아닐 경우(cctv가 있을 때)
+		camState[x][y] = 7;
+	}
+}
+
+int main(void) {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+
+	input();
 
 	int CCSZ = vCamCoord.size();
-	for (int tmp = 0; tmp < (1 << (2 * CCSZ)); tmp++)	// 4진법
+	// tmp를 4진법으로 구성했을 때 각 자리수는 cctv의 방향
+	for (int tmp = 0; tmp < (1 << (2 * CCSZ)); tmp++)
 	{
 		for (int i = 0; i < n; i++)
 		{
@@ -69,11 +89,14 @@ int main(void) {
 				break;
 			case 2:
 				func(x, y, dir);
-				func(x, y, dir + 2);
+				if (dir & 1) func(x, y, dir + 3);
+				else func(x, y, dir + 1);
 				break;
 			case 3:
 				func(x, y, dir);
-				func(x, y, dir + 1);
+				if (dir <= 1) func(x, y, dir + 2);
+				else if (dir == 2) func(x, y, dir + 3);
+				else func(x, y, dir + 1);
 				break;
 			case 4:
 				func(x, y, dir);
@@ -97,6 +120,7 @@ int main(void) {
 			}
 		}
 		ans = min(ans, cnt);
+		//output();
 	}
 	cout << ans;
 }
