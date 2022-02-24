@@ -25,17 +25,17 @@ void input()
 void func()
 {
 	vector<int> vBrute(vChicken.size(), 1);
-	fill(vBrute.begin(), vBrute.begin() + vChicken.size() - m, 0);
+	fill(vBrute.begin(), vBrute.begin() + vChicken.size() - m, 0);	// 앞 size()-m = 0, 뒤의 m칸은 1로 설정
 	do
 	{
-		int dist = 0;
+		int dist = 0;	// 도시의 치킨 거리 저장
 		for (auto& h : vHouse)
 		{
-			int tmp = 0x7f7f7f7f;
+			int tmp = 0x7f7f7f7f;	// 집의 치킨 거리 저장
 			for (int i = 0; i < vChicken.size(); i++)
 			{
 				if (vBrute[i] == 0) continue;
-				tmp = min(tmp, abs(vChicken[i].first - h.first) + abs(vChicken[i].second - h.second));
+				tmp = min(tmp, abs(vChicken[i].first - h.first) + abs(vChicken[i].second - h.second));	// 집의 치킨 거리 갱신
 			}
 			dist += tmp;
 		}
