@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="11652_카드.cpp">
+    <ClCompile Include="1431_시리얼 번호.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
