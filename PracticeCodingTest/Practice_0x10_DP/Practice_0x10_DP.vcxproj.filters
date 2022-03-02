@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="9095_1,2,3 더하기.cpp">
+    <ClCompile Include="2579_계단 오르기.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
