@@ -1,11 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int main()
+// 2차원 배열 풀이
+void sol1()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-
 	int d[333][3] = {};
 	int score[333] = {};
 	int n;
@@ -21,7 +18,7 @@ int main()
 	d[2][1] = score[2];
 	d[2][2] = score[1] + score[2];
 	for (int i = 3; i <= n; i++)
-	{ 
+	{
 		d[i][1] = max(d[i - 2][1], d[i - 2][2]) + score[i];
 		d[i][2] = d[i - 1][1] + score[i];
 	}
@@ -29,4 +26,17 @@ int main()
 	int ans = 0;
 	ans = max(d[n][1], d[n][2]);
 	cout << ans;
+}
+// 1차원 배열 풀이
+void sol2()
+{
+
+}
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	//sol1();
+	sol2();
 }
