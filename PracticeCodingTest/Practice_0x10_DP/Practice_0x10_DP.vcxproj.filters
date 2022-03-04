@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="11659_구간 합 구하기 4.cpp">
+    <ClCompile Include="12852_1로 만들기 2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
