@@ -19,7 +19,6 @@ int main()
 	dist[n] = 0;
 	queue<int> q;
 	q.push(n);
-	vector<int> v;
 
 	while (!q.empty())
 	{
@@ -30,7 +29,6 @@ int main()
 			dist[nxt] = dist[cur] + 1;
 			q.push(nxt);
 			pre[nxt] = cur;
-			v.push_back(pre[nxt]);
 		}
 	}
 	cout << dist[k] << '\n';
