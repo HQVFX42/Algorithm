@@ -15,11 +15,11 @@ int main()
 	int n, m, k;
 	cin >> n >> m >> k;
 
-	string graph[1111] = {};
-	int dist[11][11][11][2] = {};
+	string graph[1111];
 	for (int i = 0; i < n; i++) cin >> graph[i];
-
+	int dist[11][11][11][2] = {};
 	queue<tiiii> q;
+
 	q.push({ 0,0,0,0 });
 	dist[0][0][0][0] = 1;
 	while (!q.empty())
@@ -34,8 +34,8 @@ int main()
 		{
 			int nx = x + dx[dir], ny = y + dy[dir], nz = z, nf = 1 - bFlag;
 			if (OOB(nx, ny, n, m)) continue;
-			if (graph[nx][ny] == '1' and nf == 0) nz++;
-			if (nz > k or dist[nx][ny][nz] > 0) continue;
+			if (graph[nx][ny] == '1' and bFlag == 0) nz++;
+			if (nz > k or dist[nx][ny][nz][nf] > 0) continue;
 			q.push({ nx,ny,nz, nf });
 			dist[nx][ny][nz][nf] = dist[x][y][z][bFlag] + 1;
 		}
