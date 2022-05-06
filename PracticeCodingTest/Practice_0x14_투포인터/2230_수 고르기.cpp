@@ -16,7 +16,7 @@ int main()
 	}
 	sort(a, a + n);
 
-	int ans = 0xfffffff;
+	int ans = 0x7fffffff;	// 최소값 설정을 위한 MAX
 	int lp = 0, rp = 0;
 	for (lp; lp < n; lp++)
 	{
