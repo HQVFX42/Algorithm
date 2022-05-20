@@ -2,6 +2,7 @@
 using namespace std;
 
 typedef pair<int, int> pii;
+typedef long long ll;
 
 #define X first
 #define Y second
