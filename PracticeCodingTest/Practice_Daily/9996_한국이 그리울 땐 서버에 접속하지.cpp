@@ -3,8 +3,6 @@ using namespace std;
 
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
-int cnt[26];
-
 int main()
 {
 	fastIO();
