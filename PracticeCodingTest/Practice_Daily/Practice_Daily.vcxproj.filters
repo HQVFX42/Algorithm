@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="1620_나는야 포켓몬 마스터 이다솜.cpp">
+    <ClCompile Include="9375_패션왕 신해빈.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
