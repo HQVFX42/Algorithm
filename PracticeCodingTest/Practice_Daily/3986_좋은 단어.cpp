@@ -17,7 +17,7 @@ int main()
 		int tsz = tmp.size();
 		for (int j = 0; j < tsz; j++)
 		{
-			if (s.size() and s.top() == tmp[j])
+			if (!s.empty() and s.top() == tmp[j])
 			{
 				s.pop();
 			}
