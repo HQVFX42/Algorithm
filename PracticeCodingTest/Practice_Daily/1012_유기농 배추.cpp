@@ -58,5 +58,11 @@ int main()
 		}
 
 		cout << ans << '\n';
+
+		for (int i = 0; i < n; i++)
+		{
+			fill(graph[i], graph[i] + m, 0);
+			fill(vis[i], vis[i] + m, 0);
+		}
 	}
 }
