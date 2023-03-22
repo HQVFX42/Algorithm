@@ -7,6 +7,10 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
+const int MAX = 1111;
+int graph[MAX][MAX];
+int vis[MAX][MAX];
+
 string split(string input, string delimiter)
 {
 	vector<string> ret;
@@ -47,7 +51,7 @@ int bfs(int start)
 	nodes[start].color = 1;
 	Cnt++;
 
-	while (!q.empty()) 
+	while (!q.empty())
 	{
 		int cur = q.front();
 		q.pop();
@@ -56,11 +60,11 @@ int bfs(int start)
 		{
 			if (!visited[next])
 			{
-				if (nodes[cur].color == 1) 
+				if (nodes[cur].color == 1)
 				{
 					nodes[next].color = 2;
 				}
-				else if (nodes[cur].color == 2) 
+				else if (nodes[cur].color == 2)
 				{
 					nodes[next].color = 1;
 					Cnt++;
@@ -75,92 +79,53 @@ int bfs(int start)
 	return Cnt;
 }
 
-const int MAX_USERS = 8;
-const int MAX_TIME = 99;
-
-struct User 
+void dfs(int y, int x)
 {
-    int team;
-    int time;
-};
-
-void simulate(vector<User>& users) 
-{
-    int max_score = 0;
-    vector<int> winning_teams;
-    for (int t = 1; t <= MAX_USERS; t++) 
-    {
-        int score = 0;
-        for (int i = 0; i < MAX_USERS; i++) 
-        {
-            if (users[i].team == t) 
-            {
-                if (users[i].time != -1) 
-                {
-                    int rank = MAX_USERS;
-                    for (int j = 0; j < MAX_USERS; j++) 
-                    {
-                        if (i != j && users[j].time != -1 && users[j].time < users[i].time) 
-                        {
-                            rank--;
-                        }
-                    }
-                    score += rank;
-                }
-                else 
-                {
-                    for (int time = 1; time <= MAX_TIME; time++) 
-                    {
-                        int rank = MAX_USERS;
-                        for (int j = 0; j < MAX_USERS; j++) 
-                        {
-                            if (i != j && users[j].time != -1 && users[j].time < time)
-                            {
-                                rank--;
-                            }
-                        }
-                        int temp_score = score + rank;
-                        if (temp_score > max_score) 
-                        {
-                            max_score = temp_score;
-                            winning_teams.clear();
-                            winning_teams.push_back(t);
-                        }
-                        else if (temp_score == max_score) 
-                        {
-                            winning_teams.push_back(t);
-                        }
-                    }
-                    //break;
-                }
-            }
-        }
-        if (score > max_score) 
-        {
-            max_score = score;
-            winning_teams.clear();
-            winning_teams.push_back(t);
-        }
-        else if (score == max_score)
-        {
-            winning_teams.push_back(t);
-        }
-    }
-    
-    winning_teams.erase(unique(winning_teams.begin(), winning_teams.end()), winning_teams.end());
-    for (int i = 0; i < winning_teams.size(); i++) 
-    {
-        cout << winning_teams[i];
-    }
+	vis[y][x] = 1;
+	for (int i = 0; i < 4; i++)
+	{
+		int ny = y + dy[i];
+		int nx = x + dx[i];
+		if (OOB(nx, ny, n, m))
+		{
+			continue;
+		}
+		if (graph[ny][nx] == 1 and vis[ny][nx] == 0)
+		{
+			dfs(ny, nx);
+		}
+	}
+	return;
 }
 
-int main() {
-    vector<User> users(MAX_USERS);
-    for (int i = 0; i < MAX_USERS; i++) 
-    {
-        cin >> users[i].team >> users[i].time;
-    }
-    simulate(users);
+int main()
+{
+	int a = -1;
+	cout << (uint32_t)a;
 
-    return 0;
+	cin >> n >> m;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> graph[i][j];
+		}
+	}
+
+	int ret = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (graph[i][j] == 1 and vis[i][j] == 0)
+			{
+				ret++;
+				dfs(i, j);
+			}
+		}
+	}
+
+	cout << ret;
+
+	return 0;
 }
