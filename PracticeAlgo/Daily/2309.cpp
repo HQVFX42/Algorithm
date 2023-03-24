@@ -7,7 +7,7 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
-const int MAX = 1111;
+const int MAX = 11;
 int graph[MAX][MAX];
 int vis[MAX][MAX];
 
@@ -100,32 +100,46 @@ void dfs(int y, int x)
 
 int main()
 {
-	int a = -1;
-	cout << (uint32_t)a;
-
+	fastIO();
+	int sy, sx, ey, ex;
 	cin >> n >> m;
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
+	cin >> sy >> sx;
+	cin >> ey >> ex;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
 			cin >> graph[i][j];
 		}
 	}
 
-	int ret = 0;
-	for (int i = 0; i < n; i++)
+	queue<pii> q;
+	vis[sy][sx] = 1;
+	q.push({ sy, sx });
+
+	int x = 0;
+	int y = 0;
+	while (!q.empty())
 	{
-		for (int j = 0; j < m; j++)
+		tie(y, x) = q.front();
+		q.pop();
+		for (int dir = 0; dir < 4; dir++)
 		{
-			if (graph[i][j] == 1 and vis[i][j] == 0)
+			int ny = y + dy[dir];
+			int nx = x + dx[dir];
+			if (OOB(ny, nx, n, m))
 			{
-				ret++;
-				dfs(i, j);
+				continue;
 			}
+			if (vis[ny][nx] != 0 or graph[ny][nx] != 1)
+			{
+				continue;
+			}
+			vis[ny][nx] = vis[y][x] + 1;
+			q.push({ ny, nx });
 		}
 	}
 
-	cout << ret;
+	cout << vis[ey][ex];
 
 	return 0;
 }
