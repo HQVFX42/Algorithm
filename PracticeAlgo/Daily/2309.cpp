@@ -7,7 +7,7 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
-const int MAX = 51;
+const int MAX = 101;
 int graph[MAX][MAX];
 int vis[MAX][MAX];
 
@@ -39,7 +39,7 @@ struct Node
 };
 
 vector<Node> nodes;
-int n, m;
+int n, m, res;
 
 int bfs(int start)
 {
@@ -96,46 +96,61 @@ void dfs(int x, int y)
 		}
 	}
 	return;
+
+}
+
+void dfs(int x, int y, int d)
+{
+	vis[x][y] = 1;
+	for (int i = 0; i < 4; i++)
+	{
+		int nx = x + dx[i];
+		int ny = y + dy[i];
+		if (OOB(nx, ny, n, n))
+		{
+			continue;
+		}
+		if (graph[nx][ny] > d and !vis[nx][ny])
+		{
+			dfs(nx, ny, d);
+		}
+	}
+	return;
 }
 
 int main()
 {
 	fastIO();
 
-	int TC = 0;
-	cin >> TC;
-	while (TC--)
+	cin >> n;
+	for (int i = 0; i < n; i++)
 	{
-		int k;
-		cin >> m >> n >> k;
-		for (int i = 0; i < k; i++)
+		for (int j = 0; j < n; j++)
 		{
-			int x;
-			int y;
-			cin >> x >> y;
-			graph[y][x] = 1;
-		}
-
-		int res = 0;
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < m; j++)
-			{
-				if(graph[i][j] == 1 and vis[i][j] == 0)
-				{
-					dfs(i, j);
-					res++;
-				}
-			}
-		}
-		cout << res << '\n';
-
-		for (int i = 0; i < n; i++)
-		{
-			fill(graph[i], graph[i] + m, 0);
-			fill(vis[i], vis[i] + m, 0);
+			cin >> graph[i][j];
 		}
 	}
 
+	for (int d = 0; d < 101; d++)
+	{
+		int cnt = 0;
+		for (int i = 0; i < n; i++)
+		{
+			fill(vis[i], vis[i] + n, 0);
+		}
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				if (graph[i][j] > d and !vis[i][j])
+				{
+					dfs(i, j, d);
+					cnt++;
+				}
+			}
+		}
+		res = max(res, cnt);
+	}
+	cout << res;
 	return 0;
 }
