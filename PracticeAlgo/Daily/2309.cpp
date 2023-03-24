@@ -101,25 +101,23 @@ void dfs(int y, int x)
 int main()
 {
 	fastIO();
-	int sy, sx, ey, ex;
 	cin >> n >> m;
-	cin >> sy >> sx;
-	cin >> ey >> ex;
 
-	for (int i = 0; i < n; i++) {
-		for (int j = 0; j < m; j++) {
-			cin >> graph[i][j];
-		}
+	string board[111];
+
+	for (int i = 0; i < n; i++)
+	{
+		cin >> board[i];
 	}
 
 	queue<pii> q;
-	vis[sy][sx] = 1;
-	q.push({ sy, sx });
+	vis[0][0] = 1;
+	q.push({ 0, 0 });
 
-	int x = 0;
-	int y = 0;
 	while (!q.empty())
 	{
+		int x = 0;
+		int y = 0;
 		tie(y, x) = q.front();
 		q.pop();
 		for (int dir = 0; dir < 4; dir++)
@@ -130,7 +128,7 @@ int main()
 			{
 				continue;
 			}
-			if (vis[ny][nx] != 0 or graph[ny][nx] != 1)
+			if (vis[ny][nx] or board[ny][nx] == '0')
 			{
 				continue;
 			}
@@ -139,7 +137,10 @@ int main()
 		}
 	}
 
-	cout << vis[ey][ex];
+	if (n > 1 && m > 1)
+	{
+		cout << vis[n - 1][m - 1];
+	}
 
 	return 0;
 }
