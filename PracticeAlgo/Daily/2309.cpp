@@ -7,7 +7,7 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
-const int MAX = 11;
+const int MAX = 51;
 int graph[MAX][MAX];
 int vis[MAX][MAX];
 
@@ -79,20 +79,20 @@ int bfs(int start)
 	return Cnt;
 }
 
-void dfs(int y, int x)
+void dfs(int x, int y)
 {
-	vis[y][x] = 1;
+	vis[x][y] = 1;
 	for (int i = 0; i < 4; i++)
 	{
-		int ny = y + dy[i];
 		int nx = x + dx[i];
+		int ny = y + dy[i];
 		if (OOB(nx, ny, n, m))
 		{
 			continue;
 		}
-		if (graph[ny][nx] == 1 and vis[ny][nx] == 0)
+		if (graph[nx][ny] == 1 and vis[nx][ny] == 0)
 		{
-			dfs(ny, nx);
+			dfs(nx, ny);
 		}
 	}
 	return;
@@ -101,45 +101,40 @@ void dfs(int y, int x)
 int main()
 {
 	fastIO();
-	cin >> n >> m;
 
-	string board[111];
-
-	for (int i = 0; i < n; i++)
+	int TC = 0;
+	cin >> TC;
+	while (TC--)
 	{
-		cin >> board[i];
-	}
-
-	queue<pii> q;
-	vis[0][0] = 1;
-	q.push({ 0, 0 });
-
-	while (!q.empty())
-	{
-		int x = 0;
-		int y = 0;
-		tie(y, x) = q.front();
-		q.pop();
-		for (int dir = 0; dir < 4; dir++)
+		int k;
+		cin >> m >> n >> k;
+		for (int i = 0; i < k; i++)
 		{
-			int ny = y + dy[dir];
-			int nx = x + dx[dir];
-			if (OOB(ny, nx, n, m))
-			{
-				continue;
-			}
-			if (vis[ny][nx] or board[ny][nx] == '0')
-			{
-				continue;
-			}
-			vis[ny][nx] = vis[y][x] + 1;
-			q.push({ ny, nx });
+			int x;
+			int y;
+			cin >> x >> y;
+			graph[y][x] = 1;
 		}
-	}
 
-	if (n > 1 && m > 1)
-	{
-		cout << vis[n - 1][m - 1];
+		int res = 0;
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < m; j++)
+			{
+				if(graph[i][j] == 1 and vis[i][j] == 0)
+				{
+					dfs(i, j);
+					res++;
+				}
+			}
+		}
+		cout << res << '\n';
+
+		for (int i = 0; i < n; i++)
+		{
+			fill(graph[i], graph[i] + m, 0);
+			fill(vis[i], vis[i] + m, 0);
+		}
 	}
 
 	return 0;
