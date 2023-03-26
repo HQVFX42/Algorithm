@@ -10,6 +10,7 @@ void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 const int MAX = 111;
 int graph[MAX][MAX];
 int vis[MAX][MAX];
+string a[MAX];
 
 string split(string input, string delimiter)
 {
@@ -121,46 +122,51 @@ int dfsI(int x, int y)
 	return res;
 }
 
+bool Check(int d, int x, int y)
+{
+	for (int i = x; i < x + d; i++)
+	{
+		for (int j = y; j < y + d; j++)
+		{
+			if (a[i][j] != a[x][y])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+void dfs(int d, int x, int y)
+{
+	if (Check(d,x,y))
+	{
+		cout << a[x][y];
+		return;
+	}
+
+	cout << '(';
+	float divide = 0.5;
+	for (int i = 0; i < 2; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			dfs(d * divide, x + i * d * divide, y + j * d * divide);
+		}
+	}
+	cout << ')';
+}
+
 int main()
 {
 	fastIO();
 
-	int k;
-	cin >> m >> n >> k;
-	while (k--)
+	cin >> n;
+	for (int i = 0; i < n; i++)
 	{
-		int x;
-		int y;
-		int xx;
-		int yy;
-		cin >> x >> y >> xx >> yy;
-		for (int i = y; i < yy; i++)
-		{
-			for (int j = x; j < xx; j++)
-			{
-				graph[i][j] = 1;
-			}
-		}
-	}
-	
-	vector<int> res;
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (graph[i][j] != 1 and vis[i][j] == 0)
-			{
-				res.push_back(dfsI(i, j));
-			}
-		}
+		cin >> a[i];
 	}
 
-	sort(res.begin(), res.end());
-	cout << res.size() << '\n';
-	for (auto& i : res)
-	{
-		cout << i << ' ';
-	}
+	dfs(n, 0, 0);
 
 	return 0;
 }
