@@ -157,35 +157,88 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
-int main()
+vector<string> Candidates;
+
+void Eliminate(string s, int a, int b) 
 {
-	int m, n;
-	cin >> m >> n;
-	vector<int> d(m);
-	for (int i = 0; i < m; i++) 
+	for (int i = 0; i < Candidates.size(); i++)
 	{
-		cin >> d[i];
-	}
-
-	vector<int> board(n + 1, 0);
-	board[0] = 1;
-
-	for (int i = 1; i <= n; i++) 
-	{
-		for (int j = 0; j < m; j++) 
+		int CntA = 0, CntB = 0;
+		for (int j = 0; j < 4; j++) 
 		{
-			if (i - d[j] >= 0)
+			if (Candidates[i][j] == s[j])
 			{
-				board[i] += board[i - d[j]];
+				CntA++;
+			}
+			else if (s.find(Candidates[i][j]) != string::npos)
+			{
+				CntB++;
+			}
+		}
+		if (CntA != a || CntB != b)
+		{
+			Candidates.erase(Candidates.begin() + i);
+			i--;
+		}
+	}
+}
+
+int main() {
+	string Consonants = "bdgnprst";
+	string Vowels = "aeiou";
+
+	for (int i = 0; i < Consonants.size(); i++)
+	{
+		for (int j = 0; j < Vowels.size(); j++)
+		{
+			for (int k = 0; k < Consonants.size(); k++)
+			{
+				for (int l = 0; l < Vowels.size(); l++)
+				{
+					if (Consonants[i] != Consonants[k] && Vowels[j] != Vowels[l])
+					{
+						Candidates.push_back(string(1, Consonants[i]) + Vowels[j] +Consonants[k] + Vowels[l]);
+					}
+				}
 			}
 		}
 	}
 
-	cout << board[n] << endl;
+	int n;
+	cin >> n;
+
+	while (n--) 
+	{
+		string s;
+		int a, b;
+		cin >> s >> a >> b;
+
+		Eliminate(s, a, b);
+	}
+
+	if (Candidates.size() == 0)
+	{
+		cout << "x" << '\n';
+	}
+	else if (Candidates.size() == 1)
+	{
+		cout << Candidates[0] << '\n';
+	}
+	else 
+	{
+		cout << "x" << '\n';
+	}
 
 	return 0;
 }
 
 /*
-
+7
+roga 1 1
+rase 0 1
+poru 0 1
+gipa 0 1
+dego 3 0
+bego 3 0
+nego 3 0
 */
