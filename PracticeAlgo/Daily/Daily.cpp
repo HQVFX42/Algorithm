@@ -7,7 +7,7 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
-const int MAX = 111;
+const int MAX = 1111;
 int graph[MAX][MAX];
 int vis[MAX][MAX];
 string a[MAX];
@@ -157,88 +157,66 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
-vector<string> Candidates;
+int N, M;
+const int MAX_N = 11111111;
+vector<int> g[MAX_N];
+bool visited[MAX_N];
 
-void Eliminate(string s, int a, int b) 
+int dfs(int node) 
 {
-	for (int i = 0; i < Candidates.size(); i++)
+	visited[node] = true;
+	int size = 1;
+	for (int next : g[node])
 	{
-		int CntA = 0, CntB = 0;
-		for (int j = 0; j < 4; j++) 
+		if (!visited[next]) 
 		{
-			if (Candidates[i][j] == s[j])
-			{
-				CntA++;
-			}
-			else if (s.find(Candidates[i][j]) != string::npos)
-			{
-				CntB++;
-			}
-		}
-		if (CntA != a || CntB != b)
-		{
-			Candidates.erase(Candidates.begin() + i);
-			i--;
+			size += dfs(next);
 		}
 	}
+	return size;
 }
 
-int main() {
-	string Consonants = "bdgnprst";
-	string Vowels = "aeiou";
+int main() 
+{
+	fastIO();
+	cin >> N >> M;
 
-	for (int i = 0; i < Consonants.size(); i++)
+	for (int i = 0; i < N; i++) 
 	{
-		for (int j = 0; j < Vowels.size(); j++)
+		int a, b;
+		cin >> a >> b;
+		g[a].push_back(b);
+		g[b].push_back(a);
+	}
+
+	int res = 0;
+	for (int i = 0; i < g.size(); i++)
+	{
+		if (!g[i].empty() && !visited[i]) 
 		{
-			for (int k = 0; k < Consonants.size(); k++)
+			int size = dfs(i);
+			if (size <= M) 
 			{
-				for (int l = 0; l < Vowels.size(); l++)
-				{
-					if (Consonants[i] != Consonants[k] && Vowels[j] != Vowels[l])
-					{
-						Candidates.push_back(string(1, Consonants[i]) + Vowels[j] +Consonants[k] + Vowels[l]);
-					}
-				}
+				res += size;
 			}
 		}
 	}
 
-	int n;
-	cin >> n;
-
-	while (n--) 
-	{
-		string s;
-		int a, b;
-		cin >> s >> a >> b;
-
-		Eliminate(s, a, b);
-	}
-
-	if (Candidates.size() == 0)
-	{
-		cout << "x" << '\n';
-	}
-	else if (Candidates.size() == 1)
-	{
-		cout << Candidates[0] << '\n';
-	}
-	else 
-	{
-		cout << "x" << '\n';
-	}
+	cout << res;
 
 	return 0;
 }
 
 /*
-7
-roga 1 1
-rase 0 1
-poru 0 1
-gipa 0 1
-dego 3 0
-bego 3 0
-nego 3 0
+10 3
+21 88
+23 75
+97 35
+2 8
+67 9
+64 75
+65 71
+70 98
+9 71
+60 35
 */
