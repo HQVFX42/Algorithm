@@ -138,7 +138,7 @@ bool Check(int d, int x, int y)
 }
 void dfs(int d, int x, int y)
 {
-	if (Check(d,x,y))
+	if (Check(d, x, y))
 	{
 		cout << a[x][y];
 		return;
@@ -156,17 +156,58 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
+int d[111111];
+
 int main()
 {
-	fastIO();
+	int N, Q;
+	string M;
+	vector<pii> cuts;
 
-	cin >> n;
-	for (int i = 0; i < n; i++)
+	cin >> N >> M >> Q;
+	if (M[0] == '*')
 	{
-		cin >> a[i];
+		d[0] = 0;
+	}
+	else
+	{
+		d[0] = M[0] - '0';
 	}
 
-	dfs(n, 0, 0);
+	for (int i = 1; i < M.size(); i++)
+	{
+		if (M[i] == '*')
+		{
+			d[i] = d[i - 1];
+		}
+		else
+		{
+			d[i] = d[i - 1] + (M[i] - '0');
+		}
+	}
+	for (int i = 0; i < Q; i++)
+	{
+		int ret = 0;
+		int start;
+		int end;
+		cin >> start >> end;
+		string tmp = M.substr(start, end - start + 1);
+		int st = start + tmp.find_first_of('*');
+		int en = start + tmp.find_last_of('*');
+		ret = d[en] - d[st];
+
+		cout << ret << '\n';
+	}
 
 	return 0;
 }
+
+/*
+20
+111*213*22*3*132**12
+4
+3 8
+10 18
+0 11
+4 9
+*/
