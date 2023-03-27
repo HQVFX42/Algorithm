@@ -136,6 +136,7 @@ bool Check(int d, int x, int y)
 	}
 	return true;
 }
+
 void dfs(int d, int x, int y)
 {
 	if (Check(d, x, y))
@@ -156,58 +157,35 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
-int d[111111];
-
 int main()
 {
-	int N, Q;
-	string M;
-	vector<pii> cuts;
-
-	cin >> N >> M >> Q;
-	if (M[0] == '*')
+	int m, n;
+	cin >> m >> n;
+	vector<int> d(m);
+	for (int i = 0; i < m; i++) 
 	{
-		d[0] = 0;
-	}
-	else
-	{
-		d[0] = M[0] - '0';
+		cin >> d[i];
 	}
 
-	for (int i = 1; i < M.size(); i++)
+	vector<int> board(n + 1, 0);
+	board[0] = 1;
+
+	for (int i = 1; i <= n; i++) 
 	{
-		if (M[i] == '*')
+		for (int j = 0; j < m; j++) 
 		{
-			d[i] = d[i - 1];
-		}
-		else
-		{
-			d[i] = d[i - 1] + (M[i] - '0');
+			if (i - d[j] >= 0)
+			{
+				board[i] += board[i - d[j]];
+			}
 		}
 	}
-	for (int i = 0; i < Q; i++)
-	{
-		int ret = 0;
-		int start;
-		int end;
-		cin >> start >> end;
-		string tmp = M.substr(start, end - start + 1);
-		int st = start + tmp.find_first_of('*');
-		int en = start + tmp.find_last_of('*');
-		ret = d[en] - d[st];
 
-		cout << ret << '\n';
-	}
+	cout << board[n] << endl;
 
 	return 0;
 }
 
 /*
-20
-111*213*22*3*132**12
-4
-3 8
-10 18
-0 11
-4 9
+
 */
