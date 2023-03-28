@@ -33,13 +33,13 @@ string split(string input, string delimiter)
 	return output;
 }
 
-struct Node
+struct NodeV
 {
 	int color; // 방의 색 (0: 흰색, 1: 빨간색, 2: 파란색)
 	vector<int> adj; // 인접한 방의 번호
 };
 
-vector<Node> nodes;
+vector<NodeV> nodes;
 int n, m, res;
 
 int bfs(int start)
@@ -157,18 +157,17 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
-int N, M;
-const int MAX_N = 11111111;
+const int MAX_N = 11111;
 vector<int> g[MAX_N];
 bool visited[MAX_N];
 
-int dfs(int node) 
+int dfs(int node)
 {
 	visited[node] = true;
 	int size = 1;
 	for (int next : g[node])
 	{
-		if (!visited[next]) 
+		if (!visited[next])
 		{
 			size += dfs(next);
 		}
@@ -176,33 +175,34 @@ int dfs(int node)
 	return size;
 }
 
+#include <unordered_map>
+#include <unordered_set>
+
 int main() 
 {
-	fastIO();
-	cin >> N >> M;
+	int n;
+	cin >> n;
 
-	for (int i = 0; i < N; i++) 
-	{
-		int a, b;
-		cin >> a >> b;
-		g[a].push_back(b);
-		g[b].push_back(a);
-	}
-
-	int res = 0;
-	for (int i = 0; i < g.size(); i++)
-	{
-		if (!g[i].empty() && !visited[i]) 
-		{
-			int size = dfs(i);
-			if (size <= M) 
-			{
-				res += size;
+	unordered_map<string, bool> WordMap;
+	for (int i = 0; i < n; i++) {
+		string s;
+		cin >> s;
+		bool found = false;
+		for (int j = 1; j <= s.size(); j++) { // s의 모든 부분 문자열을 생성하여 이전 문자열과 비교
+			for (int k = 0; k <= s.size() - j; k++) {
+				string sub = s.substr(k, j);
+				if (WordMap.count(sub)) {
+					found = true;
+					break;
+				}
+			}
+			if (found) {
+				cout << s << '\n';
+				break;
 			}
 		}
+		WordMap[s] = true; // WordMap에 현재 문자열을 저장
 	}
-
-	cout << res;
 
 	return 0;
 }
@@ -219,4 +219,16 @@ int main()
 70 98
 9 71
 60 35
+
+10
+abcd
+abcde
+sdkfkkoxcc
+dkfuds
+kdgugs
+dkfdu
+dsf
+dkjfgusdgg
+dkdkfdufd
+kkoxcc
 */
