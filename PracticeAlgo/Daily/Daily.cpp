@@ -160,73 +160,55 @@ void dfs(int d, int x, int y)
 	cout << ')';
 }
 
-const int MAX_N = 11111;
-vector<int> g[MAX_N];
-bool visited[MAX_N];
+map<int, vector<int>> g;
+set<int> visited;
 
-int dfs(int node)
+int dfs(int depth, set<int>& visited)
 {
-	visited[node] = true;
-	int size = 1;
-	for (int next : g[node])
+	int cnt = 1;
+	visited.insert(depth);
+	for (auto& i : g[depth])
 	{
-		if (!visited[next])
+		if (!visited.count(i))
 		{
-			size += dfs(next);
+			cnt += dfs(i, visited);
 		}
 	}
-	return size;
+
+	return cnt;
 }
 
 int main()
 {
-	int n;
-	cin >> n;
-
-	unordered_map<string, bool> WordMap;
-	while (n--)
+	int M;
+	int N;
+	cin >> M >> N;
+	for (int i = 0; i < M; i++)
 	{
-		string s;
-		cin >> s;
-		bool found = false;
-		for (int i = 1; i <= s.size(); i++)
-		{
-			for (int j = 0; j <= s.size() - j; j++)
-			{
-				string sub = s.substr(j, i);
-				if (WordMap.count(sub))
-				{
-					found = true;
-					break;
-				}
-			}
-			if (found)
-			{
-				cout << s << '\n';
-				break;
-			}
-		}
-		WordMap[s] = true;
+		int u;
+		int v;
+		cin >> u >> v;
+		g[u].push_back(v);
+		g[v].push_back(u);
 	}
 
-	// set<string> WordSet;    
-	// for (int i = 0; i < n; i++) 
-	// {
-	//     string s;
-	//     cin >> s;
-	//     for (auto prev : WordSet) 
-	//     {
-	//         if (s.find(prev) != string::npos) 
-	//         {
-	//             cout << s << '\n';
-	//             break;
-	//         }
-	//     }
-	//     WordSet.insert(s);
-	// }
+	int res = 0;
+	for (auto& i : g)
+	{
+		if (!visited.count(i.first))
+		{
+			int count = dfs(i.first, visited);
+			if (count <= N)
+			{
+				res += count;
+			}
+		}
+	}
+	cout << res << '\n';
 
 	return 0;
 }
+
 
 /*
 10 3
