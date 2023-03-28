@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+#include <unordered_map>
+#include <unordered_set>
+
 using namespace std;
 
 typedef pair<int, int> pii;
@@ -175,34 +178,52 @@ int dfs(int node)
 	return size;
 }
 
-#include <unordered_map>
-#include <unordered_set>
-
-int main() 
+int main()
 {
 	int n;
 	cin >> n;
 
 	unordered_map<string, bool> WordMap;
-	for (int i = 0; i < n; i++) {
+	while (n--)
+	{
 		string s;
 		cin >> s;
 		bool found = false;
-		for (int j = 1; j <= s.size(); j++) { // s의 모든 부분 문자열을 생성하여 이전 문자열과 비교
-			for (int k = 0; k <= s.size() - j; k++) {
-				string sub = s.substr(k, j);
-				if (WordMap.count(sub)) {
+		for (int i = 1; i <= s.size(); i++)
+		{
+			for (int j = 0; j <= s.size() - j; j++)
+			{
+				string sub = s.substr(j, i);
+				if (WordMap.count(sub))
+				{
 					found = true;
 					break;
 				}
 			}
-			if (found) {
+			if (found)
+			{
 				cout << s << '\n';
 				break;
 			}
 		}
-		WordMap[s] = true; // WordMap에 현재 문자열을 저장
+		WordMap[s] = true;
 	}
+
+	// set<string> WordSet;    
+	// for (int i = 0; i < n; i++) 
+	// {
+	//     string s;
+	//     cin >> s;
+	//     for (auto prev : WordSet) 
+	//     {
+	//         if (s.find(prev) != string::npos) 
+	//         {
+	//             cout << s << '\n';
+	//             break;
+	//         }
+	//     }
+	//     WordSet.insert(s);
+	// }
 
 	return 0;
 }
