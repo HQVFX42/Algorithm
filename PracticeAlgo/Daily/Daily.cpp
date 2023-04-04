@@ -23,11 +23,11 @@ void print(string s, bool pass)
 {
 	if (!pass)
 	{
-		cout << "<" << s << ">" << "is not acceptable.\n";
+		cout << "<" << s << "> " << "is not acceptable.\n";
 	}
 	else
 	{
-		cout << "<" << s << ">" << "is acceptable.\n";
+		cout << "<" << s << "> " << "is acceptable.\n";
 	}
 }
 int main()

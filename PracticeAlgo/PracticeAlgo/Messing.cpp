@@ -7,6 +7,11 @@ const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m; }
 void fastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
+const int MAX = 1111;
+int graph[MAX][MAX];
+int vis[MAX][MAX];
+string a[MAX];
+
 string split(string input, string delimiter)
 {
 	vector<string> ret;
@@ -173,68 +178,48 @@ int dfs(int depth, set<int>& visited)
 class A
 {
 public:
-	A();
-	~A();
+	A() { cout << "A()\n"; }
+	~A() { cout << "~A()\n"; }
 
-	virtual void print();
+	void Print() { cout << "AAA\n"; }
+	virtual void vPrint() { cout << "vvvAAA\n"; }
 
 private:
 
 };
 
-A::A()
-{
-	cout << "A()\n";
-}
-
-A::~A()
-{
-	cout << "~A()\n";
-}
-
-void A::print()
-{
-	cout << "AAA\n";
-}
-
-class B : A
+class B : public A
 {
 public:
-	B();
-	~B();
+	B() { cout << "B()\n"; }
+	~B() { cout << "~B()\n"; }
 
-	virtual void print();
+	void Print() { cout << "BBB\n"; }
+	void vPrint() { cout << "vvvBBB\n"; }
 
 private:
 
 };
-
-B::B()
-{
-	cout << "B()\n";
-}
-
-B::~B()
-{
-	cout << "~B()\n";
-}
-
-void B::print()
-{
-	cout << "BBB\n";
-}
 
 int main()
 {
 	//fastIO();
-	A* ptrA = new A;
-	B* ptrB = new B;
+	//A* ptrA = new A;
+	//B* ptrB = new B;
 
-	ptrA->print();
-	ptrB->print();
+	//ptrA->print();
+	//ptrB->print();
 
 	//delete ptrA;
-	delete ptrB;
+	//delete ptrB;
+	
+	
+	A* parentA;
+	B childB;
+	parentA = &childB;
+
+	parentA->Print();
+	parentA->vPrint();
 }
 
 
