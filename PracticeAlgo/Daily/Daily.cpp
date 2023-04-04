@@ -15,46 +15,70 @@ int graph[MAX][MAX];
 int vis[MAX][MAX];
 string a[MAX];
 
+bool isVowel(char idx)
+{
+	return (idx == 'a' or idx == 'e' or idx == 'i' or idx == 'o' or idx == 'u');
+}
+void print(string s, bool pass)
+{
+	if (!pass)
+	{
+		cout << "<" << s << ">" << "is not acceptable.\n";
+	}
+	else
+	{
+		cout << "<" << s << ">" << "is acceptable.\n";
+	}
+}
 int main()
 {
-	int N;
-	int C;
-	cin >> N >> C;
-
-	vector<pii> v;
-	for (int i = 0; i < N; i++)
+	string vowel = "aeiou";
+	while (true)
 	{
-		int tmp;
-		cin >> tmp;
-		bool flag = false;
-		for (auto& j : v)
+		string s;
+		cin >> s;
+		if (s == "end")
 		{
-			if (j.first == tmp)
+			break;
+		}
+		int conN = 0;
+		int vowN = 0;
+		bool duo = false;
+		bool trio = false;
+		bool includeV = false;
+		char prev;
+
+		for (int i = 0; i < s.length(); i++)
+		{
+			if (isVowel(s[i]))
 			{
-				flag = true;
-				j.second++;
-				break;
+				vowN++;
+				conN = 0;
+				includeV = true;
 			}
+			else
+			{
+				vowN = 0;
+				conN++;
+			}
+			if (vowN >= 3 or conN >= 3)
+			{
+				trio = true;
+			}
+			if (i >= 1 and prev == s[i] and s[i] != 'e' and s[i] != 'o')
+			{
+				duo = true;
+			}
+			prev = s[i];
 		}
-		if (!flag)
+
+		if (!includeV or duo or trio)
 		{
-			v.push_back({ tmp, 1 });
+			print(s, false);
+		}
+		else
+		{
+			print(s, true);
 		}
 	}
-
-	stable_sort(v.begin(), v.end(),
-		[&](const pii lhs, const pii rhs)
-		{
-			return lhs.second > rhs.second;
-		});
-
-	for (auto& i : v)
-	{
-		while (i.second--)
-		{
-			cout << i.first << ' ';
-		}
-	}
-
-	return 0;
 }
