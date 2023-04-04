@@ -18,34 +18,43 @@ string a[MAX];
 int main()
 {
 	int N;
-	int M;
-	int J;
-	cin >> N >> M >> J;
-	int l = 1;
+	int C;
+	cin >> N >> C;
 
-	int res = 0;
-	while (J--)
+	vector<pii> v;
+	for (int i = 0; i < N; i++)
 	{
-		int r = l + M - 1;
-		int temp;
-		cin >> temp;
-		if (temp >= l and temp <= r)
+		int tmp;
+		cin >> tmp;
+		bool flag = false;
+		for (auto& j : v)
 		{
-			continue;
+			if (j.first == tmp)
+			{
+				flag = true;
+				j.second++;
+				break;
+			}
 		}
-		if (temp < l)
+		if (!flag)
 		{
-			res += l - temp;
-			l = temp;
-		}
-		else
-		{
-			res += temp - r;
-			l += temp - r;
+			v.push_back({ tmp, 1 });
 		}
 	}
 
-	cout << res;
+	stable_sort(v.begin(), v.end(),
+		[&](const pii lhs, const pii rhs)
+		{
+			return lhs.second > rhs.second;
+		});
+
+	for (auto& i : v)
+	{
+		while (i.second--)
+		{
+			cout << i.first << ' ';
+		}
+	}
 
 	return 0;
 }
