@@ -1,11 +1,16 @@
 # Lists
-| Problem | Description | Code |
-| :--: | :--: | :--: |
-| [BOJ 2870](https://www.acmicpc.net/problem/2870) | [수학숙제](#2870-수학숙제) | [Code](./Algothingy/2870.cpp) |
-| [BOJ 10709](https://www.acmicpc.net/problem/10709) | [기상캐스터](#10709-기상캐스터) | [Code](./Algothingy/2870.cpp) |
-| [BOJ 3474](https://www.acmicpc.net/problem/3474) | [교수가 된 현우](#3474-교수가-된-현우) | [Code](./Algothingy/2870.cpp) |
+| Problem | Description | Code | Status |
+| :--: | :--: | :--: | :--: |
+| [BOJ 2870](https://www.acmicpc.net/problem/2870) | [수학숙제](#2870-수학숙제) | [Code](./Algothingy/2870.cpp) | :ballot_box_with_check: |
+| [BOJ 10709](https://www.acmicpc.net/problem/10709) | [기상캐스터](#10709-기상캐스터) | [Code](./Algothingy/10709.cpp) | :ballot_box_with_check: |
+| [BOJ 3474](https://www.acmicpc.net/problem/3474) | [교수가 된 현우](#3474-교수가-된-현우) | [Code](./Algothingy/3474.cpp) | :ballot_box_with_check: |
+| [BOJ 2852](https://www.acmicpc.net/problem/2852) | [NBA 농구](#2852-NBA-농구) | [Code](./Algothingy/2852.cpp) | :ballot_box_with_check: |
+
+<br>
 
 ---
+
+<br>
 
 # 2870 수학숙제
 범위가 100글자라고 하였으니 자료형을 생각해보아야 한다  
@@ -21,7 +26,6 @@ long long은 약 19자리까지 가능하다
 
 0000 같은 반례를 조심하자
 
-##
 문자열을 기반으로 비교를 하려면 custom operator가 필요하다
 ```cpp
 sort(V.begin(), V.end(),
@@ -34,13 +38,19 @@ sort(V.begin(), V.end(),
 			return Lhs.size() < Rhs.size();
 		});
 ```
-##
+
+<br>
+
 front같이 참조를 할 때는 size가 있는지 항상 체크하자
 ```cpp
 if(Result.size() and Result.front() == '0')
 ```
 
+<br>
+
 ---
+
+<br>
 
 # 10709 기상캐스터
 입력받은 string에 구름이 있으면 0 아니면 -1로 int 배열 초기화
@@ -66,7 +76,11 @@ for (int i = 0; i < H; i++)
 	}
 ```
 
+<br>
+
 ---
+
+<br>
 
 # 3474 교수가 된 현우
 주어진 정수는 10억이하이므로 N!을 직접 구할 수 없다  
@@ -75,7 +89,8 @@ for (int i = 0; i < H; i++)
 포인트는 0의 개수를 구하는 것이므로 10을 몇개를 만들 수 있느냐를 구하는 문제가 된다
 즉 `2의 개수 와 5의 개수가 몇개인지`를 구하는 문제
 
-##
+<br>
+
 예를 들어 10!의 0의 개수를 구한다고 하면 -> 1,2,3,4,5,6,7,8,9,10  
 2는 8개(2 5개 + 4 2개 + 8 1개), 5는 2개  
 결국 2의 승수, 5의 승수를 나눈 값들을 더해 min값을 구하면 원하는 결과를 얻을 수 있다
@@ -92,6 +107,49 @@ for (int i = 0; i < H; i++)
 		cout << min(A2, A5) << '\n';
 ```
 
+<br>
+
 ---
+
+<br>
+
+# 2852 NBA 농구
+시간이 나올 때 하나의 단위로 변환 후 통일해서 계산하는 것이 좋다
+```cpp
+int ChangeToInt(string S)
+{
+	return atoi(S.substr(0, 2).c_str()) * 60 + atoi(S.substr(3, 2).c_str());
+}
+```
+
+<br>
+
+초를 다시 MM:SS 형식으로 변환
+```cpp
+string ChangeToString(int N)
+{
+	string Minutes = "00" + to_string(N / 60);
+	string Seconds = "00" + to_string(N % 60);
+	return Minutes.substr(Minutes.size() - 2, 2) + ':' + Seconds.substr(Seconds.size() - 2, 2);
+}
+```
+
+<br>
+
+prev를 이용하여 그 전 득점 타임과 차이를 계산해서 각 팀에 합산해 주면 해결할 수 있다  
+단, 종료시간인 `48:00`을 꼭 마지막에 체크해야 함에 유의해야 한다
+```cpp
+string Prev;
+void Func(int & Sum, string S)
+{
+	Sum += ChangeToInt(S) - ChangeToInt(Prev);
+}
+```
+
+<br>
+
+---
+
+<br>
 
 #
