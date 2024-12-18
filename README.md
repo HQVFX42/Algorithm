@@ -14,7 +14,7 @@
 | [BOJ 10709](https://www.acmicpc.net/problem/10709) | [기상캐스터](#10709-기상캐스터) | [Code](./Algothingy/10709.cpp) | :ballot_box_with_check: |
 | [BOJ 3474](https://www.acmicpc.net/problem/3474) | [교수가 된 현우](#3474-교수가-된-현우) | [Code](./Algothingy/3474.cpp) | :ballot_box_with_check: |
 | [BOJ 2852](https://www.acmicpc.net/problem/2852) | [NBA 농구](#2852-NBA-농구) | [Code](./Algothingy/2852.cpp) | :ballot_box_with_check: |
-| [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) |  |
+| [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -148,5 +148,23 @@ void Func(int & Sum, string S)
 <br>
 
 # 1436 영화감독 숌
+N이 10000이하 자연수이므로 666이 첫 종말의 수라고 했을 때  
+어림잡아 최대 666 * 10000 = 6660000 안쪽으로 들어올 것을 예상할 수 있다
+
+666부터 숫자를 더하며 666이 포함된 N번째숫자면 출력하게 단순하게 해결해보자
+```cpp
+	int i = 666;
+	for (;; i++)
+	{
+		if (to_string(i).find("666") != string::npos)
+		{
+			N--;
+		}
+		if (N == 0)
+		{
+			break;
+		}
+	}
+```
 
 ---
