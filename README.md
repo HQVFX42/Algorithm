@@ -1,17 +1,24 @@
-# Lists
+# :spiral_notepad:Note
+- ? -> 완탐? -> DP? -> 그리디?
+- ? -> Sorted Array? -> 이분탐색?
+- 평균 1000만이하는 OK
+- Counting = Map or Array
+
+<br>
+
+---
+# :clipboard:Lists
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 2870](https://www.acmicpc.net/problem/2870) | [수학숙제](#2870-수학숙제) | [Code](./Algothingy/2870.cpp) | :ballot_box_with_check: |
 | [BOJ 10709](https://www.acmicpc.net/problem/10709) | [기상캐스터](#10709-기상캐스터) | [Code](./Algothingy/10709.cpp) | :ballot_box_with_check: |
 | [BOJ 3474](https://www.acmicpc.net/problem/3474) | [교수가 된 현우](#3474-교수가-된-현우) | [Code](./Algothingy/3474.cpp) | :ballot_box_with_check: |
 | [BOJ 2852](https://www.acmicpc.net/problem/2852) | [NBA 농구](#2852-NBA-농구) | [Code](./Algothingy/2852.cpp) | :ballot_box_with_check: |
+| [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) |  |
 
 <br>
 
 ---
-
-<br>
-
 # 2870 수학숙제
 범위가 100글자라고 하였으니 자료형을 생각해보아야 한다  
 int는 약 10자리 정도만 커버할 수 있고  
@@ -47,9 +54,6 @@ if(Result.size() and Result.front() == '0')
 ```
 
 <br>
-
----
-
 <br>
 
 # 10709 기상캐스터
@@ -77,9 +81,6 @@ for (int i = 0; i < H; i++)
 ```
 
 <br>
-
----
-
 <br>
 
 # 3474 교수가 된 현우
@@ -108,9 +109,6 @@ for (int i = 0; i < H; i++)
 ```
 
 <br>
-
----
-
 <br>
 
 # 2852 NBA 농구
@@ -147,9 +145,8 @@ void Func(int & Sum, string S)
 ```
 
 <br>
-
----
-
 <br>
 
-#
+# 1436 영화감독 숌
+
+---
