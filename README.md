@@ -2,7 +2,8 @@
 - ? -> 완탐? -> DP? -> 그리디?
 - ? -> Sorted Array? -> 이분탐색?
 - 평균 1000만이하는 OK
-- Counting = Map or Array
+- Counting = Map or Array로 접근
+- 짝짓기, 폭발, 아름다운 괄호만들기 등 = Stack으로 접근
 
 <br>
 
@@ -15,7 +16,7 @@
 | [BOJ 3474](https://www.acmicpc.net/problem/3474) | [교수가 된 현우](#3474-교수가-된-현우) | [Code](./Algothingy/3474.cpp) | :ballot_box_with_check: |
 | [BOJ 2852](https://www.acmicpc.net/problem/2852) | [NBA 농구](#2852-NBA-농구) | [Code](./Algothingy/2852.cpp) | :ballot_box_with_check: |
 | [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) | :ballot_box_with_check: |
-| [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) |  |
+| [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -172,5 +173,21 @@ N이 10000이하 자연수이므로 666이 첫 종말의 수라고 했을 때
 <br>
 
 # 9012 괄호
+stack을 이용하면 쉽게 해결할 수 있다  
+한쪽 괄호는 push 해주고 짝인 반대쪽 괄호가 들어오면 pop을 해줌으로써  
+stack 컨테이너가 비어있느냐 아니냐에 따라 결정해줄 수 있다
+```cpp
+		for (int i = 0; i < S.size(); i++)
+		{
+			if (VPS.size() and VPS.top() == '(' and S[i] == ')')
+			{
+				VPS.pop();
+			}
+			else
+			{
+				VPS.push(S[i]);
+			}
+		}
+```
 
 ---
