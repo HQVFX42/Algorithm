@@ -17,6 +17,7 @@
 | [BOJ 2852](https://www.acmicpc.net/problem/2852) | [NBA 농구](#2852-NBA-농구) | [Code](./Algothingy/2852.cpp) | :ballot_box_with_check: |
 | [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) | :ballot_box_with_check: |
 | [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) | :ballot_box_with_check: |
+| [BOJ 4949](https://www.acmicpc.net/problem/4949) | [균형잡힌 세상](#4949-균형잡힌-세상) | [Code](./Algothingy/4949.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -189,5 +190,15 @@ stack 컨테이너가 비어있느냐 아니냐에 따라 결정해줄 수 있�
 			}
 		}
 ```
+
+<br>
+<br>
+
+# 4949 균형잡힌 세상
+[9012 괄호](#9012-괄호)와 같은 방식으로 해결할 수 있다  
+stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용하면 된다
+
+<br>
+<br>
 
 ---
