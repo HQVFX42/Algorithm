@@ -18,11 +18,12 @@
 | [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) | :ballot_box_with_check: |
 | [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) | :ballot_box_with_check: |
 | [BOJ 4949](https://www.acmicpc.net/problem/4949) | [균형잡힌 세상](#4949-균형잡힌-세상) | [Code](./Algothingy/4949.cpp) | :ballot_box_with_check: |
+| [BOJ 14502](https://www.acmicpc.net/problem/14502) | [연구소](#14502-연구소) | [Code](./Algothingy/14502.cpp) |  |
 
 <br>
 
 ---
-# Descriptions
+# :droplet:Descriptions
 
 ## 2870 수학숙제
 범위가 100글자라고 하였으니 자료형을 생각해보아야 한다  
@@ -202,5 +203,17 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 
 <br>
 <br>
+
+## 14502 연구소
+* 일단 벽을 3개 세우는 모든 경우의 수를 고려해본다  
+    -> 시간초과가 나는지 안나는지 확인하려면  
+    문제의 최대범위를 기반으로 시간복잡도를 유추해보자
+
+1. 벽을 3개 세운다 -> N과 M의 최대는 8이므로 8*8 64 -> 벽 3개를 순서상관없이 세운다 = 64C3
+1. 바이러스가 퍼진다 -> BFS or DFS 탐색을 한다 = 64
+1. 안전영역을 카운팅해서 max값을 구한다 = 64
+
+-> 64C3 * (64 + 64) = 약 60 * 20 * 30 * 120 = 약 430만  
+1000만 이하이므로 벽을 3개 세우는 모든 경우의 수는 괜찮다
 
 ---
