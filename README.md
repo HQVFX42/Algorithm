@@ -19,6 +19,7 @@
 | [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) | :ballot_box_with_check: |
 | [BOJ 4949](https://www.acmicpc.net/problem/4949) | [균형잡힌 세상](#4949-균형잡힌-세상) | [Code](./Algothingy/4949.cpp) | :ballot_box_with_check: |
 | [BOJ 14502](https://www.acmicpc.net/problem/14502) | [연구소](#14502-연구소) | [Code](./Algothingy/14502.cpp) | :ballot_box_with_check: |
+| [BOJ 2636](https://www.acmicpc.net/problem/2636) | [치즈](#2636-치즈) | [Code](./Algothingy/2636.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -231,5 +232,21 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 		}
 	}
 ```
+
+<br>
+<br>
+
+## 2636 치즈
+- 치즈가 없는 부분부터 시작해서 치즈가 있는부분은 녹이면 되는문제
+- 원래는 치즈가 없는 부분을 찾는 로직부터 시작해야 하지만  
+해당 문제에서는 가장자리에는 치즈가 없다고 되어있어 아무 자리에서나 시작해도 상관이 없다
+- 모두 녹기 전 마지막 사이즈는 담을 자료구조의 size로 쉽게 해결 할 수 있다
+
+<br>
+
+즉 구현할 내용은 다음과 같다
+1. DFS로 탐색
+1. 0이면 계속 1이면 자료구조에 담고 `(다 녹기 전 치즈조각 = size)`
+1. 담은 자료구조를 기반으로 다 0 으로 만들고 시간을 ++해준다 `(다 녹는데 걸리는 시간)`
 
 ---
