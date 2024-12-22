@@ -18,7 +18,7 @@
 | [BOJ 1436](https://www.acmicpc.net/problem/1436) | [영화감독 숌](#1436-영화감독-숌) | [Code](./Algothingy/1436.cpp) | :ballot_box_with_check: |
 | [BOJ 9012](https://www.acmicpc.net/problem/9012) | [괄호](#9012-괄호) | [Code](./Algothingy/9012.cpp) | :ballot_box_with_check: |
 | [BOJ 4949](https://www.acmicpc.net/problem/4949) | [균형잡힌 세상](#4949-균형잡힌-세상) | [Code](./Algothingy/4949.cpp) | :ballot_box_with_check: |
-| [BOJ 14502](https://www.acmicpc.net/problem/14502) | [연구소](#14502-연구소) | [Code](./Algothingy/14502.cpp) |  |
+| [BOJ 14502](https://www.acmicpc.net/problem/14502) | [연구소](#14502-연구소) | [Code](./Algothingy/14502.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -215,5 +215,21 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 
 -> 64C3 * (64 + 64) = 약 60 * 20 * 30 * 120 = 약 430만  
 1000만 이하이므로 벽을 3개 세우는 모든 경우의 수는 괜찮다
+
+벽의 모든 좌표들 중에 3개를 뽑는 경우의 수는 3중 for문을 사용하여 구현할 수 있다  
+예를 들어 `{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}` 총 5개 좌표에 벽이 있다고 가정하면  
+5개중 3개를 순서 상관 없이 뽑는 5C3에 해당하는 식은 아래와 같이 표현할 수 있다
+```
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			for (int k = 0; k < j; k++)
+			{
+				cout << k << j << i << '\n';
+			}
+		}
+	}
+```
 
 ---
