@@ -1,9 +1,14 @@
 # :spiral_notepad:Note
+- 지역변수 보다는 전역변수를 사용하자
+    - 지역변수로 선언하게 되면 stack에 쌓이는데 OS에서 성능상의 이유로 stack영역에 메모리 제한이 걸림
+	- 전역변수에서 int형 배열 100만개 선언도 가능하지만 지역변수에서는 25만까지 가능하다고 알려져 있음
+
 - ? -> 완탐? -> DP? -> 그리디?
 - ? -> Sorted Array? -> 이분탐색?
 - 평균 1000만이하는 OK
 - Counting = Map or Array로 접근
 - 짝짓기, 폭발, 아름다운 괄호만들기 등 = Stack으로 접근
+- Tree의 경우 Root부터 탐색을 하는 것이 좋다
 
 <br>
 
@@ -20,6 +25,8 @@
 | [BOJ 4949](https://www.acmicpc.net/problem/4949) | [균형잡힌 세상](#4949-균형잡힌-세상) | [Code](./Algothingy/4949.cpp) | :ballot_box_with_check: |
 | [BOJ 14502](https://www.acmicpc.net/problem/14502) | [연구소](#14502-연구소) | [Code](./Algothingy/14502.cpp) | :ballot_box_with_check: |
 | [BOJ 2636](https://www.acmicpc.net/problem/2636) | [치즈](#2636-치즈) | [Code](./Algothingy/2636.cpp) | :ballot_box_with_check: |
+| [BOJ 1068](https://www.acmicpc.net/problem/2636) | [트리](#1068-트리) | [Code](./Algothingy/1068.cpp) |  |
+| [BOJ 1325](https://www.acmicpc.net/problem/1325) | [효율적인 해킹](#1325-효율적인-해킹) | [Code](./Algothingy/1325.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -248,5 +255,32 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 1. DFS로 탐색
 1. 0이면 계속 1이면 자료구조에 담고 `(다 녹기 전 치즈조각 = size)`
 1. 담은 자료구조를 기반으로 다 0 으로 만들고 시간을 ++해준다 `(다 녹는데 걸리는 시간)`
+
+<br>
+<br>
+
+## 1068 트리
+반환 값이 int인 DFS 메서드를 사용하여 리프노드 수를 구하는 함수를 이용해보자  
+리프노드? -> `자식노드가 없는 것`  
+즉 `for, there, Adj[here]` 탐색 시 `there`가 없는 것
+```cpp
+	int Result = 0;
+	int Child = 0;
+
+	for (int there : Adj[here])
+	{
+		if (there == R)
+		{
+			continue;
+		}
+		Result += DFS(there);
+		Child++;
+	}
+```
+
+<br>
+<br>
+
+## 효율적인 해킹
 
 ---
