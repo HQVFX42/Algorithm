@@ -51,3 +51,22 @@ vector<string> Split(string Input, string Delimiter)
 	
 	return Result;
 }
+
+/**
+ * Cpp split() method - faster version.
+ */
+vector<string> Split(const string& Input, string Delimiter)
+{
+	vector<string> Result;
+	auto Start = 0;
+	auto End = Input.find(Delimiter);
+	while (End != string::npos)
+	{
+		Result.push_back(Input.substr(Start, End - Start));
+		Start = End + Delimiter.size();
+		End = Input.find(Delimiter, Start);
+	}
+	Result.push_back(Input.substr(Start));
+
+	return Result;
+}
