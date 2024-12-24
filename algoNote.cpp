@@ -32,3 +32,22 @@ int main()
 	FastIO();
 
 }
+
+/**
+ * CPP split() method.
+ */
+vector<string> Split(string Input, string Delimiter)
+{
+	vector<string> Result;
+	long long pos = 0;
+	string token = "";
+	while ((pos = Input.find(Delimiter)) != string::npos)
+	{
+		token = Input.substr(0, pos);
+		Result.push_back(token);
+		Input.erase(0, pos + Delimiter.length());
+	}
+	Result.push_back(Input);
+	
+	return Result;
+}
