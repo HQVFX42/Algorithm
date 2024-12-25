@@ -27,6 +27,7 @@
 | [BOJ 2636](https://www.acmicpc.net/problem/2636) | [치즈](#2636-치즈) | [Code](./Algothingy/2636.cpp) | :ballot_box_with_check: |
 | [BOJ 1068](https://www.acmicpc.net/problem/2636) | [트리](#1068-트리) | [Code](./Algothingy/1068.cpp) |  |
 | [BOJ 1325](https://www.acmicpc.net/problem/1325) | [효율적인 해킹](#1325-효율적인-해킹) | [Code](./Algothingy/1325.cpp) | :ballot_box_with_check: |
+| [BOJ 17298](https://www.acmicpc.net/problem/17298) | [오큰수](#17298-오큰수) | [Code](./Algothingy/17298.cpp) |  |
 
 <br>
 
