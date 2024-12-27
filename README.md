@@ -1,4 +1,5 @@
 # :spiral_notepad:Note
+- 문제를 먼저 해석하고 손코딩을 해보자
 - 지역변수 보다는 전역변수를 사용하자
     - 지역변수로 선언하게 되면 stack에 쌓이는데 OS에서 성능상의 이유로 stack영역에 메모리 제한이 걸림
 	- 전역변수에서 int형 배열 100만개 선언도 가능하지만 지역변수에서는 25만까지 가능하다고 알려져 있음
@@ -14,6 +15,13 @@
 
 ---
 # :clipboard:Lists
+
+## 1
+
+<br>
+
+## 2
+
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 2870](https://www.acmicpc.net/problem/2870) | [수학숙제](#2870-수학숙제) | [Code](./Algothingy/2870.cpp) | :ballot_box_with_check: |
@@ -28,6 +36,10 @@
 | [BOJ 1068](https://www.acmicpc.net/problem/2636) | [트리](#1068-트리) | [Code](./Algothingy/1068.cpp) |  |
 | [BOJ 1325](https://www.acmicpc.net/problem/1325) | [효율적인 해킹](#1325-효율적인-해킹) | [Code](./Algothingy/1325.cpp) | :ballot_box_with_check: |
 | [BOJ 17298](https://www.acmicpc.net/problem/17298) | [오큰수](#17298-오큰수) | [Code](./Algothingy/17298.cpp) | :ballot_box_with_check: |
+
+<br>
+
+## 3
 
 <br>
 
