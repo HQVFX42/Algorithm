@@ -1,4 +1,6 @@
 # :spiral_notepad:Note
+![1%](https://progress-bar.xyz/1/?scale=100&title=progress&width=512&color=babaca&suffix=/100)
+- 파일분할 및 파일정리 진행중...
 
 ## Flow
 1. 문제의 최대, 최소 범위를 파악한다
@@ -40,17 +42,16 @@
 - `백트래킹?` => 최대한 가지치기를 하는 완전탐색 = 불필요한 탐색을 피한다
 - `원복?` => 방문배열을 통해 방문한 점점은 방문처리를 하면서  
 다음 경우의 수에 영향을 미치지 않도록 원상복구를 해줘야한다
-	- ```cpp
-	  Go(int here)
-	  {
-		  visited[there] = 1;
-		  v.push_back(there);
-		  Go(there);
-		  visited[there] = 0;
-		  v.pop_back();
-	  }
-	  ```
--
+	```cpp
+	Go(int here)
+	{
+    	visited[there] = 1;
+		v.push_back(there);
+		Go(there);
+		visited[there] = 0;
+		v.pop_back();
+	}
+	```
 
 ---
 # :clipboard:Lists
@@ -82,6 +83,9 @@
 <br>
 
 ## 3
+| Problem | Description | Code | Status |
+| :--: | :--: | :--: | :--: |
+| [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
 
 <br>
 
@@ -91,46 +95,46 @@
 ## 1
 ### 1940 주몽
 - 이중 for문을 통해 전체 탐색을 하는 방법이 있다
-```cpp
-	int cnt = 0;
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = i + 1; j < n; j++)
+	```cpp
+		int cnt = 0;
+		for (int i = 0; i < n; i++)
 		{
-			if (a[i] + a[j] == m)
+			for (int j = i + 1; j < n; j++)
+			{
+				if (a[i] + a[j] == m)
+				{
+					cnt++;
+				}
+			}
+		}
+	```
+- 재귀를 이용한 방법
+	```cpp
+	void Combi(int idx, vector<int> & v)
+	{
+		if (v.size() == 2)
+		{
+			int b = a[ v[ 0 ] ];
+			int c = a[ v[ 1 ] ];
+			if (b + c == m)
 			{
 				cnt++;
 			}
+
+			return;
 		}
-	}
-```
-- 재귀를 이용한 방법
-```cpp
-void Combi(int idx, vector<int> & v)
-{
-	if (v.size() == 2)
-	{
-		int b = a[ v[ 0 ] ];
-		int c = a[ v[ 1 ] ];
-		if (b + c == m)
+
+		for (int i = idx + 1; i < n; i++)
 		{
-			cnt++;
+			v.push_back(i);
+			Combi(i, v);
+			v.pop_back();
 		}
-
-		return;
 	}
-
-	for (int i = idx + 1; i < n; i++)
-	{
-		v.push_back(i);
-		Combi(i, v);
-		v.pop_back();
-	}
-}
-```
+	```
 - 투포인터를 이용한 방법
-```cpp
-```
+	```cpp
+	```
 
 <br>
 
@@ -154,24 +158,24 @@ long long은 약 19자리까지 가능하다
 * 0000 같은 반례를 조심하자
 
 * 문자열을 기반으로 비교를 하려면 custom operator가 필요하다
-```cpp
-sort(V.begin(), V.end(),
-		[ & ] (const string Lhs, const string Rhs)
-		{
-			if (Lhs.size() == Rhs.size())
+	```cpp
+	sort(V.begin(), V.end(),
+			[ & ] (const string Lhs, const string Rhs)
 			{
-				return Lhs < Rhs;
-			}
-			return Lhs.size() < Rhs.size();
-		});
-```
+				if (Lhs.size() == Rhs.size())
+				{
+					return Lhs < Rhs;
+				}
+				return Lhs.size() < Rhs.size();
+			});
+	```
 
 <br>
 
 * front같이 참조를 할 때는 size가 있는지 항상 체크하자
-```cpp
-if(Result.size() and Result.front() == '0')
-```
+	```cpp
+	if(Result.size() and Result.front() == '0')
+	```
 
 <br>
 <br>
@@ -181,24 +185,23 @@ if(Result.size() and Result.front() == '0')
 
 * 전체 배열을 탐색해서 해당 인덱스 원소의 값이 0이면 카운트 1부터  
 다음 인덱스 원소가 -1이 아닐 때까지 ++를 해주면 쉽게 해결할 수 있다
-
-```cpp
-for (int i = 0; i < H; i++)
-	{
-		for (int j = 0; j < W; j++)
+	```cpp
+	for (int i = 0; i < H; i++)
 		{
-			if (A[i][j] == 0)
+			for (int j = 0; j < W; j++)
 			{
-				int Cnt = 1;
-				while (A[i][j+1] == - 1)
+				if (A[i][j] == 0)
 				{
-					A[ i ][ j + 1 ] = Cnt++;
-					j++;
+					int Cnt = 1;
+					while (A[i][j+1] == - 1)
+					{
+						A[ i ][ j + 1 ] = Cnt++;
+						j++;
+					}
 				}
 			}
 		}
-	}
-```
+	```
 
 <br>
 <br>
@@ -215,54 +218,54 @@ for (int i = 0; i < H; i++)
 * 예를 들어 10!의 0의 개수를 구한다고 하면 -> 1,2,3,4,5,6,7,8,9,10  
 2는 8개(2 5개 + 4 2개 + 8 1개), 5는 2개  
 결국 2의 승수, 5의 승수를 나눈 값들을 더해 min값을 구하면 원하는 결과를 얻을 수 있다
-```cpp
-		for (int i = 2; i <= N; i *= 2)
-		{
-			A2 += N / i;
-		}
-		for (int j = 5; j <= N; j *= 5)
-		{
-			A5 += N / j;
-		}
+	```cpp
+			for (int i = 2; i <= N; i *= 2)
+			{
+				A2 += N / i;
+			}
+			for (int j = 5; j <= N; j *= 5)
+			{
+				A5 += N / j;
+			}
 
-		cout << min(A2, A5) << '\n';
-```
+			cout << min(A2, A5) << '\n';
+	```
 
 <br>
 <br>
 
 ### 2852 NBA 농구
 * 시간이 나올 때 하나의 단위로 변환 후 통일해서 계산하는 것이 좋다
-```cpp
-int ChangeToInt(string S)
-{
-	return atoi(S.substr(0, 2).c_str()) * 60 + atoi(S.substr(3, 2).c_str());
-}
-```
+	```cpp
+	int ChangeToInt(string S)
+	{
+		return atoi(S.substr(0, 2).c_str()) * 60 + atoi(S.substr(3, 2).c_str());
+	}
+	```
 
 <br>
 
 * 초를 다시 MM:SS 형식으로 변환
-```cpp
-string ChangeToString(int N)
-{
-	string Minutes = "00" + to_string(N / 60);
-	string Seconds = "00" + to_string(N % 60);
-	return Minutes.substr(Minutes.size() - 2, 2) + ':' + Seconds.substr(Seconds.size() - 2, 2);
-}
-```
+	```cpp
+	string ChangeToString(int N)
+	{
+		string Minutes = "00" + to_string(N / 60);
+		string Seconds = "00" + to_string(N % 60);
+		return Minutes.substr(Minutes.size() - 2, 2) + ':' + Seconds.substr(Seconds.size() - 2, 2);
+	}
+	```
 
 <br>
 
 * prev를 이용하여 그 전 득점 타임과 차이를 계산해서 각 팀에 합산해 주면 해결할 수 있다  
 단, 종료시간인 `48:00`을 꼭 마지막에 체크해야 함에 유의해야 한다
-```cpp
-string Prev;
-void Func(int & Sum, string S)
-{
-	Sum += ChangeToInt(S) - ChangeToInt(Prev);
-}
-```
+	```cpp
+	string Prev;
+	void Func(int & Sum, string S)
+	{
+		Sum += ChangeToInt(S) - ChangeToInt(Prev);
+	}
+	```
 
 <br>
 <br>
@@ -274,20 +277,20 @@ void Func(int & Sum, string S)
 <br>
 
 * 666부터 숫자를 더하며 666이 포함된 N번째숫자면 출력하게 단순하게 해결해보자
-```cpp
-	int i = 666;
-	for (;; i++)
-	{
-		if (to_string(i).find("666") != string::npos)
+	```cpp
+		int i = 666;
+		for (;; i++)
 		{
-			N--;
+			if (to_string(i).find("666") != string::npos)
+			{
+				N--;
+			}
+			if (N == 0)
+			{
+				break;
+			}
 		}
-		if (N == 0)
-		{
-			break;
-		}
-	}
-```
+	```
 
 <br>
 <br>
@@ -296,19 +299,19 @@ void Func(int & Sum, string S)
 * stack을 이용하면 쉽게 해결할 수 있다  
 한쪽 괄호는 push 해주고 짝인 반대쪽 괄호가 들어오면 pop을 해줌으로써  
 stack 컨테이너가 비어있느냐 아니냐에 따라 결정해줄 수 있다
-```cpp
-		for (int i = 0; i < S.size(); i++)
-		{
-			if (VPS.size() and VPS.top() == '(' and S[i] == ')')
+	```cpp
+			for (int i = 0; i < S.size(); i++)
 			{
-				VPS.pop();
+				if (VPS.size() and VPS.top() == '(' and S[i] == ')')
+				{
+					VPS.pop();
+				}
+				else
+				{
+					VPS.push(S[i]);
+				}
 			}
-			else
-			{
-				VPS.push(S[i]);
-			}
-		}
-```
+	```
 
 <br>
 <br>
@@ -335,18 +338,18 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 * 벽의 모든 좌표들 중에 3개를 뽑는 경우의 수는 3중 for문을 사용하여 구현할 수 있다  
 예를 들어 `{1, 1}, {2, 2}, {3, 3}, {4, 4}, {5, 5}` 총 5개 좌표에 벽이 있다고 가정하면  
 5개중 3개를 순서 상관 없이 뽑는 5C3에 해당하는 식은 아래와 같이 표현할 수 있다
-```cpp
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < i; j++)
+	```cpp
+		for (int i = 0; i < 5; i++)
 		{
-			for (int k = 0; k < j; k++)
+			for (int j = 0; j < i; j++)
 			{
-				cout << k << j << i << '\n';
+				for (int k = 0; k < j; k++)
+				{
+					cout << k << j << i << '\n';
+				}
 			}
 		}
-	}
-```
+	```
 
 <br>
 <br>
@@ -368,23 +371,23 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 <br>
 
 ### 1068 트리
-반환 값이 int인 DFS 메서드를 사용하여 리프노드 수를 구하는 함수를 이용해보자  
+- 반환 값이 int인 DFS 메서드를 사용하여 리프노드 수를 구하는 함수를 이용해보자  
 리프노드? -> `자식노드가 없는 것`  
 즉 `for : there -> Adj[here]` 탐색 시 `there`가 없는 것
-```cpp
-	int Result = 0;
-	int Child = 0;
+	```cpp
+		int Result = 0;
+		int Child = 0;
 
-	for (int there : Adj[here])
-	{
-		if (there == R)
+		for (int there : Adj[here])
 		{
-			continue;
+			if (there == R)
+			{
+				continue;
+			}
+			Result += DFS(there);
+			Child++;
 		}
-		Result += DFS(there);
-		Child++;
-	}
-```
+	```
 
 <br>
 <br>
@@ -397,32 +400,32 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 탐색하는 노드에서 연결되어 있는 노드가 몇개인지를 알아야 한다  
 1에 2와 3이 연결된 트리가 있다고 가정해보자  
 1에 연결되어있는 간선을 탐색하려면 아래와 같이 될 것이다
-```cpp
-int DFS(int here)
-{
-	Visited[here] = 1;
-	int Result = 1;
-	for (int there : adj[here])
+	```cpp
+	int DFS(int here)
 	{
-		if (Vistied[there])
+		Visited[here] = 1;
+		int Result = 1;
+		for (int there : adj[here])
 		{
-			continue;
+			if (Vistied[there])
+			{
+				continue;
+			}
+			Result += DFS(there);
 		}
-		Result += DFS(there);
-	}
 
-	return Result;
-}
-```
+		return Result;
+	}
+	```
 * 위처럼 return값은 3을 얻을 수 있으며 이 방법을 이용하면 해결할 수 있다  
 `자주 나오게 되는 방식이니 기억해두자`
 
 <br>
 
 * 모든 정점을 탐색하기 때문에 DFS 할 때마다 초기화를 빼먹으면 안된다
-```cpp
-memset(Visited, 0, sizeof(Visited));
-```
+	```cpp
+	memset(Visited, 0, sizeof(Visited));
+	```
 
 <br>
 <br>
@@ -442,5 +445,48 @@ memset(Visited, 0, sizeof(Visited));
 더 큰수가 나올 때의 순간에 오큰수가 결정되는 것이라 할 수 있다
 
 ## 3
+### 15686 치킨 배달
+- 집은 최대 2N, 치킨집은 최대 13이라고 주어졌으니  
+-> 최대 13C? x 100의 경우의 수가 나오게 된다  
+-> 중간 값인 13C6이나 13C7정도가 제일 값이 크게 될 것이므로 약 13x12x11 = 1716
+- 즉, 17만 정도이니 조합으로 충분히 통과할 것이다
+    ```cpp
+	// 자주 나오는 조합식
+	void Combi(int start, vector<int> v)
+	{
+		if (v.size() == m)
+		{
+			vCLists.push_back(v);
+			return;
+		}
+
+		for (int i = start + 1; i < vC.size(); i++)
+		{
+			v.push_back(i);
+			Combi(i, v);
+			v.pop_back();
+		}
+
+		return;
+	}
+	```
+- 집 x 치킨집 조합 경우의 수
+    ```cpp
+	for (auto & CList : vCLists)
+	{
+		int ans = 0;
+		for (auto & Home : vH)
+		{
+			int mn = 987654321;
+			for (auto & Ch : CList)
+			{
+				int dist = abs(Home.first - vC[ Ch ].first) + abs(Home.second - vC[ Ch ].second);
+				mn = min(mn, dist);
+			}
+			ans += mn;
+		}
+		answer = min(answer, ans);
+	}
+	```
 
 ---
