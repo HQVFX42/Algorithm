@@ -57,6 +57,47 @@
 
 ## 1
 ### 1940 주몽
+- 이중 for문을 통해 전체 탐색을 하는 방법이 있다
+```cpp
+	int cnt = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] + a[j] == m)
+			{
+				cnt++;
+			}
+		}
+	}
+```
+- 재귀를 이용한 방법
+```cpp
+void Combi(int idx, vector<int> & v)
+{
+	if (v.size() == 2)
+	{
+		int b = a[ v[ 0 ] ];
+		int c = a[ v[ 1 ] ];
+		if (b + c == m)
+		{
+			cnt++;
+		}
+
+		return;
+	}
+
+	for (int i = idx + 1; i < n; i++)
+	{
+		v.push_back(i);
+		Combi(i, v);
+		v.pop_back();
+	}
+}
+```
+- 투포인터를 이용한 방법
+```cpp
+```
 
 ## 2
 ### 2870 수학숙제
