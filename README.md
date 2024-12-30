@@ -20,6 +20,12 @@
 
 <br>
 
+## 1
+-
+## 2
+- 이진트리?
+    - 자식노드의 수가 2이하인 것
+
 ---
 # :clipboard:Lists
 
@@ -27,7 +33,7 @@
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 1940](https://www.acmicpc.net/problem/1940) | [주몽](#1940-주몽) | [Code](./Algothingy/1940.cpp), [Code-1](./Algothingy/1940-1.cpp) | :ballot_box_with_check: |
-| [BOJ 3986](https://www.acmicpc.net/problem/3986) | [좋은단어](#3986-좋은단어) | [Code](./Algothingy/3986.cpp) |  |
+| [BOJ 3986](https://www.acmicpc.net/problem/3986) | [좋은단어](#3986-좋은단어) | [Code](./Algothingy/3986.cpp) | :ballot_box_with_check: |
 
 <br>
 
