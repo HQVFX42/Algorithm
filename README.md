@@ -27,6 +27,7 @@
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 1940](https://www.acmicpc.net/problem/1940) | [주몽](#1940-주몽) | [Code](./Algothingy/1940.cpp), [Code-1](./Algothingy/1940-1.cpp) | :ballot_box_with_check: |
+| [BOJ 3986](https://www.acmicpc.net/problem/3986) | [좋은단어](#3986-좋은단어) | [Code](./Algothingy/3986.cpp) |  |
 
 <br>
 
@@ -98,6 +99,13 @@ void Combi(int idx, vector<int> & v)
 - 투포인터를 이용한 방법
 ```cpp
 ```
+
+<br>
+
+### 3986 좋은단어
+- stack에 담아 짝짓기를 해주면 해결 가능하다
+- 다음에 오는 단어가 `같은 단어면 pop`, 아니라면 push
+- 즉, `stack이 비어있다`면 좋은단어고 아니라면 좋은단어가 아니다
 
 ## 2
 ### 2870 수학숙제
