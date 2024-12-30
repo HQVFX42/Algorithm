@@ -1,6 +1,6 @@
 # :spiral_notepad:Note
-![1%](https://progress-bar.xyz/1/?scale=100&title=progress&width=512&color=babaca&suffix=/100)
 - 파일분할 및 파일정리 진행중...
+![1%](https://progress-bar.xyz/1/?scale=100&title=progress&width=512&color=babaca&suffix=/100)
 
 ## Flow
 1. 문제의 최대, 최소 범위를 파악한다
