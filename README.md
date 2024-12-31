@@ -95,6 +95,7 @@
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
+| [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 
 <br>
 
