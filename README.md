@@ -94,6 +94,7 @@
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
+| [BOJ 2503](https://www.acmicpc.net/problem/2503) | [숫자 야구](#2503-숫자-야구) | [Code](./Algothingy/2503.cpp) | :ballot_box_with_check: |
 
 <br>
 
@@ -535,6 +536,14 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 		int x = (c * e - b * f) / (a * e - b * d);
     	int y = (c * d - a * f) / (b * d - a * e);
 	```
+
+<br>
+
+### 2503 숫자 야구
+- 영수가 생각할 수 있는 모든 수를 반복문으로 넣어본다
+- 그리고 민혁이가 도전한 내용 즉, 주어진 조건에 맞는지 확인한다
+- `vector<vector<int>> v` 형식으로 입력을 받으면  
+    -> {number, strike, ball}형태로 값을 그대로 push_back할 수 있다
 
 <br>
 
