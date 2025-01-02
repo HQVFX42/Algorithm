@@ -14,7 +14,7 @@ typedef long long ll;
 #define op2(a,b) cout << a << ' ' << b
 #define opl cout << '\n'
 #define op1l(a) cout << a << '\n'
-#define op2l(a) cout << a << ' ' << b << '\n'
+#define op2l(a,b) cout << a << ' ' << b << '\n'
 
 const int dx[] = { 1,0,-1,0 }, dy[] = { 0,1,0,-1 };
 
