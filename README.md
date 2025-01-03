@@ -547,4 +547,42 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 
 <br>
 
+### 1090 체커
+- 모든 좌표를 탐색 하게 될 경우에는 범위가 너무 크므로 불가능
+- 각각 체커의 위치마다 이동해야하는 거리를 계산해서 최소값을 찾으면 된다
+    ```cpp
+    // 만날 장소 정하기
+    for (int y : arrX)
+    {
+        for (int x : arrY)
+        {
+            vector<int> dist;
+
+            // 만날 장소로 각각의 점들이 오는 비용 계산하기
+            for (auto [ex, ey] : arr)
+            {
+                int d = abs(ex - x) + abs(ey - y);
+                dist.push_back(d);
+            }
+
+            // 가까운 순서대로 정렬하기
+            sort(dist.begin(), dist.end());
+
+            int tmp = 0;
+            for (int i = 0; i < dist.size(); i++)
+            {
+                tmp += dist[ i ];
+                if (answer[ i ] == -1)
+                {
+                    answer[ i ] = tmp;
+                }
+                else
+                {
+                    answer[ i ] = min(tmp, answer[ i ]);
+                }
+            }
+        }
+    }
+	```
+
 ---
