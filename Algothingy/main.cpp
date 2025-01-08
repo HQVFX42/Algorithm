@@ -12,16 +12,21 @@ using namespace std;
 struct A
 {
 	int n;
-	A(int n = 1) : n(n) { cout << "Constructor" << '\n'; }
-	~A() { cout << "Destructor" << '\n'; }
-	A(const A & a) : n(a.n) { cout << "Copy" << '\n'; } // user-defined copy constructor
-	A(A &&) { cout << "Move" << '\n'; }
+	A(int n = 1) : n(n) { cout << "A Constructor" << '\n'; }
+	~A() { cout << "A Destructor" << '\n'; }
+	A(const A & a) : n(a.n) { cout << "A Copy" << '\n'; } // user-defined copy constructor
+	A(A &&) { cout << "A Move" << '\n'; }
 };
 
 struct B : A
 {
+	int n;
 	// implicit default constructor B::B()
+	B(int n = 1) : n(n) { cout << "B Constructor" << '\n'; }
+	~B() { cout << "B Destructor" << '\n'; }
 	// implicit copy constructor B::B(const B&)
+	B(const B & b) : n(b.n) { cout << "B Copy" << '\n'; }
+	B(B &&) { cout << "B Move" << '\n'; }
 };
 
 A F1(A a)
@@ -43,9 +48,9 @@ int main()
 
 	cout << "---" << '\n';
 
-	B b;
-	B b2 = b;
-	A a5 = b; // conversion to A& and copy constructor
+	B b1;
+	B b2 = b1;
+	A a5 = b2; // conversion to A& and copy constructor
 
 	cout << "---" << '\n';
 
