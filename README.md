@@ -95,6 +95,7 @@
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
 | [BOJ 2503](https://www.acmicpc.net/problem/2503) | [숫자 야구](#2503-숫자-야구) | [Code](./Algothingy/2503.cpp) | :ballot_box_with_check: |
+| [BOJ 1090](https://www.acmicpc.net/problem/1090) | [체커](#1090-체커) | [Code](./Algothingy/1090.cpp) |  |
 
 <br>
 
