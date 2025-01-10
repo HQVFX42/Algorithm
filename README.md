@@ -20,6 +20,7 @@
 - 지역변수 보다는 전역변수를 사용하자
     - 지역변수로 선언하게 되면 stack에 쌓이는데 OS에서 성능상의 이유로 stack영역에 메모리 제한이 걸림
 	- 전역변수에서 int형 배열 100만개 선언도 가능하지만 지역변수에서는 25만까지 가능하다고 알려져 있음
+- 최단거리는 BFS를 사용해보자
 
 <br>
 
@@ -91,6 +92,7 @@
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
 | [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
+| [BOJ 2589](https://www.acmicpc.net/problem/2589) | [보물섬](#2589-보물섬) | [Code](./Algothingy/2589.cpp) | :ballot_box_with_check: |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -490,6 +492,12 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 		answer = min(answer, ans);
 	}
 	```
+<br>
+
+### 2589 보물섬
+- 보물은 서로 간에 최단 거리로 이동하는데 있어 가장 긴 시간이 걸리는 육지 두 곳에 나뉘어 묻혀있다고 했으니
+- 즉, 전체 좌표에서 BFS로 max dist를 구하면 해결할 수 있다
+
 <br>
 
 ### 1816 암호 키
