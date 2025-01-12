@@ -93,6 +93,7 @@
 | :--: | :--: | :--: | :--: |
 | [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
 | [BOJ 2589](https://www.acmicpc.net/problem/2589) | [보물섬](#2589-보물섬) | [Code](./Algothingy/2589.cpp) | :ballot_box_with_check: |
+| [BOJ 16234](https://www.acmicpc.net/problem/16234) | [인구이동](#16234-인구이동) | [Code](./Algothingy/16234.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -497,6 +498,32 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 ### 2589 보물섬
 - 보물은 서로 간에 최단 거리로 이동하는데 있어 가장 긴 시간이 걸리는 육지 두 곳에 나뉘어 묻혀있다고 했으니
 - 즉, 전체 좌표에서 BFS로 max dist를 구하면 해결할 수 있다
+
+<br>
+
+### 16234 인구이동
+- 인접한 곳의 탐색을 해야하므로 일단 DFS를 떠올릴 수 있고  
+    인구이동이 끝날 때까지 계속 실행이 되야하므로 어떤 조건이 만족할 때까지 루프를 돌려야 한다를 생각할 수 있다
+- 인구이동이 일어나는 좌표들을 벡터에 담아놓고 벡터에 요소가 2 이상이면 인구이동을 실행해주면 된다
+    ```cpp
+	if (!vis[ i ][ j ])
+	{
+		v.clear();
+		vis[ i ][ j ] = 1;
+		v.push_back({ i, j });
+		sum = graph[ i ][ j ];
+		dfs(i, j);
+		if (v.size() == 1)
+		{
+			continue;
+		}
+		for (pii vv : v)
+		{
+			graph[ vv.first ][ vv.second ] = sum / v.size();
+			bFlag = true;
+		}
+	}
+	```
 
 <br>
 
