@@ -93,7 +93,8 @@
 | :--: | :--: | :--: | :--: |
 | [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
 | [BOJ 2589](https://www.acmicpc.net/problem/2589) | [보물섬](#2589-보물섬) | [Code](./Algothingy/2589.cpp) | :ballot_box_with_check: |
-| [BOJ 16234](https://www.acmicpc.net/problem/16234) | [인구이동](#16234-인구이동) | [Code](./Algothingy/16234.cpp) |  |
+| [BOJ 16234](https://www.acmicpc.net/problem/16234) | [인구이동](#16234-인구이동) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
+| [BOJ 4179](https://www.acmicpc.net/problem/4179) | [불!](#4179-불!) | [Code](./Algothingy/16234.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -522,6 +523,21 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 			graph[ vv.first ][ vv.second ] = sum / v.size();
 			bFlag = true;
 		}
+	}
+	```
+
+<br>
+
+### 4179 불!
+- 가장 빠른 탈출시간이라고 했으므로 최단거리인 BFS를 떠올릴 수 있다
+- 불은 점차 퍼지고 지훈이는 벽과 불을 제외한 공간으로 탐색하면 된다
+- 불보다 지훈이가 빠르게 가면 갈 수 있는 것이므로
+- 즉, 불과 지훈이 둘다 BFS를 사용하여 불을 먼저 돌리고  
+    지훈이는 돌릴 때 조건으로 더 빠르게 갈 수 있다면 할당하면 해결할 수 있다
+	```cpp
+	if (dist1[nx][ny] != -1 && dist1[nx][ny] <= dist2[cur.first][cur.second] + 1)
+	{
+		continue;
 	}
 	```
 
