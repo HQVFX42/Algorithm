@@ -94,7 +94,8 @@
 | [BOJ 15686](https://www.acmicpc.net/problem/15686) | [치킨 배달](#15686-치킨-배달) | [Code](./Algothingy/15686.cpp) |  |
 | [BOJ 2589](https://www.acmicpc.net/problem/2589) | [보물섬](#2589-보물섬) | [Code](./Algothingy/2589.cpp) | :ballot_box_with_check: |
 | [BOJ 16234](https://www.acmicpc.net/problem/16234) | [인구이동](#16234-인구이동) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
-| [BOJ 4179](https://www.acmicpc.net/problem/4179) | [불!](#4179-불!) | [Code](./Algothingy/16234.cpp) |  |
+| [BOJ 4179](https://www.acmicpc.net/problem/4179) | [불!](#4179-불!) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
+| [BOJ 12869](https://www.acmicpc.net/problem/12869) | [뮤탈리스크](#12869-뮤탈리스크) | [Code](./Algothingy/12869.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -542,6 +543,11 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 	```
 
 <br>
+
+### 12869 뮤탈리스크
+- x,y 2차원 좌표가 아니라고 해서 BFS를 쓸 수 없는 것이 아니다  
+    가중치가 같으면 쓸 수 있으므로 그래프로 생각해보면 0이하로 도달하기 위한 최단거리를 구하는 것과 마찬가지인 문제
+- DP로도 풀 수 있다
 
 ### 1816 암호 키
 - 문제에서 만일 S의 모든 소인수가 106보다 크다면 그 수는 적절한 암호 키이고,  
