@@ -31,12 +31,6 @@ int da[ 6 ][ 3 ] =
 	{1, 9, 3}
 };
 
-struct A
-{
-	int a, b, c;
-};
-
-//queue<A> q;
 queue<tuple<int, int, int>> q;
 int n, a[3], vis[66][66][66];
 
