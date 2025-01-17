@@ -44,6 +44,7 @@ int Op(char a, int b, int c)
 
 void Recursive(int here, int there)
 {
+	//cout << here << " : " << there << '\n';
 	if (here == numV.size() - 1)
 	{
 		ans = max(ans, there);
