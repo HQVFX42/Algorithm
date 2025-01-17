@@ -98,6 +98,7 @@
 | [BOJ 4179](https://www.acmicpc.net/problem/4179) | [불!](#4179-불!) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
 | [BOJ 12869](https://www.acmicpc.net/problem/12869) | [뮤탈리스크](#12869-뮤탈리스크) | [Code](./Algothingy/12869.cpp) |  |
 | [BOJ 16637](https://www.acmicpc.net/problem/16637) | [괄호 추가하기](#16637-괄호-추가하기) | [Code](./Algothingy/16637.cpp) |  |
+| [BOJ 12851](https://www.acmicpc.net/problem/12851) | [숨바꼭질 2](#12851-숨바꼭질-2) | [Code](./Algothingy/12851.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -596,6 +597,11 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 		return;
 	}
 	```
+
+<br>
+
+### 12851 숨바꼭질 2
+- ㅁ
 
 <br>
 
