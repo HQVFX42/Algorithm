@@ -20,6 +20,7 @@
 - 지역변수 보다는 전역변수를 사용하자
     - 지역변수로 선언하게 되면 stack에 쌓이는데 OS에서 성능상의 이유로 stack영역에 메모리 제한이 걸림
 	- 전역변수에서 int형 배열 100만개 선언도 가능하지만 지역변수에서는 25만까지 가능하다고 알려져 있음
+- 완전탐색을 할 때는 주어진 인덱스를 기반으로 탐색을 할 생각을 해야한다
 - 최단거리는 BFS를 사용해보자
 
 <br>
@@ -96,6 +97,7 @@
 | [BOJ 16234](https://www.acmicpc.net/problem/16234) | [인구이동](#16234-인구이동) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
 | [BOJ 4179](https://www.acmicpc.net/problem/4179) | [불!](#4179-불!) | [Code](./Algothingy/16234.cpp) | :ballot_box_with_check: |
 | [BOJ 12869](https://www.acmicpc.net/problem/12869) | [뮤탈리스크](#12869-뮤탈리스크) | [Code](./Algothingy/12869.cpp) |  |
+| [BOJ 16637](https://www.acmicpc.net/problem/16637) | [괄호 추가하기](#16637-괄호-추가하기) | [Code](./Algothingy/16637.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -565,6 +567,31 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 	int nz = max(0, z - da[ i ][ 2 ]);
 	```
 - DP로도 풀 수 있다
+
+<br>
+
+### 16637 괄호 추가하기
+- 누적합과 인덱스를 기반으로 방향성을 정해놓고 탐색을 해야한다
+- 숫자와 연산자를 나눠서 생각하는 것이 편하다
+    ```cpp
+	void Recursive(int here, int there)
+	{
+		if (here == numV.size() - 1)
+		{
+			ans = max(ans, there);
+			return;
+		}
+
+		Recursive(here + 1, Op(opV[ here ], there, numV[ here + 1 ]));
+		if (here + 2 <= numV.size() - 1)
+		{
+			int tmp = Op(opV[ here + 1 ], numV[ here + 1 ], numV[ here + 2 ]);
+			Recursive(here + 2, Op(opV[ here ], there, tmp));
+		}
+
+		return;
+	}
+	```
 
 <br>
 
