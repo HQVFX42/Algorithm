@@ -100,6 +100,7 @@
 | [BOJ 12869](https://www.acmicpc.net/problem/12869) | [뮤탈리스크](#12869-뮤탈리스크) | [Code](./Algothingy/12869.cpp) |  |
 | [BOJ 16637](https://www.acmicpc.net/problem/16637) | [괄호 추가하기](#16637-괄호-추가하기) | [Code](./Algothingy/16637.cpp) |  |
 | [BOJ 12851](https://www.acmicpc.net/problem/12851) | [숨바꼭질 2](#12851-숨바꼭질-2) | [Code](./Algothingy/12851.cpp) |  |
+| [BOJ 13913](https://www.acmicpc.net/problem/13913) | [숨바꼭질 4](#13913-숨바꼭질-4) | [Code](./Algothingy/13913.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -609,6 +610,13 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 	```
 
 <br>
+
+### 13913 숨바꼭질 4
+- 숨바꼭질 2 문제와 동일하지만 trace가 추가된 문제이다
+- trace는 현지점을 다음지점배열에 넣어두면 쉽게 해결할 수 있다
+    ```cpp
+	trace[ nxt ] = cur;
+	```
 
 ### 1816 암호 키
 - 문제에서 만일 S의 모든 소인수가 106보다 크다면 그 수는 적절한 암호 키이고,  
