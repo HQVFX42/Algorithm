@@ -633,8 +633,46 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 <br>
 
 ### 14497 주난의 난
-- ㅁ
-- 
+- 그래프에서 점점 넓혀져가는 것을 미루어보아 BFS를 떠올릴 수 있다
+- 난이도가 낮은 문제와는 다르게 1을 만나면 멈췄다가 그 지점에서 다시 BFS를 돌리는 로직을 생각해야 한다
+- queue를 2개를 활용하면 해결할 수 있다
+- 1을 만나면 0으로 바꾸고 해당 지점들은 temporary queue에 저장해놓고 기존 q에 대입하는 방식
+    ```cpp
+	queue<pii> q;
+	q.push({ xx1 - 1, xy1 - 1 });
+	vis[ xx1 - 1 ][ xy1 - 1 ] = 1;
+	while (graph[ xx2 - 1 ][ xy2 - 1 ] != '0')
+	{
+		ans++;
+		queue<pii> tmp;
+		while (!q.empty())
+		{
+			auto cur = q.front();
+			q.pop();
+			for (int dir = 0; dir < 4; dir++)
+			{
+				int nx = cur.X + dx[ dir ];
+				int ny = cur.Y + dy[ dir ];
+				if (OOB(nx, ny, n, m) or vis[ nx ][ ny ])
+				{
+					continue;
+				}
+				if (graph[ nx ][ ny ] != '0')
+				{
+					graph[ nx ][ ny ] = '0';
+					tmp.push({ nx, ny });
+					vis[ nx ][ ny ] = vis[ cur.X ][ cur.Y ] + 1;
+				}
+				else
+				{
+					q.push({ nx, ny });
+					vis[ nx ][ ny ] = vis[ cur.X ][ cur.Y ] + 1;
+				}
+			}
+		}
+		q = tmp;
+	}
+	```
 
 ### 1816 암호 키
 - 문제에서 만일 S의 모든 소인수가 106보다 크다면 그 수는 적절한 암호 키이고,  
