@@ -104,6 +104,7 @@
 | [BOJ 17071](https://www.acmicpc.net/problem/17071) | [숨바꼭질 5](#17071-숨바꼭질-5) | [Code](./Algothingy/17071.cpp) |  |
 | [BOJ 14497](https://www.acmicpc.net/problem/14497) | [주난의 난](#14497-주난의-난) | [Code](./Algothingy/14497.cpp) | :ballot_box_with_check: |
 | [BOJ 3197](https://www.acmicpc.net/problem/3197) | [백조의 호수](#3197-백조의-호수) | [Code](./Algothingy/3197.cpp) |  |
+| [BOJ 1987](https://www.acmicpc.net/problem/1987) | [알파벳](#1987-알파벳) | [Code](./Algothingy/1987.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -723,6 +724,11 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 		swap(q, tmp);
 	}
 	```
+
+<br>
+
+### 1987 알파벳
+- ㅁ
 
 <br>
 
