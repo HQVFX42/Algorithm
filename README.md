@@ -678,7 +678,51 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 <br>
 
 ### 3197 백조의 호수
-- a
+- 빙판을 녹이고 백조가 만나는 날을 찾는 문제이므로 BFS를 떠올릴 수 있다
+- [14497 주난의 난](#14497-주난의-난) 문제와 마찬가지로 queue를 2개 사용하면 해결할 수 있다
+    ```cpp
+	bool Swan()
+	{
+		while (!q2.empty())
+		{
+			int x, y;
+			tie(x, y) = q2.front();
+			q2.pop();
+			for (int dir = 0; dir < 4; dir++)
+			{
+				int nx = x + dx[ dir ];
+				int ny = y + dy[ dir ];
+				if (OOB(nx, ny, r, c) or vis2[ nx ][ ny ])
+				{
+					continue;
+				}
+
+				vis2[ nx ][ ny ] = 1;
+				if (graph[ nx ][ ny ] == '.')
+				{
+					q2.push({ nx, ny });
+				}
+				else if (graph[ nx ][ ny ] == 'X')
+				{
+					q2tmp.push({ nx, ny });
+				}
+				else if (graph[ nx ][ ny ] == 'L')
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	```
+- 주의! 매번 temporary queue를 초기화를 해줘야 한다
+    ```cpp
+	void ClearQueue(queue<pii> & q)
+	{
+		queue<pii> tmp;
+		swap(q, tmp);
+	}
+	```
 
 <br>
 
