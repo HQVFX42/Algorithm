@@ -728,7 +728,39 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 <br>
 
 ### 1987 알파벳
-- ㅁ
+- 좌측 상단 칸에서 네 방향으로 갈 수 있고 이전에 나온 알파벳은 못 지나간다
+    - 즉 모든 경우의 수를 확인해야 하는 완전탐색을 떠올릴 수 있다
+- 재귀를 이용한 DFS를 사용하면 모든 경우의 수를 처리할 수 있다
+    - BFS는 가중치가 같은 그래프 내에서 최단거리, 갈 수 있는 최소의 거리 등의 문제에서 사용
+	```cpp
+	void DFS(int x, int y, int cnt)
+	{
+		ans = max(ans, cnt);
+		for (int dir = 0; dir < 4; dir++)
+		{
+			int nx = x + dx[ dir ];
+			int ny = y + dy[ dir ];
+			if (OOB(nx, ny, r, c))
+			{
+				continue;
+			}
+
+			int nxt = ( int ) (graph[ nx ][ ny ] - 'A');
+			if (vis[ nxt ] == 0)
+			{
+				vis[ nxt ] = 1;
+				DFS(nx, ny, cnt + 1);
+				vis[ nxt ] = 0;
+			}
+    	}
+	}
+	```
+- 하지만 시간복잡도를 생각해 볼 필요가 있다
+- 대문자 알파벳은 총 26개로 이미 방문한 곳은 다시 되돌아가지 못하므로 최악의 경우 약 3의 26승 `3^26`의 복잡도를 가진다
+- 알파벳을 int형으로 vis 배열에 담는 방식을 사용해보자
+    ```cpp
+	vis[ ( int ) (graph[ 0 ][ 0 ] - 'A') ] = 1;
+	```
 
 <br>
 
