@@ -769,6 +769,29 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
 - 최대범위를 기반으로 시간복잡도를 생각해보자
 - 한번 사용한 숫자는 쓰지 못하므로 `10!` 약 360만 정도임을 추정할 수 있다 (10! = 3628100)
 - 1억이하이므로 완탐으로 풀어보자
+    ```cpp
+	void DFS(int idx, string num)
+	{
+		if (idx == k + 1)
+		{
+			ans.push_back(num);
+			return;
+		}
+		for (int i = 0; i <= 9; i++)
+		{
+			if (vis[ i ])
+			{
+				continue;
+			}
+			if (idx == 0 or IsValid(num[ idx - 1 ], i + '0', c[ idx - 1 ]))
+			{
+				vis[ i ] = 1;
+				DFS(idx + 1, num + to_string(i));
+				vis[ i ] = 0;
+			}
+		}
+	}
+	```
 
 <br>
 
