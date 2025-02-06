@@ -6,7 +6,7 @@
 1. 문제의 최대, 최소 범위를 파악한다
     - 평균 1억, 1000만이하는 OK -> 완전탐색을 써도 된다
 	- 만약 최대값이나 최소값을 구하는 문제일 경우 출력값 범위에 해당하지 않는 숫자로 초기화를 해야한다
-1. 최대범위 기반, 시간복잡도상 -> 무식하게 풀 수 있다면 무식하게 모든 경우의 수를 생각하면서 풀고(Brute Force)
+1. `최대범위 기반, 시간복잡도` -> 무식하게 풀 수 있다면 무식하게 모든 경우의 수를 생각하면서 풀고(Brute Force)
 1. 아니라면 다른 알고리즘
     - ? -> 완탐? -> DP? -> 그리디?
 	- ? -> Sorted Array? -> 이분탐색?
@@ -105,6 +105,7 @@
 | [BOJ 14497](https://www.acmicpc.net/problem/14497) | [주난의 난](#14497-주난의-난) | [Code](./Algothingy/14497.cpp) | :ballot_box_with_check: |
 | [BOJ 3197](https://www.acmicpc.net/problem/3197) | [백조의 호수](#3197-백조의-호수) | [Code](./Algothingy/3197.cpp) |  |
 | [BOJ 1987](https://www.acmicpc.net/problem/1987) | [알파벳](#1987-알파벳) | [Code](./Algothingy/1987.cpp) |  |
+| [BOJ 2529](https://www.acmicpc.net/problem/1987) | [부등호](#2529-부등호) | [Code](./Algothingy/2529.cpp) |  |
 | [BOJ 1816](https://www.acmicpc.net/problem/1816) | [암호 키](#1816-암호-키) | [Code](./Algothingy/1816.cpp) | :ballot_box_with_check: |
 | [BOJ 14568](https://www.acmicpc.net/problem/14568) | [2017 연세대학교 프로그래밍 경시대회](#14568-2017-연세대학교-프로그래밍-경시대회) | [Code](./Algothingy/14568.cpp) | :ballot_box_with_check: |
 | [BOJ 19532](https://www.acmicpc.net/problem/19532) | [수학은 비대면강의입니다](#19532-수학은-비대면강의입니다) | [Code](./Algothingy/19532.cpp), [Code-1](./Algothingy/19532-1.cpp) | :ballot_box_with_check: |
@@ -761,6 +762,13 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
     ```cpp
 	vis[ ( int ) (graph[ 0 ][ 0 ] - 'A') ] = 1;
 	```
+
+<br>
+
+### 2529 부등호
+- 최대범위를 기반으로 시간복잡도를 생각해보자
+- 한번 사용한 숫자는 쓰지 못하므로 `10!` 약 360만 정도임을 추정할 수 있다 (10! = 3628100)
+- 1억이하이므로 완탐으로 풀어보자
 
 <br>
 
