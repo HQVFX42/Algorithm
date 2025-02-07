@@ -801,6 +801,26 @@ stack 컨테이너에 괄호를 넣고 짝이면 pop해주는 방식을 사용�
     - InOrder = 1 -> 6 -> 4 -> 3 -> 5 -> 2 -> 7 (Left -> Current -> Right)
     - PostOrder = 1 -> 4 -> 6 -> 5 -> 7 -> 2 -> 3 (Left -> Right -> Current)
 	- PreOrder = 3 -> 6 -> 1 -> 4 -> 2 -> 5 -> 7 (Current -> Left -> Right)
+- 트리의 레벨별로 출력을 해야하므로 mid를 vector에 먼저 담고 나머지를 vector에 담으면 된다
+    ```cpp
+	int mid = (s + e) / 2;
+	ans[ level ].push_back(tree[ mid ]);
+	Func(s, mid - 1, level + 1);
+	Func(mid + 1, e, level + 1);
+	return;
+	```
+- 기저 사례와 start가 항상 end보다 같거나 작아야 하므로(s <= e)
+    ```cpp
+	if (s > e)
+	{
+		return;
+	}
+	if (s == e)
+	{
+		ans[ level ].push_back(tree[ s ]);
+		return;
+	}
+	```
 
 
 ### 1816 암호 키
