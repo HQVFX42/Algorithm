@@ -2,6 +2,25 @@
 /**
  * Single Linked List.
  */
+
+class Parent
+{
+public:
+	virtual void Bar() = 0;
+	virtual void BBB() = 0;
+
+private:
+	int a;
+};
+
+class Child : public Parent
+{
+public:
+	void Bar() override {};
+	void BBB() override {};
+
+};
+
 struct Node
 {
 	int Data;         // 노드의 데이터
@@ -224,6 +243,10 @@ int main()
 	std::cout << "Reversed List: ";
 	List1.Reverse2();
 	List1.Display();
+
+	Child f;
+
+	std::cout << sizeof(f) << std::endl;
 
 	return 0;
 }
