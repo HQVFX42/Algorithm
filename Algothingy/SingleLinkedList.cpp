@@ -4,108 +4,200 @@
  */
 struct Node
 {
-	int data;         // 노드의 데이터
-	Node* next;       // 다음 노드를 가리키는 포인터
+	int Data;         // 노드의 데이터
+	Node* Next;       // 다음 노드를 가리키는 포인터
+
+	// 기본 생성자
+	Node(int InData = 0) : Data(InData), Next(nullptr) {}
 };
 
 class LinkedList
 {
 private:
-	Node* head;       // 연결 리스트의 첫 번째 노드
+	Node* Head;      // 연결 리스트의 첫 번째 노드
 
 public:
-	LinkedList() : head(nullptr) {}  // 기본 생성자
+	LinkedList() : Head(nullptr) {}
 
-	// 연결 리스트에 노드를 삽입하는 함수
-	void insert(int data);
+	// 노드를 삽입하는 함수
+	Node* Insert(int Data);
 
-	// 연결 리스트에서 노드를 삭제하는 함수
-	void remove(int data);
+	// 노드를 삭제하는 함수
+	Node* Remove(int Data);
 
-	// 연결 리스트에서 특정 값을 검색하는 함수
-	bool search(int data);
+	// 두 리스트를 연결하는 함수
+	Node* Concatenate(LinkedList& OtherList);
 
-	// 연결 리스트를 출력하는 함수
-	void display();
+	// 순회 포인터를 이용한 역순 함수
+	Node* Reverse();
+
+	// 리스트의 크기를 반환하는 함수
+	int Size();
+
+	// 리스트를 출력하는 함수
+	void Display();
 };
 
-void LinkedList::insert(int data)
+Node* LinkedList::Insert(int Data)
 {
-	Node* newNode = new Node();  // 새로운 노드 생성
-	newNode->data = data;        // 데이터 할당
-	newNode->next = head;        // 새로운 노드의 next 포인터를 현재 head로 설정
-	head = newNode;              // head를 새로운 노드로 업데이트함
-}
+	Node* NewNode = new Node(Data);  // 새로운 노드 생성
 
-void LinkedList::remove(int data)
-{
-	if (head == nullptr) return;  // 리스트가 비어 있을 경우
-
-	if (head->data == data)
-	{     // 삭제할 노드가 head일 경우
-		Node* temp = head;
-		head = head->next;
-		delete temp;
-		return;
-	}
-
-	Node* curr = head;
-	while (curr->next != nullptr)
+	if (Head == nullptr)
 	{
-		if (curr->next->data == data)
+		Head = NewNode;
+	}
+	else
+	{
+		Node* Current = Head;
+		while (Current->Next != nullptr)
 		{
-			Node* temp = curr->next;
-			curr->next = curr->next->next;
-			delete temp;
-			return;
+			Current = Current->Next;
 		}
-		curr = curr->next;
+		Current->Next = NewNode;
 	}
+
+	return NewNode;
 }
 
-bool LinkedList::search(int data)
+ Node* LinkedList::Remove(int Data)
+ {
+ 	if (Head == nullptr)
+ 	{
+ 		return nullptr;  // 리스트가 비어 있을 경우
+ 	}
+
+ 	if (Head->Data == Data)
+ 	{
+ 		Node* Temp = Head;
+ 		Head = Head->Next;
+ 		delete Temp;
+ 		return nullptr;
+ 	}
+
+ 	Node* Current = Head;
+ 	while (Current->Next != nullptr)
+ 	{
+ 		if (Current->Next->Data == Data)
+ 		{
+ 			Node* Temp = Current->Next;
+ 			Current->Next = Current->Next->Next;
+ 			delete Temp;
+ 			return Current;
+ 		}
+ 		Current = Current->Next;
+ 	}
+
+ 	return nullptr;
+ }
+
+ Node* LinkedList::Concatenate(LinkedList& OtherList)
+ {
+	 if (Head == nullptr)
+	 {
+		 Head = OtherList.Head;
+		 return Head;
+	 }
+
+	 if (OtherList.Head == nullptr)
+	 {
+		 return nullptr;  // 다른 리스트가 비어 있을 경우
+	 }
+
+	 Node* Current = Head;
+	 while (Current->Next != nullptr)
+	 {
+		 Current = Current->Next;
+	 }
+	 Current->Next = OtherList.Head;
+	 OtherList.Head = nullptr;            // 다른 리스트 초기화
+
+	 return Current;
+ }
+
+ Node* LinkedList::Reverse()
+ {
+	 // 역순으로 변환할 때 사용할 이전 노드 포인터를 초기화
+	 Node* Prev = nullptr;
+
+	 // 현재 노드 포인터를 리스트의 첫 번째 노드로 설정
+	 Node* Current = Head;
+
+	 // 다음 노드 포인터를 초기화
+	 Node* Next = nullptr;
+
+	 // 리스트의 모든 노드를 순회
+	 while (Current != nullptr)
+	 {
+		 // 현재 노드의 다음 노드를 임시로 저장
+		 Next = Current->Next;
+
+		 // 현재 노드의 다음 포인터를 이전 노드로 설정하여 역순으로 연결
+		 Current->Next = Prev;
+
+		 // 이전 노드를 현재 노드로 이동
+		 Prev = Current;
+
+		 // 현재 노드를 다음 노드로 이동
+		 Current = Next;
+	 }
+
+	 // 리스트의 첫 번째 노드를 역순으로 변환된 리스트의 첫 번째 노드로 설정
+	 Head = Prev;
+
+	 // 역순으로 변환된 리스트의 첫 번째 노드를 반환
+	 return Head;
+ }
+
+ int LinkedList::Size()
+ {
+	 int Count = 0;
+	 Node* Temp = Head;
+	 while (Temp != nullptr)
+	 {
+		 Count++;
+		 Temp = Temp->Next;
+	 }
+	 return Count;
+ }
+
+ void LinkedList::Display()
+ {
+	 Node* Temp = Head;
+	 while (Temp != nullptr)
+	 {
+		 std::cout << Temp->Data << " ";
+		 Temp = Temp->Next;
+	 }
+	 std::cout << std::endl;
+ }
+
+
+int main()
 {
-	Node* temp = head;
-	while (temp != nullptr)
-	{
-		if (temp->data == data) return true;
-		temp = temp->next;
-	}
-	return false;
-}
+	LinkedList List1;
+	LinkedList List2;
 
-void LinkedList::display()
-{
-	Node* temp = head;
-	while (temp != nullptr)
-	{
-		std::cout << temp->data << " ";
-		temp = temp->next;
-	}
-	std::cout << std::endl;
-}
+	List1.Insert(1);
+	List1.Insert(2);
+	List1.Insert(3);
 
-int main() {
-	LinkedList list;
+	List2.Insert(4);
+	List2.Insert(5);
+	List2.Insert(6);
 
-	// 노드 삽입
-	list.insert(6);
-	list.insert(9);
-	list.insert(1);
-	list.insert(3);
-	list.insert(7);
+	std::cout << "List1: ";
+	List1.Display();
 
-	std::cout << "Current list: ";
-	list.display();
+	std::cout << "List2: ";
+	List2.Display();
 
-	// 노드 삭제
-	std::cout << "Remove 1: ";
-	list.remove(1);
-	list.display();
+	std::cout << "Concatenated List: ";
+	List1.Concatenate(List2);
+	List1.Display();
 
-	// 값 검색
-	std::cout << "Search 7: " << (list.search(7) ? "true" : "false") << std::endl;
-	std::cout << "Search 13: " << (list.search(13) ? "true" : "false") << std::endl;
+	std::cout << "Reversed List: ";
+	List1.Reverse();
+	List1.Display();
 
 	return 0;
 }
