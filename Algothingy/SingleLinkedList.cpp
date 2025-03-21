@@ -30,6 +30,8 @@ public:
 
 	// 순회 포인터를 이용한 역순 함수
 	Node* Reverse();
+	Node* Reverse2();
+	Node* ReverseRecursive(Node* head);
 
 	// 리스트의 크기를 반환하는 함수
 	int Size();
@@ -148,6 +150,26 @@ Node* LinkedList::Insert(int Data)
 	 return Head;
  }
 
+ Node * LinkedList::Reverse2()
+ {
+	 Head = ReverseRecursive(Head);
+	 return Head;
+ }
+
+ Node* LinkedList::ReverseRecursive(Node* head)
+ {
+	 if (head == nullptr or head->Next == nullptr)
+	 {
+		 return head;
+	 }
+
+	 Node * NewHead = ReverseRecursive(head->Next);
+	 head->Next->Next = head;
+	 head->Next = nullptr;
+
+	 return NewHead;
+ }
+
  int LinkedList::Size()
  {
 	 int Count = 0;
@@ -197,6 +219,10 @@ int main()
 
 	std::cout << "Reversed List: ";
 	List1.Reverse();
+	List1.Display();
+
+	std::cout << "Reversed List: ";
+	List1.Reverse2();
 	List1.Display();
 
 	return 0;
