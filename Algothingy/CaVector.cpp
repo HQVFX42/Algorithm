@@ -12,14 +12,14 @@ namespace ca
 		Vector(size_t cap = DEFAULT_CAP)
 			: mArr(new T[ cap ])
 			, mSize(0)
-			, mCapaciry(cap)
+			, mCapacity(cap)
 		{
 
 		}
 		Vector(const Vector& other)
-			: mArr(new T[ other.mCapaciry ])
+			: mArr(new T[ other.mCapacity ])
 			, mSize(other.mSize)
-			, mCapaciry(other.mCapaciry)
+			, mCapacity(other.mCapacity)
 		{
 			for (size_t i = 0; i < mSize; i++)
 			{
@@ -29,11 +29,11 @@ namespace ca
 		Vector(const Vector&& other)
 			: mArr(std::move(other.mArr))
 			, mSize(other.mSize)
-			, mCapaciry(other.mCapaciry)
+			, mCapacity(other.mCapacity)
 		{
 			other = nullptr;
 			other.mSize = 0;
-			other.mCapaciry = 0;
+			other.mCapacity = 0;
 		}
 		~Vector()
 		{
@@ -44,12 +44,12 @@ namespace ca
 		{
 			if (this != nullptr)
 			{
-				if (mCapaciry < other.mCapaciry)
+				if (mCapacity < other.mCapacity)
 				{
 					delete[] mArr;
 					mArr = nullptr;
-					mCapaciry = other.mCapaciry;
-					mArr = new T[ mCapaciry ];
+					mCapacity = other.mCapacity;
+					mArr = new T[ mCapacity ];
 				}
 
 				mSize = other.mSize;
@@ -63,7 +63,7 @@ namespace ca
 		{
 			std::swap(mArr, other.mArr);
 			std::swap(mSize, other.mSize);
-			std::swap(mCapaciry, other.mCapaciry);
+			std::swap(mCapacity, other.mCapacity);
 		}
 
 	public:
@@ -79,14 +79,14 @@ namespace ca
 	public:
 		void push_back(const T& value)
 		{
-			if (mSize > mCapaciry)
+			if (mSize > mCapacity)
 			{
-				if (mCapaciry < DEFAULT_CAP)
-					mCapaciry = DEFAULT_CAP;
+				if (mCapacity < DEFAULT_CAP)
+					mCapacity = DEFAULT_CAP;
 				else
-					mCapaciry *= 2;
+					mCapacity *= 2;
 
-				T* newmArr = new T[ mCapaciry ];
+				T* newmArr = new T[ mCapacity ];
 				for (size_t i = 0; i < mSize; i++)
 				{
 					newmArr[ i ] = mArr[ i ];
@@ -99,14 +99,14 @@ namespace ca
 		}
 		void push_back(const T&& value)
 		{
-			if (mSize > mCapaciry)
+			if (mSize > mCapacity)
 			{
-				if (mCapaciry < DEFAULT_CAP)
-					mCapaciry = DEFAULT_CAP;
+				if (mCapacity < DEFAULT_CAP)
+					mCapacity = DEFAULT_CAP;
 				else
-					mCapaciry *= 2;
+					mCapacity *= 2;
 
-				T* newmArr = new T[ mCapaciry ];
+				T* newmArr = new T[ mCapacity ];
 				for (size_t i = 0; i < mSize; i++)
 				{
 					newmArr[ i ] = mArr[ i ];
@@ -122,11 +122,11 @@ namespace ca
 		{
 			T* newmArr = new T[ n ];
 			mSize = mSize < n ? mSize : n;
-			mCapaciry = n;
+			mCapacity = n;
 
 			for (size_t i = 0; i < mSize; i++)
 				newmArr[ i ] = mArr[ i ];
-			for (size_t i = mSize; i < mCapaciry; i++)
+			for (size_t i = mSize; i < mCapacity; i++)
 				newmArr[ i ] = value;
 
 			delete[] mArr;
@@ -137,9 +137,9 @@ namespace ca
 		{
 			std::swap(mArr, other.mArr);
 			std::swap(mSize, other.mSize);
-			std::swap(mCapaciry, other.mCapaciry);
+			std::swap(mCapacity, other.mCapacity);
 		}
-		size_t capacity() const { return mCapaciry; }
+		size_t capacity() const { return mCapacity; }
 		size_t size() const { return mSize; }
 		bool empty() const { return mSize == 0; }
 		void clear() { mSize = 0; }
@@ -203,7 +203,7 @@ namespace ca
 		static constexpr size_t DEFAULT_CAP = 32;
 		T* mArr;
 		size_t mSize;
-		size_t mCapaciry;
+		size_t mCapacity;
 	};
 }
 
