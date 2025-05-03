@@ -223,6 +223,7 @@ int main()
 
 	std::vector<int> stdVector;
 	stdVector.resize(15);
+	stdVector.reserve(15);
 	stdVector[ 0 ] = 2;
 	stdVector[ 10 ] = 2;
 	stdVector.clear();
