@@ -18,18 +18,23 @@ void MovePlayer(int x, int y)
 	{
 		return;
 	}
+	if (GMap2D[y][x] == 1)
+	{
+		return;
+	}
 
 	{
 		int prevIndex = GPlayerY * MAP_WIDTH + GPlayerX;
 		GMap1D[prevIndex] = 0;
+		GMap2D[GPlayerY][GPlayerX] = 0;
 	}
-	
-	GPlayerX = x;
-	GPlayerY = y;
 
 	{
+		GPlayerX = x;
+		GPlayerY = y;
 		int prevIndex = GPlayerY * MAP_WIDTH + GPlayerX;
 		GMap1D[prevIndex] = 2;
+		GMap2D[GPlayerY][GPlayerX] = 2;
 	}
 }
 

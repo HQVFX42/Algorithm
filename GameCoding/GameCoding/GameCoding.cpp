@@ -13,6 +13,6 @@ int main()
 
 		HandleMove();
 
-		PrintMap1D();
+		PrintMap2D();
 	}
 }
