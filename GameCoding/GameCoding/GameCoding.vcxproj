@@ -128,6 +128,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameCoding.cpp" />
+    <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="Map.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameCoding.h" />
+    <ClInclude Include="Helper.h" />
+    <ClInclude Include="Map.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
