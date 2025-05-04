@@ -22,14 +22,14 @@ bool OOB(int x, int y, int n, int m) { return x < 0 or x >= n or y < 0 or y >= m
 void FastIO() { ios::sync_with_stdio(false); cin.tie(nullptr); }
 
 int n, m;
-int vis[ 55 ][ 55 ];
-string graph[ 55 ];
+int vis[55][55];
+string graph[55];
 int result;
 
 void BFS(int y, int x)
 {
 	memset(vis, 0, sizeof(vis));
-	vis[ y ][ x ] = 1;
+	vis[y][x] = 1;
 	queue<pii> q;
 	q.push({ y, x });
 	while (!q.empty())
@@ -39,16 +39,16 @@ void BFS(int y, int x)
 
 		for (int i = 0; i < 4; i++)
 		{
-			int ny = y + dy[ i ];
-			int nx = x + dx[ i ];
+			int ny = y + dy[i];
+			int nx = x + dx[i];
 			if ((OOB(ny, nx, n, m)) or vis[ny][nx] or graph[ny][nx] == 'W')
 			{
 				continue;
 			}
 
-			vis[ ny ][ nx ] = vis[ y ][ x ] + 1;
+			vis[ny][nx] = vis[y][x] + 1;
 			q.push({ ny, nx });
-			result = max(result, vis[ ny ][ nx ]);
+			result = max(result, vis[ny][nx]);
 		}
 	}
 }
@@ -61,7 +61,7 @@ int main()
 
 	for (int i = 0; i < n; i++)
 	{
-		cin >> graph[ i ];
+		cin >> graph[i];
 	}
 
 	int ans = 0;

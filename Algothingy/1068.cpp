@@ -15,7 +15,7 @@ int DFS(int here)
 	int Result = 0;
 	int Child = 0;
 
-	for (auto & there : Adj[here])
+	for (auto& there : Adj[ here ])
 	{
 		if (there == R)
 		{
