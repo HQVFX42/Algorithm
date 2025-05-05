@@ -9,10 +9,13 @@ int main()
 
 	while (true)
 	{
+		// Input
 		HandleKeyInput();
 
+		// Logic
 		HandleMove();
 
+		// Output
 		PrintMap2D();
 	}
 }
