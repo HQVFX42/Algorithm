@@ -1,7 +1,8 @@
 #include "Item.h"
 #include <iostream>
 
-Item::Item()
+Item::Item(ItemType itemType)
+	:_itemType(itemType)
 {
 	int randValue = rand() % 100;
 
@@ -57,7 +58,7 @@ void Item::PrintItemInfo()
 	}
 }
 
-Weapon::Weapon()
+Weapon::Weapon() : Item(IT_Weapon)
 {
 	switch (_itemRarity)
 	{
@@ -96,7 +97,7 @@ void Weapon::PrintItemInfo()
 	std::cout << "*************************************\n";
 }
 
-Armor::Armor()
+Armor::Armor() : Item(IT_Armor)
 {
 	switch (_itemRarity)
 	{

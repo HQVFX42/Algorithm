@@ -1,32 +1,31 @@
 #pragma once
 
+#include "Enums.h"
+
 // Item
 // - Weapon
 // - Armor
 // - Consumable
 
-enum ItemRarity
-{
-	IR_None,
-	IR_Common,
-	IR_Uncommon,
-	IR_Rare,
-	IR_Epic,
-	IR_Legendary,
-};
-
 class Item
 {
-public:
-	Item();
+protected:
+	//Item();
+	Item(ItemType itemType);
 	virtual ~Item();
 
+public:
 	virtual void PrintItemInfo();
+	ItemType GetItemType() const
+	{
+		return _itemType;
+	}
 
 protected:
 	int _itemId = 0;
 	int _itemCount = 0;
 	ItemRarity _itemRarity = IR_Common;
+	ItemType _itemType = IT_None;
 };
 
 class Weapon : public Item

@@ -22,5 +22,8 @@
     <ClInclude Include="Item.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Enums.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

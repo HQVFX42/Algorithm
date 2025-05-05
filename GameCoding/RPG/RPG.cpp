@@ -25,6 +25,18 @@ int main()
 	{
 		Item* item = DropItem();
 		item->PrintItemInfo();
+
+		ItemType itemType = item->GetItemType();
+		if (itemType == IT_Weapon)
+		{
+			Weapon* weapon = (Weapon*)item;
+			weapon->GetAttackPower();
+		}
+		else if (itemType == IT_Armor)
+		{
+			Armor* armor = (Armor*)item;
+			armor->GetDefensePower();
+		}
 	}
 
 	return 0;
