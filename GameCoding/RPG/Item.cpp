@@ -59,6 +59,28 @@ void Item::PrintItemInfo()
 
 Weapon::Weapon()
 {
+	switch (_itemRarity)
+	{
+	case IR_None:
+		break;
+	case IR_Common:
+		_attackPower = rand() % 5 + 1;
+		break;
+	case IR_Uncommon:
+		_attackPower = rand() % 10 + 5;
+		break;
+	case IR_Rare:
+		_attackPower = rand() % 15 + 10;
+		break;
+	case IR_Epic:
+		_attackPower = rand() % 20 + 25;
+		break;
+	case IR_Legendary:
+		_attackPower = rand() % 30 + 50;
+		break;
+	default:
+		break;
+	}
 }
 
 Weapon::~Weapon()
@@ -76,6 +98,28 @@ void Weapon::PrintItemInfo()
 
 Armor::Armor()
 {
+	switch (_itemRarity)
+	{
+	case IR_None:
+		break;
+	case IR_Common:
+		_defensePower = rand() % 5 + 1;
+		break;
+	case IR_Uncommon:
+		_defensePower = rand() % 10 + 5;
+		break;
+	case IR_Rare:
+		_defensePower = rand() % 15 + 10;
+		break;
+	case IR_Epic:
+		_defensePower = rand() % 20 + 25;
+		break;
+	case IR_Legendary:
+		_defensePower = rand() % 30 + 50;
+		break;
+	default:
+		break;
+	}
 }
 
 Armor::~Armor()
