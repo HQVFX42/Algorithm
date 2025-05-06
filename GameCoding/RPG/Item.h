@@ -12,9 +12,10 @@ class Item
 protected:
 	//Item();
 	Item(ItemType itemType);
-	virtual ~Item();
 
 public:
+	virtual ~Item();
+
 	virtual void PrintItemInfo();
 	ItemType GetItemType() const
 	{

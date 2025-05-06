@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Item.h"
+#include "Inventory.h"
 
 Item* DropItem()
 {
@@ -26,16 +27,37 @@ int main()
 		Item* item = DropItem();
 		item->PrintItemInfo();
 
-		ItemType itemType = item->GetItemType();
-		if (itemType == IT_Weapon)
+		bool bSuccess = Inventory::GetInstance()->AddItem(item);
+		if (bSuccess)
 		{
-			Weapon* weapon = (Weapon*)item;
-			weapon->GetAttackPower();
+			std::cout << "Added item to inventory" << std::endl;
 		}
-		else if (itemType == IT_Armor)
+		else
 		{
-			Armor* armor = (Armor*)item;
-			armor->GetDefensePower();
+			std::cout << "Failed to add item to inventory" << std::endl;
+			delete item;
+		}
+
+		//ItemType itemType = item->GetItemType();
+		//if (itemType == IT_Weapon)
+		//{
+		//	Weapon* weapon = (Weapon*)item;
+		//	weapon->GetAttackPower();
+		//}
+		//else if (itemType == IT_Armor)
+		//{
+		//	Armor* armor = (Armor*)item;
+		//	armor->GetDefensePower();
+		//}
+	}
+
+	for (int i = 0; i < 20; i++)
+	{
+		int randIndex = rand() % MAX_SLOT;
+		Item* item = Inventory::GetInstance()->GetItemAtSlot(randIndex);
+		if (item and Inventory::GetInstance()->RemoveItem(item))
+		{
+			std::cout << "Removed item from inventory" << std::endl;
 		}
 	}
 
