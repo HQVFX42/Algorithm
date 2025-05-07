@@ -1,8 +1,6 @@
-#include <iostream>
-#include "CaVector.h"
+#include"pch.h"
 
 int main()
 {
-	CaVector v;
-	v.back();
+
 }
