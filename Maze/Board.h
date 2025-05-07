@@ -17,13 +17,15 @@ enum class ETileType
 	Wall,
 };
 
+class Player;
+
 class Board
 {
 public:
 	Board();
 	~Board();
 
-	void Init(int32 size);
+	void Init(int32 size, Player* player);
 	void Render();
 
 	void GenerateMap();
@@ -36,6 +38,6 @@ public:
 private:
 	ETileType _tile[BOARD_MAX_HEIGHT][BOARD_MAX_WIDTH];
 	int32 _size = 0;
-
+	Player* _player = nullptr;
 };
 

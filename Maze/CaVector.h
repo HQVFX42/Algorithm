@@ -3,7 +3,7 @@
 
 class CaVector
 {
-	using T = int;
+	using T = Pos;
 
 public:
 	explicit CaVector()
