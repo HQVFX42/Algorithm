@@ -17,12 +17,24 @@
     <ClCompile Include="Maze.cpp">
       <Filter>Main</Filter>
     </ClCompile>
-    <ClCompile Include="List.cpp">
+    <ClCompile Include="CaList.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="CaArray.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="CaVector.cpp">
       <Filter>DataStructure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="List.h">
+    <ClInclude Include="CaList.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="CaArray.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="CaVector.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>

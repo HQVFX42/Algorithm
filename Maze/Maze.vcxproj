@@ -127,11 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="List.cpp" />
+    <ClCompile Include="CaArray.cpp" />
+    <ClCompile Include="CaList.cpp" />
+    <ClCompile Include="CaVector.cpp" />
     <ClCompile Include="Maze.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="List.h" />
+    <ClInclude Include="CaArray.h" />
+    <ClInclude Include="CaList.h" />
+    <ClInclude Include="CaVector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
