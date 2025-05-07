@@ -35,6 +35,27 @@ public:
 		}
 	}
 
+	Node* GetNode(int index)
+	{
+		Node* node = _head->next;
+		if (node == _tail)
+		{
+			return nullptr;
+		}
+
+		for (int i = 0; i < index; i++)
+		{
+			if (node == _tail->prev)
+			{
+				return nullptr;
+			}
+
+			node = node->next;
+		}
+
+		return node;
+	}
+
 	void Print()
 	{
 		Node* node = _head->next;
@@ -48,8 +69,8 @@ public:
 
 	Node* AddAtHead(int data)
 	{
-		/* Without dummy pointer */
-		/* [head]	[node]	[temp]	[2]	[3]		[tail] */
+		/** Without dummy pointer */
+		/** [head]	[node]	[temp]	[2]	[3]	[tail] */
 		//Node* node = new Node(data);
 		//if (!_head)
 		//{
@@ -64,9 +85,9 @@ public:
 		//	_head = node;
 		//}
 
-		/* With dummy pointer */
-		/* [dummy]	[node]	[temp]	[2]	[3]		[dummy]*/
-		/* [head]								[tail] */
+		/** With dummy pointer */
+		/** [dummy]	[node]	[temp]	[2]	[3]	[dummy] */
+		/** [head]							[tail]  */
 		Node* node = new Node(data);
 		Node* temp = _head->next;
 		 
@@ -80,9 +101,8 @@ public:
 
 	Node* AddAtTail(int data)
 	{
-		/* With dummy pointer */
-		/* [dummy]	[1]	[2]	[3]	[temp]	[node]	[dummy]*/
-		/* [head]								[tail] */
+		/** [dummy]	[1]	[2]	[temp]	[node]	[dummy] */
+		/** [head]							[tail]  */
 		Node* node = new Node(data);
 		Node* temp = _tail->prev;
 
@@ -94,6 +114,35 @@ public:
 		return node;
 	}
 
+	void Insert(Node* posNode, int data)
+	{
+		/**                [node]                  */
+		/** [dummy]	[prevN]		 [posNode]	[dummy]*/
+		/** [head]							[tail] */
+		Node* node = new Node(data);
+		Node* prevNode = posNode->prev;
+
+		prevNode->next = node;
+		node->prev = prevNode;
+		node->next = posNode;
+		posNode->prev = node;
+	}
+
+	Node* Remove(Node* node)
+	{
+		/**                [node]                  */
+		/** [dummy]	[prevN]		 [nextN]	[dummy]*/
+		/** [head]							[tail] */
+		Node* prevNode = node->prev;
+		Node* nextNode = node->next;
+
+		prevNode->next = nextNode;
+		nextNode->prev = prevNode;
+
+		delete node;
+
+		return nextNode;
+	}
 
 private:
 	Node* _head = nullptr;
