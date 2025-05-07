@@ -44,7 +44,7 @@ public:
 
 private:
 	T* _buffer = nullptr;
-	int _size = 0;		// µ¥ÀÌÅÍÀÇ °³¼ö
-	int _capacity = 0;	// ÇÒ´çÇÑ ÀüÃ¼ Å©±â
+	int _size = 0;		// ë°ì´í„°ì˜ ê°œìˆ˜
+	int _capacity = 0;	// í• ë‹¹í•œ ì „ì²´ í¬ê¸°
 };
 
