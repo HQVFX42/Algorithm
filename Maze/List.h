@@ -116,9 +116,9 @@ public:
 
 	void Insert(Node* posNode, int data)
 	{
-		/**                [node]                  */
-		/** [dummy]	[prevN]		 [posNode]	[dummy]*/
-		/** [head]							[tail] */
+		/**					[node]					*/
+		/** [dummy]	[prevN]		 [posNode]	[dummy]	*/
+		/** [head]							[tail] 	*/
 		Node* node = new Node(data);
 		Node* prevNode = posNode->prev;
 
@@ -130,9 +130,9 @@ public:
 
 	Node* Remove(Node* node)
 	{
-		/**                [node]                  */
-		/** [dummy]	[prevN]		 [nextN]	[dummy]*/
-		/** [head]							[tail] */
+		/**					[node]					*/
+		/** [dummy]	[prevN]		 [nextN]	[dummy]	*/
+		/** [head]							[tail] 	*/
 		Node* prevNode = node->prev;
 		Node* nextNode = node->next;
 
@@ -147,6 +147,5 @@ public:
 private:
 	Node* _head = nullptr;
 	Node* _tail = nullptr;
-	int size;
 };
 
