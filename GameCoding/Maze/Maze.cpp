@@ -4,32 +4,13 @@
 #include "CaStack.h"
 #include "CaQueue.h"
 #include "CaTree.h"
+#include "CaPriorityQueue.h"
 
 Board board;
 Player player;
 
 int main()
 {
-	//CaStack<int> st;
-	//st.push(1);
-	//st.push(2);
-	//st.push(3);
-	//while (!st.empty())
-	//{
-	//	int a = st.top();
-	//	st.pop();
-	//}
-
-	//CaQueue<int> q;
-	//q.push(1);
-	//q.push(2);
-	//q.push(3);
-	//while (!q.empty())
-	//{
-	//	int a = q.front();
-	//	q.pop();
-	//}
-
 	//::srand(static_cast<uint32>(time(nullptr)));
 
 	//board.Init(25, &player);
@@ -51,8 +32,16 @@ int main()
 	//	board.Render();
 	//}
 
-	CaTree tree;
-	Node* root = tree.CreateTree();
-	tree.PrintTree(root);
-	tree.GetDepth(root);
+	CaPriorityQueue<int> pq;
+	pq.push(1);
+	pq.push(4);
+	pq.push(3);
+	pq.push(5);
+	pq.push(2);
+
+	int value = pq.top();
+	std::cout << "Top value: " << value << std::endl;
+	pq.pop();
+	value = pq.top();
+	std::cout << "Top value: " << value << std::endl;
 }

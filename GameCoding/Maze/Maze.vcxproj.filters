@@ -46,6 +46,9 @@
     <ClCompile Include="CaTree.cpp">
       <Filter>DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="CaPriorityQueue.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CaList.h">
@@ -79,6 +82,9 @@
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="CaTree.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="CaPriorityQueue.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>
