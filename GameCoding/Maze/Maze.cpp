@@ -44,4 +44,18 @@ int main()
 	pq.pop();
 	value = pq.top();
 	std::cout << "Top value: " << value << std::endl;
+
+	// 최솟값을 구할 때 Min Heap을 사용하는 대신
+	// 음수값으로 변환하여 Max Heap을 그대로 사용할 수도 있다
+	CaPriorityQueue<int> pq2;
+	pq2.push(-1);
+	pq2.push(-4);
+	pq2.push(-3);
+	pq2.push(-5);
+	pq2.push(-2);
+	int value2 = -pq2.top();
+	std::cout << "Top value: " << value2 << std::endl;
+	pq2.pop();
+	value2 = -pq2.top();
+	std::cout << "Top value: " << value2 << std::endl;
 }

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-template<typename T>
+template<typename T, typename Predicate = std::less<T>>
 class CaPriorityQueue
 {
 public:
@@ -18,7 +18,11 @@ public:
 		{
 			// compare with the parent node
 			int next = (now - 1) / 2;
-			if (_heap[now] < _heap[next])
+			//if (_heap[now] < _heap[next])
+			//{
+			//	break;
+			//}
+			if (_predicate(_heap[now], _heap[next]))
 			{
 				break;
 			}
@@ -56,7 +60,11 @@ public:
 			}
 
 			// Check if the right child exists and is greater than the current node
-			if (right < static_cast<int>(_heap.size()) && _heap[next] < _heap[right])
+			//if (right < static_cast<int>(_heap.size()) && _heap[next] < _heap[right])
+			//{
+			//	next = right;
+			//}
+			if (right < static_cast<int>(_heap.size()) && _predicate(_heap[next], _heap[right]))
 			{
 				next = right;
 			}
@@ -85,5 +93,6 @@ public:
 
 private:
 	std::vector<T> _heap;
+	Predicate _predicate;
 };
 
