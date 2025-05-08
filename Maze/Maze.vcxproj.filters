@@ -37,6 +37,12 @@
     <ClCompile Include="Player.cpp">
       <Filter>Board</Filter>
     </ClCompile>
+    <ClCompile Include="CaQueue.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="CaStack.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CaList.h">
@@ -62,6 +68,12 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Board</Filter>
+    </ClInclude>
+    <ClInclude Include="CaQueue.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="CaStack.h">
+      <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

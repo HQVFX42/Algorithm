@@ -48,6 +48,7 @@ public:
 
 	void pop_back()
 	{
+		 //TODO : delete?
 		_size--;
 	}
 
