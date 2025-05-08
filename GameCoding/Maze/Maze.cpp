@@ -9,25 +9,26 @@ Player player;
 
 int main()
 {
-	CaStack<int> st;
-	st.push(1);
-	st.push(2);
-	st.push(3);
-	while (!st.empty())
-	{
-		int a = st.top();
-		st.pop();
-	}
+	//CaStack<int> st;
+	//st.push(1);
+	//st.push(2);
+	//st.push(3);
+	//while (!st.empty())
+	//{
+	//	int a = st.top();
+	//	st.pop();
+	//}
 
-	CaQueue<int> q;
-	q.push(1);
-	q.push(2);
-	q.push(3);
-	while (!q.empty())
-	{
-		int a = q.front();
-		q.pop();
-	}
+	//CaQueue<int> q;
+	//q.push(1);
+	//q.push(2);
+	//q.push(3);
+	//while (!q.empty())
+	//{
+	//	int a = q.front();
+	//	q.pop();
+	//}
+
 	//::srand(static_cast<uint32>(time(nullptr)));
 
 	//board.Init(25, &player);
