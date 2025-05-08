@@ -6,23 +6,31 @@ template<typename T>
 class CaPriorityQueue
 {
 public:
+	// O(log n) time complexity for push
 	void push(const T& value)
 	{
+		// heap structure is a complete binary tree
 		_heap.push_back(value);
 
+		// Move up the last element until it is in the correct position
 		int now = static_cast<int>(_heap.size()) - 1;
 		while (now > 0)
 		{
+			// compare with the parent node
 			int next = (now - 1) / 2;
 			if (_heap[now] < _heap[next])
 			{
 				break;
 			}
+
+			// if the current node is greater than the parent node,
+			// swap with the parent node
 			std::swap(_heap[now], _heap[next]);
 			now = next;
 		}
 	}
 
+	// O(log n) time complexity for pop
 	void pop()
 	{
 		_heap[0] = _heap.back();
@@ -63,11 +71,13 @@ public:
 		}
 	}
 
+	// O(1) time complexity for top
 	T& top()
 	{
 		return _heap[0];
 	}
 
+	// O(1) time complexity for empty
 	bool empty()
 	{
 		return _heap.empty();
