@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "CaStack.h"
 #include "CaQueue.h"
+#include "CaTree.h"
 
 Board board;
 Player player;
@@ -49,4 +50,9 @@ int main()
 	//	// Render
 	//	board.Render();
 	//}
+
+	CaTree tree;
+	Node* root = tree.CreateTree();
+	tree.PrintTree(root);
+	tree.GetDepth(root);
 }

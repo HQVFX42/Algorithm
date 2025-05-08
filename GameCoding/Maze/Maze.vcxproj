@@ -134,6 +134,7 @@
     <ClCompile Include="CaList.cpp" />
     <ClCompile Include="CaQueue.cpp" />
     <ClCompile Include="CaStack.cpp" />
+    <ClCompile Include="CaTree.cpp" />
     <ClCompile Include="CaVector.cpp" />
     <ClCompile Include="ConsoleHelper.cpp" />
     <ClCompile Include="Maze.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="CaList.h" />
     <ClInclude Include="CaQueue.h" />
     <ClInclude Include="CaStack.h" />
+    <ClInclude Include="CaTree.h" />
     <ClInclude Include="CaVector.h" />
     <ClInclude Include="ConsoleHelper.h" />
     <ClInclude Include="pch.h" />

@@ -43,6 +43,9 @@
     <ClCompile Include="CaStack.cpp">
       <Filter>DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="CaTree.cpp">
+      <Filter>DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CaList.h">
@@ -73,6 +76,9 @@
       <Filter>DataStructure</Filter>
     </ClInclude>
     <ClInclude Include="CaStack.h">
+      <Filter>DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="CaTree.h">
       <Filter>DataStructure</Filter>
     </ClInclude>
   </ItemGroup>
