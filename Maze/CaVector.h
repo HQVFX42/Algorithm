@@ -58,6 +58,15 @@ public:
 		return _buffer[_size - 1];
 	}
 
+	// forcefully change size
+	void resize(int size)
+	{
+		// TODO :
+		reserve(size);
+		_size = size;
+	}
+
+	// allocate
 	void reserve(int capacity)
 	{
 		if (_capacity >= capacity)
@@ -87,6 +96,10 @@ public:
 		return _buffer[index];
 	}
 
+	bool empty()
+	{
+		return _size == 0;
+	}
 	int size()
 	{
 		return _size;

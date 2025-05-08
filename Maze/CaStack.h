@@ -21,8 +21,14 @@ public:
 		return _container.back();
 	}
 
-	bool empty() { return size() > 0; }
-	int size() { return _container.size(); }
+	bool empty()
+	{
+		return _container.empty();
+	}
+	int size()
+	{
+		return _container.size();
+	}
 
 private:
 	CaVector<T> _container;
