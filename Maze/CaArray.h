@@ -1,9 +1,10 @@
 #pragma once
 #include <assert.h>
 
+template<typename T>
 class CaArray
 {
-	using T = int;
+	//using T = int;
 
 public:
 	explicit CaArray(int capacity = 100)

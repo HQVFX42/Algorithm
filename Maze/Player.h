@@ -28,7 +28,7 @@ private:
 	int32 _dir = EDir_Up;
 	Board* _board = nullptr;
 
-	CaVector _path;
+	CaVector<Pos> _path;
 	int32 _pathIndex = 0;
 	uint64 _sumTick = 0;
 };

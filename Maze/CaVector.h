@@ -1,9 +1,11 @@
 #pragma once
+
 #include <assert.h>
 
+template<typename T>
 class CaVector
 {
-	using T = Pos;
+	//using T = Pos;
 
 public:
 	explicit CaVector()
@@ -95,7 +97,7 @@ public:
 
 private:
 	T* _buffer = nullptr;
-	int _size = 0;		// 데이터의 개수
+	int _size = 0;		// 데이터 개수
 	int _capacity = 0;	// 할당한 전체 크기
 };
 

@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
 
+template<typename T>
 class Node
 {
-	using T = int;
+	//using T = int;
 public:
 	Node(T data)
 		: data(data), prev(nullptr), next(nullptr) {}
@@ -14,19 +15,20 @@ public:
 	Node* next;
 };
 
+template<typename T>
 class CaList
 {
 public:
 	CaList()
 	{
-		_head = new Node(0);
-		_tail = new Node(0);
+		_head = new Node<T>(0);
+		_tail = new Node<T>(0);
 		_head->next = _tail;
 		_tail->prev = _head;
 	}
 	~CaList()
 	{
-		Node* node = _head;
+		Node<T>* node = _head;
 		while (node)
 		{
 			Node* temp = node;
@@ -35,9 +37,9 @@ public:
 		}
 	}
 
-	Node* GetNode(int index)
+	Node<T>* GetNode(int index)
 	{
-		Node* node = _head->next;
+		Node<T>* node = _head->next;
 		if (node == _tail)
 		{
 			return nullptr;
@@ -58,7 +60,7 @@ public:
 
 	void Print()
 	{
-		Node* node = _head->next;
+		Node<T>* node = _head->next;
 		while (node != _tail)
 		{
 			std::cout << node->data << " ";
@@ -67,7 +69,7 @@ public:
 		std::cout << std::endl;
 	}
 
-	Node* AddAtHead(int data)
+	Node<T>* AddAtHead(int data)
 	{
 		/** Without dummy pointer */
 		/** [head]	[node]	[temp]	[2]	[3]	[tail] */
@@ -88,8 +90,8 @@ public:
 		/** With dummy pointer */
 		/** [dummy]	[node]	[temp]	[2]	[3]	[dummy] */
 		/** [head]							[tail]  */
-		Node* node = new Node(data);
-		Node* temp = _head->next;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* temp = _head->next;
 		 
 		node->next = temp;
 		temp->prev = node;
@@ -99,12 +101,12 @@ public:
 		return node;
 	}
 
-	Node* AddAtTail(int data)
+	Node<T>* AddAtTail(int data)
 	{
 		/** [dummy]	[1]	[2]	[temp]	[node]	[dummy] */
 		/** [head]							[tail]  */
-		Node* node = new Node(data);
-		Node* temp = _tail->prev;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* temp = _tail->prev;
 
 		temp->next = node;
 		node->prev = temp;
@@ -114,13 +116,13 @@ public:
 		return node;
 	}
 
-	void Insert(Node* posNode, int data)
+	void Insert(Node<T>* posNode, int data)
 	{
 		/**					[node]					*/
 		/** [dummy]	[prevN]		 [posNode]	[dummy]	*/
 		/** [head]							[tail] 	*/
-		Node* node = new Node(data);
-		Node* prevNode = posNode->prev;
+		Node<T>* node = new Node<T>(data);
+		Node<T>* prevNode = posNode->prev;
 
 		prevNode->next = node;
 		node->prev = prevNode;
@@ -128,7 +130,7 @@ public:
 		posNode->prev = node;
 	}
 
-	Node* Remove(Node* node)
+	Node<T>* Remove(Node<T>* node)
 	{
 		/**					[node]					*/
 		/** [dummy]	[prevN]		 [nextN]	[dummy]	*/
@@ -145,7 +147,7 @@ public:
 	}
 
 private:
-	Node* _head = nullptr;
-	Node* _tail = nullptr;
+	Node<T>* _head = nullptr;
+	Node<T>* _tail = nullptr;
 };
 
