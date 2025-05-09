@@ -9,6 +9,64 @@
 Board board;
 Player player;
 
+// ì¸ì ‘ë¦¬ìŠ¤íŠ¸ : ì‹¤ì œë¡œ ì—°ê²°ëœ ë…¸ë“œ`ë§Œ` ì €ì¥í•˜ëŠ” ë°©ë²•
+void CreateGraph()
+{
+	struct Vertex
+	{
+		int data;
+	};
+
+	std::vector<Vertex> vertices;
+	std::vector<std::vector<int>> adjList;
+	adjList.resize(5);
+	adjList[0] = { 1, 3 };
+	adjList[1] = { 0, 2, 3 };
+	adjList[2] = { 1, 4 };
+	adjList[3] = { 0, 1 };
+	adjList[4] = { 2 };
+
+	bool bConnected = false;
+	int size = adjList[0].size();
+	for (int i = 0; i < size; i++)
+	{
+		if (adjList[0][i] == 4)
+		{
+			bConnected = true;
+			break;
+		}
+	}
+
+	std::cout << "Is 4 connected? " << (bConnected ? "Yes" : "No") << std::endl;
+}
+
+// ì¸ì ‘í–‰ë ¬: ëª¨ë“  ë…¸ë“œì— ëŒ€í•´ ì—°ê²°ëœ ë…¸ë“œ`ëª¨ë‘`ë¥¼ ì €ì¥í•˜ëŠ” ë°©ë²•
+void CreateGraph2()
+{
+	// adj[from][to]
+	// ë©”ëª¨ë¦¬ ì‚¬ìš©ëŸ‰ì´ ë§ì§€ë§Œ ë¹ ë¥¸ ì ‘ê·¼ì´ ê°€ëŠ¥
+	std::vector<std::vector<bool>> adjMatrix(6, std::vector<bool>(6, false));
+	adjMatrix[0][1] = true;
+	adjMatrix[0][3] = true;
+	adjMatrix[1][0] = true;
+	adjMatrix[1][2] = true;
+	adjMatrix[1][3] = true;
+	adjMatrix[2][1] = true;
+
+	std::vector<std::vector<int>> adjMatrix2 =
+	{
+		{-1, 11, -1, 15, -1 },
+		{ 1, -1, 1, 5, -1 },
+		{ -1, 2, -1, -1, -1 },
+		{ -1, -1, -1, -1, -1 },
+		{ -1, -1, 3, -1, -1 }
+	};
+
+	bool bConnected = adjMatrix[0][3];
+	std::cout << "Is 4 connected? " << (bConnected ? "Yes" : "No") << std::endl;
+
+}
+
 int main()
 {
 	//::srand(static_cast<uint32>(time(nullptr)));
@@ -32,30 +90,11 @@ int main()
 	//	board.Render();
 	//}
 
-	CaPriorityQueue<int> pq;
-	pq.push(1);
-	pq.push(4);
-	pq.push(3);
-	pq.push(5);
-	pq.push(2);
+	CreateGraph();
+	CreateGraph2();
 
-	int value = pq.top();
-	std::cout << "Top value: " << value << std::endl;
-	pq.pop();
-	value = pq.top();
-	std::cout << "Top value: " << value << std::endl;
-
-	// ÃÖ¼Ú°ªÀ» ±¸ÇÒ ¶§ Min HeapÀ» »ç¿ëÇÏ´Â ´ë½Å
-	// À½¼ö°ªÀ¸·Î º¯È¯ÇÏ¿© Max HeapÀ» ±×´ë·Î »ç¿ëÇÒ ¼öµµ ÀÖ´Ù
-	CaPriorityQueue<int> pq2;
-	pq2.push(-1);
-	pq2.push(-4);
-	pq2.push(-3);
-	pq2.push(-5);
-	pq2.push(-2);
-	int value2 = -pq2.top();
-	std::cout << "Top value: " << value2 << std::endl;
-	pq2.pop();
-	value2 = -pq2.top();
-	std::cout << "Top value: " << value2 << std::endl;
+	// íƒìƒ‰ë°©ë²•
+	// vector : ìˆœíšŒ
+	// tree : ì¬ê·€
+	// graph : DFS, BFS
 }
