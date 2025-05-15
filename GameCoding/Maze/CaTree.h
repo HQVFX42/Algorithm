@@ -90,6 +90,7 @@ public:
 		return root;
 	}
 
+	// depth : root에서 node까지 가는 edge의 개수
 	void PrintTree(Node* root, int depth = 0)
 	{
 		for (int i = 0; i < depth; i++)
@@ -105,6 +106,7 @@ public:
 		}
 	}
 
+	// 재귀를 이용하여 최하단 자식의 depth를 return
 	int GetDepth(Node* root)
 	{
 		if (root == nullptr)
@@ -116,7 +118,7 @@ public:
 		for (Node* child : root->children)
 		{
 			int childDepth = GetDepth(child);
-			if (childDepth > maxDepth)
+			if (maxDepth < childDepth)
 			{
 				maxDepth = childDepth;
 			}

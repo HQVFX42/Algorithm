@@ -90,8 +90,13 @@ int main()
 	//	board.Render();
 	//}
 
-	CreateGraph();
-	CreateGraph2();
+	CaTree tree;
+	Node* root = tree.CreateTree();
+	tree.PrintTree(root);
+	std::cout << "Depth: " << tree.GetDepth(root) << std::endl;
+
+	//CreateGraph();
+	//CreateGraph2();
 
 	// 탐색방법
 	// vector : 순회
