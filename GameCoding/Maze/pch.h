@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <vector>
+#include <queue>
 #include "Types.h"
 
 struct Pos

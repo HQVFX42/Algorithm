@@ -7,7 +7,8 @@ void Player::Init(Board* board)
 	_pos = board->GetStartPos();
 	_board = board;
 
-	FindPathByRightHandRule();
+	//FindPathByRightHandRule();
+	FindPathByBFS();
 }
 
 void Player::Update(uint64 deltaTick)
@@ -87,4 +88,73 @@ void Player::FindPathByRightHandRule()
 			_dir = (_dir + 1) % EDir_Count;
 		}
 	}
+}
+
+void Player::FindPathByBFS()
+{
+	Pos pos = _pos;
+	Pos endPos = _board->GetEndPos();
+
+	Pos front[4] =
+	{
+		Pos(-1, 0),	// up
+		Pos(0, -1),	// left
+		Pos(1, 0),	// down
+		Pos(0, 1),	// right
+	};
+
+	const int32 size = _board->GetSize();
+	std::vector<std::vector<bool>> discovered(size, std::vector<bool>(size, false));
+	// 누구에 의해서 발견되었는지
+	std::vector<std::vector<Pos>> parent(size, std::vector<Pos>(size, Pos(-1, -1)));
+
+	std::queue<Pos> q;
+	q.push(pos);
+	discovered[pos.y][pos.x] = true;
+	parent[pos.y][pos.x] = pos;
+
+	while (!q.empty())
+	{
+		pos = q.front();
+		q.pop();
+
+		if (pos == endPos)
+		{
+			break;
+		}
+		for (int32 dir = 0; dir < EDir_Count; dir++)
+		{
+			Pos next = pos + front[dir];
+			if (CanGo(next) and !discovered[next.y][next.x])
+			{
+				q.push(next);
+				discovered[next.y][next.x] = true;
+				parent[next.y][next.x] = pos;
+			}
+		}
+	}
+
+	_path.clear();
+	pos = endPos;
+	// 시작점까지	거슬러 올라감
+	while (true)
+	{
+		_path.push_back(pos);
+
+		// check if pos is start point
+		if (pos == parent[pos.y][pos.x])
+		{
+			break;
+		}
+
+		pos = parent[pos.y][pos.x];
+	}
+
+	//std::vector<Pos> temp;
+	//for (int i = _path.size() - 1; i >= 0; i--)
+	//{
+	//	temp.push_back(_path[i]);
+	//}
+	//_path = temp;
+	std::reverse(_path.begin(), _path.end());
 }

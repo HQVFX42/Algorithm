@@ -34,6 +34,7 @@ public:
 
 	Pos GetStartPos() { return Pos(1, 1); }
 	Pos GetEndPos() { return Pos(_size - 2, _size - 2); }
+	int32 GetSize() { return _size; }
 
 private:
 	ETileType _tile[BOARD_MAX_HEIGHT][BOARD_MAX_WIDTH];
