@@ -5,104 +5,76 @@
 #include <vector>
 #include <queue>
 
-struct Vertex
+int Add(int a, int b)
 {
-	int data;
-};
-
-std::vector<Vertex> vertices;
-std::vector<std::vector<int>> adjList;
-std::vector<bool> visited;
-std::vector<bool> discovered;
-
-void CreateGraph()
-{
-	vertices.resize(7);
-
-	adjList = std::vector<std::vector<int>>(7, std::vector<int>(7, -1));
-	adjList[0][1] = adjList[1][0] = 15;
-	adjList[0][3] = adjList[3][0] = 35;
-	adjList[0][6] = adjList[6][0] = 100;
-	adjList[1][2] = adjList[2][1] = 5;
-	adjList[1][3] = adjList[3][1] = 10;
-	adjList[3][4] = adjList[4][3] = 10;
-	adjList[4][5] = adjList[5][4] = 10;
-	adjList[5][6] = adjList[6][5] = 10;
+	return a + b;
 }
 
-struct VertexCost
+// `행동` 자체를 인자로 넘기고 싶을 때
+// int Add(int a, int b) -> int(*)(int, int)
+using FuncPtrType = int(*)(int, int);
+int Foo(int a, int b, FuncPtrType func)
 {
-	VertexCost(int cost, int vertex)
-		: cost(cost), vertex(vertex)
-	{
-	}
-
-	bool operator<(const VertexCost& other) const
-	{
-		return cost < other.cost;
-	}
-
-	bool operator>(const VertexCost& other) const
-	{
-		return cost > other.cost;
-	}
-
-	int cost;
-	int vertex;
-};
-
-void Dijikstra(int here)
-{
-	// 최소 경로를 찾기 위한 우선순위 큐
-	std::priority_queue<VertexCost, std::vector<VertexCost>, std::greater<VertexCost>> pq;
-	// 발견한 케이스 중 가장 작은 비용을 저장하기 위한 벡터
-	std::vector<int> best(vertices.size(), INT_MAX);
-	// 방문한 정점들을 저장하기 위한 벡터
-	std::vector<int> parent(vertices.size(), -1);
-
-	pq.push(VertexCost(0, here));
-	best[here] = 0;
-	parent[here] = here;
-
-	while (!pq.empty())
-	{
-		// 제일 좋은 후보 찾기
-		VertexCost vc = pq.top();
-		pq.pop();
-		
-		int cost = vc.cost;
-		here = vc.vertex;
-
-		// 더 짧은 경로를 찾았다면
-		if (best[here] < cost)
-		{
-			continue;
-		}
-		std::cout << "Vertex: " << here << std::endl;
-
-		for (int there = 0; there < vertices.size(); there++)
-		{
-			// 연결된 정점이 아니면 패스
-			if (adjList[here][there] == -1)
-			{
-				continue;
-			}
-
-			// 더 좋은 경로를 과거에 찾았으면 패스
-			int nextCost = best[here] + adjList[here][there];
-			if (nextCost >= best[there])
-			{
-				continue;
-			}
-
-			// 지금까지 찾은 경로중에서 최선 수치 갱신
-			best[there] = nextCost;
-			parent[there] = here;
-			pq.push(VertexCost(nextCost, there));
-		}
-	}
+	return func(a, b);
 }
 
+/**
+ * 콜백 함수
+ * ex) UI, 서버 연동시, 키맵핑.
+ */
+void Fire()
+{
+
+}
+
+void Jump()
+{
+
+}
+
+/**
+ * 인벤토리의 아이템을 여러 타입에 따라 탐색이나 정렬이 필요할 때. 
+ */
+class Item
+{
+public:
+
+public:
+	int _itemId = 0;
+	int _rarity = 0;
+	int _ownerId = 0;
+};
+
+using ItemSelectorType = bool(*)(Item* item);
+Item* FindItem(Item items[], int itemCount, ItemSelectorType selector)
+{
+	for (int i = 0; i < itemCount; i++)
+	{
+		Item* item = &items[i];
+		if (item->_rarity == 1)
+		{
+			return item;
+		}
+	}
+
+	return nullptr;
+}
+
+bool IsRare(Item* item)
+{
+	return item->_rarity == 1;
+}
+
+// 멤버함수 포인터 (함수호출 규약에 따라 정적/전역 함수랑은 다름)
+// 일반함수: cdecl, 멤버함수: thiscall
+class Test
+{
+public:
+	void Print()
+	{
+		std::cout << "Hello" << std::endl;
+	}
+};
 
 int main()
 {
@@ -120,7 +92,29 @@ int main()
 	//	PrintMap2D();
 	//}
 
-	CreateGraph();
+	Foo(10, 20, &Add);
+	Foo(10, 20, [](int a, int b) { return a - b; });
 
-	Dijikstra(0);
+	//
+	using OnClickKeyboard = void(*)();
+	OnClickKeyboard leftB = &Fire;
+	OnClickKeyboard spaceB = &Jump;
+
+	//
+	Item items[10];
+	items[3]._itemId = 111;
+	items[3]._rarity = 1;
+	items[3]._ownerId = 42;
+
+	Item* foundItem = FindItem(items, 10, IsRare);
+
+	//
+	using memberFuncPtrType = void(Test::*)();
+	memberFuncPtrType memFuncPtr = &Test::Print;
+
+	Test t;
+	(t.*memFuncPtr)();
+
+	Test* t2 = &t;
+	(t2->*memFuncPtr)();
 }
