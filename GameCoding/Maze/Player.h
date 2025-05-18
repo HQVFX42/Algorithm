@@ -8,7 +8,7 @@ class Player
 {
 	enum
 	{
-		MOVE_TICK = 100,
+		MOVE_TICK = 250,
 	};
 public:
 
@@ -23,6 +23,7 @@ public:
 private:
 	void FindPathByRightHandRule();
 	void FindPathByBFS();
+	void FindPathByAstar();
 
 private:
 	Pos _pos;
