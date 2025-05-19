@@ -16,9 +16,53 @@ public:
 };
 
 template<typename T>
+class List_Iterator
+{
+public:
+	List_Iterator() : _node(nullptr) {}
+	List_Iterator(Node<T>* node) : _node(node) {}
+
+	// 전위형++(++it)
+	List_Iterator& operator++()
+	{
+		_node = _node->next;
+		return *this;
+	}
+	// 후위형++(it++)
+	List_Iterator& operator++(int)
+	{
+		List_Iterator temp = *this;
+		_node = _node->next;
+		return temp;
+	}
+
+	bool operator==(const List_Iterator& other)
+	{
+		return _node == other._node;
+	}
+	bool operator!=(const List_Iterator& other)
+	{
+		return _node != other._node;
+	}
+
+	T& operator*()
+	{
+		return _node->data;
+	}
+
+public:
+	Node<T>* _node = nullptr;
+};
+
+template<typename T>
 class CaList
 {
 public:
+	using iterator = List_Iterator<T>;
+
+	iterator begin() { return iterator(_head->next); }
+	iterator end() { return iterator(_tail); }
+
 	CaList()
 	{
 		_head = new Node<T>(0);
@@ -31,7 +75,7 @@ public:
 		Node<T>* node = _head;
 		while (node)
 		{
-			Node* temp = node;
+			Node<T>* temp = node;
 			node = node->next;
 			delete temp;
 		}
