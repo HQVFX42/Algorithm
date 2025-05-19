@@ -5,75 +5,66 @@
 #include <vector>
 #include <queue>
 
-int Add(int a, int b)
+//
+class Functor
 {
-	return a + b;
-}
+public:
+	void operator()()
+	{
+		std::cout << _hp << std::endl;
+	}
 
-// `행동` 자체를 인자로 넘기고 싶을 때
-// int Add(int a, int b) -> int(*)(int, int)
-using FuncPtrType = int(*)(int, int);
-int Foo(int a, int b, FuncPtrType func)
+	void operator()(int n)
+	{
+		std::cout << "operator()" << std::endl;
+		_hp += n;
+		std::cout << _hp << std::endl;
+	}
+
+public:
+	int _hp = 0;
+};
+
+//
+struct AddStruct
+{
+	int operator()(int a, int b)
+	{
+		return a + b;
+	}
+};
+
+template<typename T>
+int DoSomething(int a, int b, T func)
 {
 	return func(a, b);
 }
 
-/**
- * 콜백 함수
- * ex) UI, 서버 연동시, 키맵핑.
- */
-void Fire()
+//
+template<typename T>
+struct Greater
 {
-
-}
-
-void Jump()
-{
-
-}
-
-/**
- * 인벤토리의 아이템을 여러 타입에 따라 탐색이나 정렬이 필요할 때. 
- */
-class Item
-{
-public:
-
-public:
-	int _itemId = 0;
-	int _rarity = 0;
-	int _ownerId = 0;
+	bool operator()(const T& lhs, const T& rhs)
+	{
+		return lhs > rhs;
+	}
 };
 
-using ItemSelectorType = bool(*)(Item* item);
-Item* FindItem(Item items[], int itemCount, ItemSelectorType selector)
-{
-	for (int i = 0; i < itemCount; i++)
-	{
-		Item* item = &items[i];
-		if (item->_rarity == 1)
-		{
-			return item;
-		}
-	}
-
-	return nullptr;
-}
-
-bool IsRare(Item* item)
-{
-	return item->_rarity == 1;
-}
-
-// 멤버함수 포인터 (함수호출 규약에 따라 정적/전역 함수랑은 다름)
-// 일반함수: cdecl, 멤버함수: thiscall
-class Test
+//
+class Input
 {
 public:
-	void Print()
-	{
-		std::cout << "Hello" << std::endl;
-	}
+	virtual ~Input() {}
+};
+
+class Movement : public Input
+{
+
+};
+
+class Jump : public Input
+{
+
 };
 
 int main()
@@ -92,29 +83,28 @@ int main()
 	//	PrintMap2D();
 	//}
 
-	Foo(10, 20, &Add);
-	Foo(10, 20, [](int a, int b) { return a - b; });
+	//
+	Functor func;
+	func._hp = 10;
+	func();
+	func(10);
 
 	//
-	using OnClickKeyboard = void(*)();
-	OnClickKeyboard leftB = &Fire;
-	OnClickKeyboard spaceB = &Jump;
+	AddStruct func2;
+	DoSomething(10, 20, func2);
 
 	//
-	Item items[10];
-	items[3]._itemId = 111;
-	items[3]._rarity = 1;
-	items[3]._ownerId = 42;
-
-	Item* foundItem = FindItem(items, 10, IsRare);
+	std::priority_queue<int, std::vector<int>, Greater<int>> pq;
+	pq.push(10);
+	pq.push(20);
+	std::cout << pq.top() << std::endl;
 
 	//
-	using memberFuncPtrType = void(Test::*)();
-	memberFuncPtrType memFuncPtr = &Test::Print;
+	Input* inputMove = new Movement();
+	delete inputMove;
+	Input* inputJump = new Jump();
 
-	Test t;
-	(t.*memFuncPtr)();
-
-	Test* t2 = &t;
-	(t2->*memFuncPtr)();
+	std::queue<Input*> q;
+	q.push(inputMove);
+	q.push(inputJump);
 }
