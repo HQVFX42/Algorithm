@@ -5,67 +5,15 @@
 #include <vector>
 #include <queue>
 
-//
-class Functor
+// 함수가 호출될 때마다 실질적으로 복사가 일어나므로 복사비용을 아끼려면 주소값을 넘겨야한다
+//void Print(std::vector<int> v)
+void Print(std::vector<int>& v)
 {
-public:
-	void operator()()
+	for (int i = 0; i < v.size(); i++)
 	{
-		std::cout << _hp << std::endl;
+		std::cout << v[i] << std::endl;
 	}
-
-	void operator()(int n)
-	{
-		std::cout << "operator()" << std::endl;
-		_hp += n;
-		std::cout << _hp << std::endl;
-	}
-
-public:
-	int _hp = 0;
-};
-
-//
-struct AddStruct
-{
-	int operator()(int a, int b)
-	{
-		return a + b;
-	}
-};
-
-template<typename T>
-int DoSomething(int a, int b, T func)
-{
-	return func(a, b);
 }
-
-//
-template<typename T>
-struct Greater
-{
-	bool operator()(const T& lhs, const T& rhs)
-	{
-		return lhs > rhs;
-	}
-};
-
-//
-class Input
-{
-public:
-	virtual ~Input() {}
-};
-
-class Movement : public Input
-{
-
-};
-
-class Jump : public Input
-{
-
-};
 
 int main()
 {
@@ -83,28 +31,74 @@ int main()
 	//	PrintMap2D();
 	//}
 
-	//
-	Functor func;
-	func._hp = 10;
-	func();
-	func(10);
+	// std::vector
+	// 추가
+	// 삭제
+	// 순회
+	// 검색
+	// size: resize
+	// capacity: reserve
+	// 삽입or삭제
+	// - 시작: O(n)
+	// - 중간: O(n)
+	// - 끝: O(1)
+	// push_back, front, back: O(1)
+	// 임의접근 v[i]: O(1)
+
+	std::vector<int> v{ 1,2,3,4,5 };
+	Print(v);
+	std::cout << "------------------" << std::endl;
+
+	std::vector<int> v2 = v;
+	v2[0] = 100;	// 복사가 일어나므로 v의 값은 변경되지 않음
+	Print(v2);
+	std::cout << "------------------" << std::endl;
 
 	//
-	AddStruct func2;
-	DoSomething(10, 20, func2);
+	int* a = &v[0];
+	int value = *a;
+	std::cout << value << std::endl;
+	a++;
+	std::cout << *a << std::endl;
+	a++;
+	std::cout << *a << std::endl;
+	std::cout << "------------------" << std::endl;
 
 	//
-	std::priority_queue<int, std::vector<int>, Greater<int>> pq;
-	pq.push(10);
-	pq.push(20);
-	std::cout << pq.top() << std::endl;
+	int* ptr = &v[0];
+	int* ptrEnd = &v[4] + 1;
+	while (ptr != ptrEnd)
+	{
+		std::cout << *ptr << std::endl;
+		ptr++;
+	}
+	std::cout << "------------------" << std::endl;
 
-	//
-	Input* inputMove = new Movement();
-	delete inputMove;
-	Input* inputJump = new Jump();
+	for (std::vector<int>::iterator it = v.begin(); it != v.end();)
+	{
+		std::cout << *it << std::endl;
+		it++;
+	}
+	std::cout << "------------------" << std::endl;
 
-	std::queue<Input*> q;
-	q.push(inputMove);
-	q.push(inputJump);
+	for (std::vector<int>::iterator it = v.begin(); it != v.end();)
+	{
+		if (*it % 2 == 0)
+		{
+			it = v.erase(it);
+		}
+		if (*it == 5)
+		{
+			it = v.erase(it);
+		}
+		else
+		{
+			it++;
+		}
+	}
+	for (std::vector<int>::iterator it = v.begin(); it != v.end();)
+	{
+		std::cout << *it << std::endl;
+		it++;
+	}
 }
