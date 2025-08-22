@@ -67,6 +67,7 @@
 ## 1
 | Problem | Description | Code | Status |
 | :--: | :--: | :--: | :--: |
+| [BOJ 1439](https://www.acmicpc.net/problem/1439) | [뒤집기](#1439-뒤집기) | [Code](./Algothingy/1439.cpp) | :ballot_box_with_check: |
 | [BOJ 1940](https://www.acmicpc.net/problem/1940) | [주몽](#1940-주몽) | [Code](./Algothingy/1940.cpp), [Code-1](./Algothingy/1940-1.cpp) | :ballot_box_with_check: |
 | [BOJ 3986](https://www.acmicpc.net/problem/3986) | [좋은단어](#3986-좋은단어) | [Code](./Algothingy/3986.cpp) | :ballot_box_with_check: |
 
@@ -119,6 +120,9 @@
 ---
 # :droplet:Descriptions
 ## 1
+### 1439 뒤집기
+- 현재 인덱스의 문자와 다음 인덱스의 문자가 다르면 뒤집는다는 방식을 생각하면 쉽게 해결할 수 있다
+
 ### 1940 주몽
 - 이중 for문을 통해 전체 탐색을 하는 방법이 있다
 	```cpp
