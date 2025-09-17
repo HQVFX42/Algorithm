@@ -51,9 +51,9 @@ vector<string> Split(const string& Input, string Delimiter)
 	auto End = Input.find(Delimiter);
 	while (End != string::npos)
 	{
-		Result.push_back(Input.substr(Start, End - Start));
-		Start = End + Delimiter.size();
-		End = Input.find(Delimiter, Start);
+		Result.push_back(Input.substr(Start, End - Start));	// Extract the substring
+		Start = End + Delimiter.size();										// Move past the delimiter
+		End = Input.find(Delimiter, Start);						// Find the next occurrence from the new start position
 	}
 	Result.push_back(Input.substr(Start));
 
