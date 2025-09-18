@@ -55,7 +55,7 @@ vector<string> Split(const string& Input, string Delimiter)
 		Start = End + Delimiter.size();										// Move past the delimiter
 		End = Input.find(Delimiter, Start);						// Find the next occurrence from the new start position
 	}
-	Result.push_back(Input.substr(Start));
+	Result.push_back(Input.substr(Start));							// Add the last segment
 
 	return Result;
 }
