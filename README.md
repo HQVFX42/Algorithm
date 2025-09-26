@@ -9,7 +9,7 @@
 1. `최대범위 기반, 시간복잡도` -> 무식하게 풀 수 있다면 무식하게 모든 경우의 수를 생각하면서 풀고(Brute Force)
 1. 아니라면 다른 알고리즘
     - ? -> 완탐? -> DP? -> 그리디?
-	- ? -> Sorted Array? -> 이분탐색?
+	- ? -> Sorted Array? -> 이분탐색?(lower_bound, upper_bound)
 	- Counting = Map or Array로 접근
 	- 짝짓기, 폭발, 아름다운 괄호만들기 등 = Stack으로 접근
 	- Tree의 경우 Root부터 탐색을 하는 것이 좋다
