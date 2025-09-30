@@ -41,7 +41,7 @@ void BFS(int y, int x)
 		{
 			int ny = y + dy[i];
 			int nx = x + dx[i];
-			if ((OOB(ny, nx, n, m)) or vis[ny][nx] or graph[ny][nx] == 'W')
+			if (OOB(ny, nx, n, m) or vis[ny][nx] or graph[ny][nx] == 'W')
 			{
 				continue;
 			}
